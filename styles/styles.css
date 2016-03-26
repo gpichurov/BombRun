@@ -1,0 +1,45 @@
+#main-nav {
+    border-radius: 0;
+}
+
+#buttons-in-nav {
+    width: 90%;
+}
+
+@media only screen and (min-width: 1280px)  {
+    #forgotten-pass{
+        float: right;
+    }
+
+    #login-form {
+        margin-left: 25%;
+    }
+}
+
+#login-form {
+    border: 1px solid #c0c0c0;
+    padding: 0 5% 5% 5%;
+    -webkit-border-radius: 2%;
+    -moz-border-radius: 2%;
+    border-radius: 2%;
+}
+
+#reg-form {
+    border: 1px solid #c0c0c0;
+    padding: 0 5% 3% 5%;
+    -webkit-border-radius: 2%;
+    -moz-border-radius: 2%;
+    border-radius: 2%;
+}
+
+#login-btn, #reg-btn {
+    width: 100%;
+}
+
+@media only screen and (min-width: 1280px)  {
+
+    #reg-form {
+        margin-left: 25%;
+    }
+
+}

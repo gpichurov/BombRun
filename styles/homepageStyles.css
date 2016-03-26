@@ -1,0 +1,31 @@
+body {
+    background: url('../images/609408.png') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+h1 {
+    margin-top: 20%;
+}
+
+button {
+    width: 10em;
+}
+
+@media only screen and (max-width: 1000px)  {
+    h1 {
+        margin-top: 50%;
+        margin-bottom: 10%;
+    }
+
+    #btns-section {
+        width: 100%;
+        text-align: center;
+    }
+
+    #btns-section button {
+        margin-bottom: 3%;
+    }
+}

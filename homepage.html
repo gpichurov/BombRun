@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" href="bower_components/bootstrap-theme/bootstrap.css">
+    <link rel="stylesheet" href="bower_components/bootstrap-theme/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/animate.css/animate.min.css">
+    <link rel="stylesheet" href="styles/homepageStyles.css">
+
+    <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script type="text/javascript" src="js/homepageApp.js"></script>
+
+</head>
+<body ng-app="homepageApp" ng-controller="HomepageController" ng-class="class">
+    <div class="container" id="homepage">
+        <h1 class="text-center">Our Game Name</h1>
+        <br />
+        <div class="row" id="btns-section">
+                <div class="col-lg-3 col-lg-offset-5 col-md-3 col-md-offset-5 col-xs-12">
+                    <button type="button" class="btn btn-warning text-center" ng-click="hideButtons();" onclick="document.location.href='index.html'">
+                        To the game
+                    </button>
+                </div>
+        </div>
+    </div>
+</body>
+</html>
