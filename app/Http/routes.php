@@ -24,3 +24,10 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::get('/home', 'HomeController@index');
 });
+
+Route::group(['middleware' => 'web'], function () {
+
+    Route::get('/login/facebook', 'Auth\AuthController@redirectToProvider');
+    Route::get('/login/facebookcallback', 'Auth\AuthController@handleProviderCallback');
+
+});

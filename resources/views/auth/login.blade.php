@@ -58,6 +58,7 @@
                             </div>
                         </div>
                     </form>
+                    <div><a href="{{ url('/login/facebook') }}">or login with facebook</a></div>
                 </div>
             </div>
         </div>

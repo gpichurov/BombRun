@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+//use Laravel\Socialite;
+//use Laravel\Socialite\Facades\Socialite;
+use Auth;
+use Socialite;
 use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
@@ -10,6 +14,8 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 class AuthController extends Controller
 {
+
+
     /*
     |--------------------------------------------------------------------------
     | Registration & Login Controller
@@ -68,5 +74,72 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    public function redirectToProvider()
+    {
+        return Socialite::with('facebook')->redirect();
+    }
+
+    public function handleProviderCallback()
+    {
+        //$user = Socialite::with('facebook')->user();
+
+        //dd($user);
+
+        try {
+            $user = Socialite::with('facebook')->user();
+        } catch (Exception $e) {
+            return redirect('/login/facebook');
+        }
+
+        $authUser = $this->findOrCreateUser($user);
+
+        Auth::login($authUser, true);
+
+        return redirect('/home');
+
+//        // OAuth Two Providers
+//        $token = $user->token;
+//
+//// OAuth One Providers
+//        $token = $user->token;
+//        $tokenSecret = $user->tokenSecret;
+//
+//// All Providers
+//        $user->getId();
+//        $user->getNickname();
+//        $user->getName();
+//        $user->getEmail();
+//        $user->getAvatar();
+//
+    }
+    /**
+     * Return user if exists; create and return if doesn't
+     *
+     * @param $facebookUser
+     * @return User
+     */
+    private function findOrCreateUser($facebookUser)
+    {
+        $authUser = User::where('facebook_id', $facebookUser->id)->first();
+
+        if ($authUser){
+            return $authUser;
+        }
+
+        return User::create([
+            'name' => $facebookUser->name,
+            'email' => $facebookUser->email,
+            'password' => bcrypt($this->randomPassword()),
+            'facebook_id' => $facebookUser->id,
+            'avatar' => $facebookUser->avatar
+        ]);
+    }
+
+    private function randomPassword( $length = 8 ) {
+        $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-=+;:,.?";
+        $password = substr( str_shuffle( $chars ), 0, $length );
+        return $password;
     }
 }
