@@ -23,6 +23,9 @@ Route::group(['middleware' => 'web'], function () {
     Route::auth();
 
     Route::get('/home', 'HomeController@index');
+    Route::get('/settings', 'UsersController@index');
+    Route::post('/settings/name', 'UsersController@updateName');
+    Route::post('/settings/password', 'UsersController@updatePassword');
 });
 
 Route::group(['middleware' => 'web'], function () {
