@@ -13,8 +13,6 @@ class UsersController extends Controller
 
     /**
      * Create a new controller instance.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -91,7 +89,7 @@ class UsersController extends Controller
             Auth::user()->update(['name' => $request->name]);
         }
 
-
+        $request->session()->flash('alert-success', 'Name was successful changed!');
         return redirect('settings');
     }
 
@@ -112,7 +110,7 @@ class UsersController extends Controller
             Auth::user()->update(['password' => bcrypt($request->newPassword)]);
         }
 
-
+        $request->session()->flash('alert-success', 'Password was successful changed!');
         return redirect('settings');
     }
 
