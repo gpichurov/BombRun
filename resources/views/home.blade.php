@@ -9,6 +9,9 @@
 
                 <div class="panel-body">
                     You are logged in!
+                    @if(Auth::user()->isAdmin())
+                        <a href="{{ url('/admin') }}">To admin panel</a>
+                    @endif
                 </div>
             </div>
         </div>

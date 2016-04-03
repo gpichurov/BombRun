@@ -34,3 +34,8 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/login/facebookcallback', 'Auth\AuthController@handleProviderCallback');
 
 });
+
+Route::group(['middleware' => ['web']], function () {
+    Route::auth();
+    Route::get('/admin', 'AdminController@index');
+});
