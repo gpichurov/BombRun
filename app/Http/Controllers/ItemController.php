@@ -3,20 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
-use Hash;
-use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
+use App\Item;
+use App\Http\Requests;
 
-class UsersController extends Controller
+class ItemController extends Controller
 {
-
     /**
-     * Create a new controller instance.
+     * ItemController constructor.
      */
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('admin', ['except' => ['index', 'show']]);
     }
 
     /**
@@ -26,7 +25,13 @@ class UsersController extends Controller
      */
     public function index()
     {
-        return view('settings');
+        $items = Item::all();
+        if (Auth::user()){
+            if (Auth::user()->isAdmin()){
+                return view('shop.admin.index', compact('items'));
+            }
+        }
+        return view('shop.index', compact('items'));
     }
 
     /**
@@ -36,7 +41,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //
+        return view('shop.admin.create');
     }
 
     /**
@@ -47,7 +52,8 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Item::create($request->all());
+        return redirect('/shop');
     }
 
     /**
@@ -58,7 +64,13 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        //
+        $item = Item::where('id', $id)->first();
+        if (Auth::user()){
+            if (Auth::user()->isAdmin()){
+                return view('shop.admin.item', compact('item'));
+            }
+        }
+        return view('shop.item', compact('item'));
     }
 
     /**
@@ -69,49 +81,25 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $item = Item::findOrFail($id);
+
+        return view('shop.admin.edit', ['model' => $item]);
     }
 
     /**
      * Update the specified resource in storage.
+     *
      * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function updateName(Request $request)
+    public function update(Request $request, $id)
     {
+        $item = Item::findOrfail($id);
 
-        $this->validate($request, [
-            'name' => 'required|max:10',
-            'password' => 'required|max:255'
-        ]);
+        $item->update($request->all());
 
-        if (Hash::check($request->password, Auth::user()->password)) {
-            Auth::user()->update(['name' => $request->name]);
-        }
-
-        $request->session()->flash('alert-success', 'Name was successful changed!');
-        return redirect('settings');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function updatePassword(Request $request)
-    {
-
-        $this->validate($request, [
-            'oldPassword' => 'required|max:255',
-            'newPassword' => 'required|max:255|min:6|confirmed'
-        ]);
-
-        if (Hash::check($request->oldPassword, Auth::user()->password)) {
-            Auth::user()->update(['password' => bcrypt($request->newPassword)]);
-        }
-
-        $request->session()->flash('alert-success', 'Password was successful changed!');
-        return redirect('settings');
+        return redirect(route('shop.admin.edit', ['id' => $item->id]));
     }
 
     /**
@@ -122,6 +110,7 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Item::where('id', $id)->delete();
+        return redirect('/shop');
     }
 }

@@ -2,20 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Closure;
-use Illuminate\Support\Facades\Auth;
-
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-class AdminController extends Controller
+class ShopController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(['auth','admin']);
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +15,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('/home');
+        //return view('shop.index');
     }
 
     /**

@@ -55,7 +55,7 @@ class AuthController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
+            'name' => 'required|max:10',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
         ]);
@@ -127,15 +127,26 @@ class AuthController extends Controller
         if ($authUser){
             return $authUser;
         }
-
-        return User::create([
+        $newUser = User::create([
             'name' => $facebookUser->name,
             'email' => $facebookUser->email,
             'password' => bcrypt($this->randomPassword()),
             'facebook_id' => $facebookUser->id,
-            'avatar' => $facebookUser->avatar
         ]);
+        //$this->addFBImage($facebookUser, $newUser);
+        return $newUser;
     }
+
+//    private function addFBImage($facebookUser, $newUser){
+//        $url = $facebookUser->avatar;
+//        $file = file_get_contents($url);
+//        $extension = pathinfo($url, PATHINFO_EXTENSION);
+//        $imgName = $newUser->id . $extension;
+//        $destinationPath = 'resources/images/userImages/';
+//        $file->move($destinationPath . $imgName, $file);
+//        //file_put_contents($destinationPath, $image);
+//        $newUser->avatar = $destinationPath . $imgName;
+//    }
 
     private function randomPassword( $length = 8 ) {
         $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-=+;:,.?";

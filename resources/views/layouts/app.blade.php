@@ -74,6 +74,8 @@
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/home') }}">Home</a></li>
                     <li><a href="{{ url('/settings') }}">Settings</a></li>
+                    <li><a href="{{ url('/shop') }}">Shop</a></li>
+                    <li><a href="{{ url('/statistics') }}">Statistics</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->

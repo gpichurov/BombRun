@@ -23,19 +23,26 @@ Route::group(['middleware' => 'web'], function () {
     Route::auth();
 
     Route::get('/home', 'HomeController@index');
+
+    Route::get('/login/facebook', 'Auth\AuthController@redirectToProvider');
+    Route::get('/login/facebookcallback', 'Auth\AuthController@handleProviderCallback');
+
     Route::get('/settings', 'UsersController@index');
     Route::post('/settings/name', 'UsersController@updateName');
     Route::post('/settings/password', 'UsersController@updatePassword');
+
+    Route::resource('/shop', 'ItemController');
 });
 
 Route::group(['middleware' => 'web'], function () {
 
-    Route::get('/login/facebook', 'Auth\AuthController@redirectToProvider');
-    Route::get('/login/facebookcallback', 'Auth\AuthController@handleProviderCallback');
+
 
 });
 
 Route::group(['middleware' => ['web']], function () {
     Route::auth();
     Route::get('/admin', 'AdminController@index');
+    Route::resource('/shop/admin', 'ItemController');
+
 });

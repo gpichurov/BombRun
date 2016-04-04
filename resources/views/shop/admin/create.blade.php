@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        hi admin
-    </div>
+    @include('shop.admin._form')
 @endsection

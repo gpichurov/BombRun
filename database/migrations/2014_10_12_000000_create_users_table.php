@@ -20,6 +20,8 @@ class CreateUsersTable extends Migration
             $table->string('facebook_id')->nullable();
             $table->string('avatar')->nullable();
             $table->boolean('admin')->defaul(false);
+            $table->unsignedInteger('energy')->defaul(100);
+            $table->unsignedInteger('bombs')->defaul(5);
             $table->rememberToken();
             $table->timestamps();
         });
