@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\Auth;
 use App\Item;
 use App\Http\Requests;
 
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+use Illuminate\Http\Response;
 class ItemController extends Controller
 {
     /**
@@ -52,8 +56,33 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        Item::create($request->all());
+        $item = Item::create($request->all());
+
+        $this->saveImage($request, $item);
+
         return redirect('/shop');
+    }
+
+    private function saveImage(Request $request, $item) {
+
+        Storage::put(
+            'itemImages/' . $item->getID() . $request->file('image')->getClientOriginalName(),
+            file_get_contents($request->file('image')->getRealPath())
+        );
+
+
+
+
+//        $file = Input::file('image');
+//        $file = file_get_contents($request->image);
+//
+//        $extension = pathinfo($file, PATHINFO_EXTENSION);
+//        $imgName = $request->name . $extension;
+//        $destinationPath = 'resources/images/itemImages/';
+//        $file->move($destinationPath . $imgName);
+//        //file_put_contents($destinationPath, $image);
+//
+//        $request->image = $destinationPath . $imgName;
     }
 
     /**

@@ -1,11 +1,14 @@
+
 @if(empty($model))
     {!! Form::open([
-        'url' => route('shop.admin.store')
+        'url' => route('shop.admin.store'),
+        'files' => true
     ]) !!}
 @else
     {!! Form::model($model,[
         'url' => route('shop.admin.update', ['id' => $model->id]),
-        'method' => 'PUT'
+        'method' => 'PUT',
+        'files' => true
     ]) !!}
 @endif
 <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
@@ -53,6 +56,14 @@
     {!! Form::select('category', ['bombs' => 'Bombs', 'energy' => 'Energy'], ['class' => 'form-control']) !!}
     @if ($errors->has('category'))
         <span class="help-block">{{ $errors->first('category') }}</span>
+    @endif
+</div>
+
+<div class="form-group {{ $errors->has('image') ? 'has-error' : '' }}" >
+    {!! Form::label('image', 'image') !!}
+    {!! Form::file('image', ['class' => 'form-control']) !!}
+    @if ($errors->has('image'))
+        <span class="help-block">{{ $errors->first('image') }}</span>
     @endif
 </div>
 

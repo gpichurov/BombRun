@@ -16,4 +16,8 @@ class Item extends Model
             'available',
             'category'
         ];
+
+    public function getId() {
+        return $this->id;
+    }
 }
