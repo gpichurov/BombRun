@@ -21,7 +21,7 @@ class AdminMiddleware
 
     public function handle($request, Closure $next, $guard = null)
     {
-        if (Auth::guard($guard)->guest() || !Auth::user()->isAdmin()) {
+        if (Auth::guard($guard)->guest() || !Auth::user()->admin) {
             if ($request->ajax() || $request->wantsJson()) {
                 return response('Unauthorized.', 401);
             } else {

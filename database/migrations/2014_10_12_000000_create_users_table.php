@@ -14,14 +14,17 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('email')->unique();
             $table->string('password');
             $table->string('facebook_id')->nullable();
-            $table->string('avatar')->nullable();
+            $table->string('big_avatar')->nullable();
+            $table->string('small_avatar')->nullable();
             $table->boolean('admin')->defaul(false);
             $table->unsignedInteger('energy')->defaul(100);
             $table->unsignedInteger('bombs')->defaul(5);
+            $table->unsignedInteger('speed')->defaul(100);
+            $table->unsignedInteger('best_score')->defaul(0);
             $table->rememberToken();
             $table->timestamps();
         });

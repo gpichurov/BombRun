@@ -14,8 +14,39 @@
             @endforeach
         </div>
         <div class="panel-body">
-            <div class="panel">
 
+            <div class="panel">
+                <div class="page-header text-center">
+                    <h4>Change Your Avatar</h4>
+                </div>
+                <div class="panel-body">
+                    {!! Form::open([
+                        'url' => url('settings/avatar'),
+                        'files' => true,
+                        'method' =>'POST',
+                        'class' => 'form-horizontal'
+                    ]) !!}
+                        <div class="form-group {{ $errors->has('avatar') ? 'has-error' : '' }}" >
+                            {!! Form::label('avatar', 'Avatar:', ['class' => 'control-label col-sm-2']) !!}
+                            <div class="col-sm-10">
+                                {!! Form::file('avatar', ['class' => 'form-control']) !!}
+                            </div>
+                            @if ($errors->has('avatar'))
+                                <span class="help-block">{{ $errors->first('avatar') }}</span>
+                            @endif
+                        </div>
+
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <div class="form-group">
+                                {!! Form::submit('Submit', ['class' => 'btn btn-success ']) !!}
+                            </div>
+                        </div>
+
+                    {!! Form::close() !!}
+                </div>
+            </div>
+
+            <div class="panel">
                 <div class="page-header text-center">
                     <h4>Change Your Name</h4>
                 </div>

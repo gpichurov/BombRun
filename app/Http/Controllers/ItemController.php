@@ -33,7 +33,7 @@ class ItemController extends Controller
     {
         $items = Item::all();
         if (Auth::user()){
-            if (Auth::user()->isAdmin()){
+            if (Auth::user()->admin){
                 return view('shop.admin.index', compact('items'));
             }
         }
@@ -58,6 +58,16 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required|max:20',
+            'description' => 'required|max:500',
+            'price' => 'required|integer|min:0',
+            'number' => 'required|integer|min:0',
+            'available' => 'required|integer|min:0',
+            'category' => 'required',
+            'image' => 'required|image',
+        ]);
+
         $item = Item::create($request->all());
 
         $this->saveImage($request, $item);
@@ -88,26 +98,6 @@ class ItemController extends Controller
         $item->small_image = $nameSmall;
         $item->save();
 
-//        $image = file_get_contents($request->file('image')->getRealPath());
-//
-//        Storage::put(
-//            'itemImages/' . $item->getID() . $request->file('image')->getClientOriginalName(),
-//            $image
-//        );
-
-
-
-
-//        $file = Input::file('image');
-//        $file = file_get_contents($request->image);
-//
-//        $extension = pathinfo($file, PATHINFO_EXTENSION);
-//        $imgName = $request->name . $extension;
-//        $destinationPath = 'resources/images/itemImages/';
-//        $file->move($destinationPath . $imgName);
-//        //file_put_contents($destinationPath, $image);
-//
-//        $request->image = $destinationPath . $imgName;
     }
 
     /**
@@ -120,7 +110,7 @@ class ItemController extends Controller
     {
         $item = Item::where('id', $id)->first();
         if (Auth::user()){
-            if (Auth::user()->isAdmin()){
+            if (Auth::user()->admin){
                 return view('shop.admin.item', compact('item'));
             }
         }
@@ -149,6 +139,16 @@ class ItemController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'name' => 'required|max:20',
+            'description' => 'required|max:500',
+            'price' => 'required|integer|min:0',
+            'number' => 'required|integer|min:0',
+            'available' => 'required|integer|min:0',
+            'category' => 'required',
+            'image' => 'required|image',
+        ]);
+
         $item = Item::findOrfail($id);
 
         $item->update($request->all());

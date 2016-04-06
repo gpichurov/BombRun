@@ -11,6 +11,8 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Image;
+use File;
 
 class AuthController extends Controller
 {
@@ -55,7 +57,7 @@ class AuthController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:10',
+            'name' => 'required|max:10|unique:users',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
         ]);
@@ -73,6 +75,8 @@ class AuthController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'big_avatar' => 'B_default.png',
+            'small_avatar' => 'S_default.png',
         ]);
     }
 
@@ -128,25 +132,31 @@ class AuthController extends Controller
             return $authUser;
         }
         $newUser = User::create([
-            'name' => $facebookUser->name,
+            'name' => $facebookUser->name . time(),
             'email' => $facebookUser->email,
             'password' => bcrypt($this->randomPassword()),
             'facebook_id' => $facebookUser->id,
+            'big_avatar' => 'B_default.png',
+            'small_avatar' => 'S_default.png',
         ]);
-        //$this->addFBImage($facebookUser, $newUser);
+        $this->addFBImage($facebookUser, $newUser);
+
         return $newUser;
     }
 
-//    private function addFBImage($facebookUser, $newUser){
-//        $url = $facebookUser->avatar;
-//        $file = file_get_contents($url);
-//        $extension = pathinfo($url, PATHINFO_EXTENSION);
-//        $imgName = $newUser->id . $extension;
-//        $destinationPath = 'resources/images/userImages/';
-//        $file->move($destinationPath . $imgName, $file);
-//        //file_put_contents($destinationPath, $image);
-//        $newUser->avatar = $destinationPath . $imgName;
-//    }
+    private function addFBImage($facebookUser, $newUser){
+        $nameBig = 'B_' . time() . '_' . 'fb.jpg';
+        $pathBig = storage_path('app/avatarImages/big/' . $nameBig);
+        $nameSmall = 'S_' . time() . '_' . 'fb.jpg';
+        $pathSmall = storage_path('app/avatarImages/small/' . $nameSmall);
+
+        Image::make( $facebookUser->avatar)->resize(150, 150)->save($pathBig);
+        Image::make( $facebookUser->avatar)->resize(50, 50)->save($pathSmall);
+
+        $newUser->big_avatar = $nameBig;
+        $newUser->small_avatar = $nameSmall;
+        $newUser->save();
+    }
 
     private function randomPassword( $length = 8 ) {
         $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-=+;:,.?";

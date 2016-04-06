@@ -30,8 +30,16 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/settings', 'UsersController@index');
     Route::post('/settings/name', 'UsersController@updateName');
     Route::post('/settings/password', 'UsersController@updatePassword');
+    Route::post('/settings/avatar', 'UsersController@updateAvatar');
+    Route::get('profile/{id}', 'UsersController@show');
 
     Route::resource('/shop', 'ItemController');
+
+    Route::get('/statistics', 'StatisticsController@index');
+
+    Route::get('/game', function () {
+        return view('game');
+    });
 });
 
 Route::group(['middleware' => 'web'], function () {
@@ -55,4 +63,14 @@ Route::get('images/small/{filename}', function ($filename)
 Route::get('images/big/{filename}', function ($filename)
 {
     return Image::make(storage_path() . '/app/itemImages/big/' . $filename)->response();
+});
+
+Route::get('avatar/small/{filename}', function ($filename)
+{
+    return Image::make(storage_path() . '/app/avatarImages/small/' . $filename)->response();
+});
+
+Route::get('profile/avatar/big/{filename}', function ($filename)
+{
+    return Image::make(storage_path() . '/app/avatarImages/big/' . $filename)->response();
 });

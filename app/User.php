@@ -12,7 +12,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'facebook_id', 'avatar',
+        'name', 'email', 'password', 'facebook_id', 'big_avatar', 'small_avatar',
     ];
 
     /**
@@ -24,8 +24,4 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function isAdmin()
-    {
-        return $this->admin;
-    }
 }

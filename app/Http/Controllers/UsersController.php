@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Hash;
+use File;
+use Image;
+use Storage;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 
@@ -58,7 +61,9 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::where('id', $id)->first();
+
+        return view('profile', compact('user'));
     }
 
     /**
@@ -81,7 +86,7 @@ class UsersController extends Controller
     {
 
         $this->validate($request, [
-            'name' => 'required|max:10',
+            'name' => 'required|max:10|unique:users',
             'password' => 'required|max:255'
         ]);
 
@@ -114,6 +119,38 @@ class UsersController extends Controller
         return redirect('settings');
     }
 
+    public function updateAvatar (Request $request)
+    {
+        $this->validate($request, [
+            'avatar' => 'required|image'
+        ]);
+
+        $this->saveAvatar($request);
+
+        $request->session()->flash('alert-success', 'Avatar was successful changed!');
+        return redirect('settings');
+    }
+
+    private function saveAvatar(Request $request) {
+
+        $nameBig = 'B_' . time() . '_' . $request->file('avatar')->getClientOriginalName();
+        $pathBig = storage_path('app/avatarImages/big/' . $nameBig);
+        $nameSmall = 'S_' . time() . '_' . $request->file('avatar')->getClientOriginalName();
+        $pathSmall = storage_path('app/avatarImages/small/' . $nameSmall);
+
+        if ((Auth::user()->big_avatar ==! 'B_default.png') || (Auth::user()->small_avatar !== 'S_default.png')) {
+            File::delete([base_path('storage/app/avatarImages/big/' . Auth::user()->big_avatar),
+                base_path('storage/app/avatarImages/small/' . Auth::user()->small_avatar)]);
+        }
+
+        Image::make( $request->file('avatar')->getRealPath() )->resize(150, 150)->save($pathBig);
+        Image::make( $request->file('avatar')->getRealPath() )->resize(50, 50)->save($pathSmall);
+
+        Auth::user()->big_avatar = $nameBig;
+        Auth::user()->small_avatar = $nameSmall;
+        Auth::user()->save();
+
+    }
     /**
      * Remove the specified resource from storage.
      *

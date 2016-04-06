@@ -65,7 +65,7 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    Laravel
+                    Magic City
                 </a>
             </div>
 
@@ -73,9 +73,11 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/home') }}">Home</a></li>
+                    <li><a href="{{ url('/game') }}">Game</a></li>
                     <li><a href="{{ url('/settings') }}">Settings</a></li>
                     <li><a href="{{ url('/shop') }}">Shop</a></li>
                     <li><a href="{{ url('/statistics') }}">Statistics</a></li>
+                    <li><a href="{{ url('/messages') }}">Messages</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
