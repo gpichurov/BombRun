@@ -16,7 +16,8 @@ class CreateItemsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('description', 500);
-            $table->string('image')->nullable();
+            $table->string('big_image')->nullable();
+            $table->string('small_image')->nullable();
             $table->unsignedInteger('price');
             $table->unsignedInteger('number');
             $table->unsignedInteger('available');

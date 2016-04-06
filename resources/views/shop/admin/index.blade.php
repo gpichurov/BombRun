@@ -17,6 +17,9 @@
                         <li class="list-group-item clearfix">
                             <a href="{{ route('shop.admin.show', ['id' => $item->id]) }}">
                                 <span class="pull-left">
+                                    <img src="images/small/{{$item->small_image}}" alt="">
+                                </span>
+                                <span class="pull-left">
                                     {{ $item->name }}
                                 </span>
                             </a>

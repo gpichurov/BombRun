@@ -8,9 +8,11 @@ use App\Item;
 use App\Http\Requests;
 
 use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\File;
+use File;
 use Illuminate\Http\Response;
+use Image;
+use Storage;
+
 class ItemController extends Controller
 {
     /**
@@ -60,15 +62,38 @@ class ItemController extends Controller
 
         $this->saveImage($request, $item);
 
+        //dd($item);
+        //$item->update
+
+
         return redirect('/shop');
     }
 
     private function saveImage(Request $request, $item) {
 
-        Storage::put(
-            'itemImages/' . $item->getID() . $request->file('image')->getClientOriginalName(),
-            file_get_contents($request->file('image')->getRealPath())
-        );
+        $nameBig = 'B_' . time() . '_' . $request->file('image')->getClientOriginalName();
+        $pathBig = storage_path('app/itemImages/big/' . $nameBig);
+        $nameSmall = 'S_' . time() . '_' . $request->file('image')->getClientOriginalName();
+        $pathSmall = storage_path('app/itemImages/small/' . $nameSmall);
+
+        if (isset($item->big_image) || isset($item->small_image)) {
+            File::delete([base_path('storage/app/itemImages/big/' . $item->big_image),
+                            base_path('storage/app/itemImages/small/' . $item->small_image)]);
+        }
+
+        Image::make( $request->file('image')->getRealPath() )->resize(150, 150)->save($pathBig);
+        Image::make( $request->file('image')->getRealPath() )->resize(50, 50)->save($pathSmall);
+
+        $item->big_image = $nameBig;
+        $item->small_image = $nameSmall;
+        $item->save();
+
+//        $image = file_get_contents($request->file('image')->getRealPath());
+//
+//        Storage::put(
+//            'itemImages/' . $item->getID() . $request->file('image')->getClientOriginalName(),
+//            $image
+//        );
 
 
 
@@ -127,6 +152,8 @@ class ItemController extends Controller
         $item = Item::findOrfail($id);
 
         $item->update($request->all());
+
+        $this->saveImage($request, $item);
 
         return redirect(route('shop.admin.edit', ['id' => $item->id]));
     }

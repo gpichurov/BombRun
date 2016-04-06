@@ -46,3 +46,13 @@ Route::group(['middleware' => ['web']], function () {
     Route::resource('/shop/admin', 'ItemController');
 
 });
+
+Route::get('images/small/{filename}', function ($filename)
+{
+    return Image::make(storage_path() . '/app/itemImages/small/' . $filename)->response();
+});
+
+Route::get('images/big/{filename}', function ($filename)
+{
+    return Image::make(storage_path() . '/app/itemImages/big/' . $filename)->response();
+});

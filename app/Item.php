@@ -10,7 +10,8 @@ class Item extends Model
         [
             'name',
             'description',
-            'image',
+            'big_image',
+            'small_image',
             'price',
             'numbers',
             'available',
