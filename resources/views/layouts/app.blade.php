@@ -74,7 +74,6 @@
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/home') }}">Home</a></li>
                     <li><a href="{{ url('/game') }}">Game</a></li>
-                    <li><a href="{{ url('/settings') }}">Settings</a></li>
                     <li><a href="{{ url('/shop') }}">Shop</a></li>
                     <li><a href="{{ url('/statistics') }}">Statistics</a></li>
                     <li><a href="{{ url('/messages') }}">Messages</a></li>
@@ -93,6 +92,7 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ url('/settings') }}"><i class="fa fa-btn glyphicon glyphicon-cog"></i>Settings</a></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>
                         </li>

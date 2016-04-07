@@ -1,4 +1,4 @@
-<div class="panel">
+<div class="panel col-sm-offset-2 col-sm-8">
     @if(empty($model))
         {!! Form::open([
             'url' => route('shop.admin.store'),

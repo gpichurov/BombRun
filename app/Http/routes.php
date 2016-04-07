@@ -36,10 +36,9 @@ Route::group(['middleware' => 'web'], function () {
     Route::resource('/shop', 'ItemController');
 
     Route::get('/statistics', 'StatisticsController@index');
+    Route::resource('/messages', 'MessagesController');
 
-    Route::get('/game', function () {
-        return view('game');
-    });
+    Route::get('/game', 'GameController@index');
 });
 
 Route::group(['middleware' => 'web'], function () {
