@@ -160,12 +160,6 @@ class AuthController extends Controller
         $newUser->save();
     }
 
-//    private function changeFBurl($url) {
-//
-//        $pattern = '/\bnormal\b/i';
-//        return preg_replace($pattern,"large",$url);
-//    }
-
     private function randomPassword( $length = 8 ) {
         $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-=+;:,.?";
         $password = substr( str_shuffle( $chars ), 0, $length );

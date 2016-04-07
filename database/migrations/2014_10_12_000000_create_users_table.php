@@ -28,6 +28,7 @@ class CreateUsersTable extends Migration
             $table->unsignedInteger('kills')->defaul(0);
             $table->unsignedInteger('scrolls')->defaul(0);
             $table->unsignedInteger('games')->defaul(0);
+            $table->unsignedInteger('best_score')->defaul(0);
             $table->rememberToken();
             $table->timestamps();
         });

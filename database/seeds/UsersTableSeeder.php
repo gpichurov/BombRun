@@ -31,6 +31,7 @@ class UsersTableSeeder extends Seeder
                 'kills' => 2324,
                 'scrolls' => 2314,
                 'games' => 2143,
+                'best_score' => 1000,
             ]);
         DB::table('users')
             ->insert([
@@ -43,6 +44,7 @@ class UsersTableSeeder extends Seeder
                 'kills' => 4253,
                 'scrolls' => 2164,
                 'games' => 2713,
+                'best_score' => 1100,
             ]);
         DB::table('users')
             ->insert([
@@ -55,6 +57,7 @@ class UsersTableSeeder extends Seeder
                 'kills' => 4223,
                 'scrolls' => 2134,
                 'games' => 2413,
+                'best_score' => 1200,
             ]);
         DB::table('users')
             ->insert([
@@ -67,6 +70,7 @@ class UsersTableSeeder extends Seeder
                 'kills' => 4623,
                 'scrolls' => 2714,
                 'games' => 2813,
+                'best_score' => 1300,
             ]);
         DB::table('users')
             ->insert([
@@ -79,6 +83,7 @@ class UsersTableSeeder extends Seeder
                 'kills' => 4273,
                 'scrolls' => 2104,
                 'games' => 2513,
+                'best_score' => 1400,
             ]);
         DB::table('users')
             ->insert([
@@ -91,6 +96,7 @@ class UsersTableSeeder extends Seeder
                 'kills' => 2423,
                 'scrolls' => 3214,
                 'games' => 4213,
+                'best_score' => 1500,
             ]);
         DB::table('users')
             ->insert([
@@ -103,6 +109,7 @@ class UsersTableSeeder extends Seeder
                 'kills' => 6423,
                 'scrolls' => 6214,
                 'games' => 7213,
+                'best_score' => 1600,
             ]);
         DB::table('users')
             ->insert([
@@ -115,6 +122,7 @@ class UsersTableSeeder extends Seeder
                 'kills' => 9423,
                 'scrolls' => 1214,
                 'games' => 2213,
+                'best_score' => 1700,
             ]);
         DB::table('users')
             ->insert([
@@ -127,6 +135,7 @@ class UsersTableSeeder extends Seeder
                 'kills' => 4423,
                 'scrolls' => 2144,
                 'games' => 2153,
+                'best_score' => 1800,
             ]);
         DB::table('users')
             ->insert([
@@ -139,6 +148,7 @@ class UsersTableSeeder extends Seeder
                 'kills' => 4236,
                 'scrolls' => 2147,
                 'games' => 2138,
+                'best_score' => 1900,
             ]);
         DB::table('users')
             ->insert([
@@ -151,6 +161,7 @@ class UsersTableSeeder extends Seeder
                 'kills' => 4232,
                 'scrolls' => 2143,
                 'games' => 2138,
+                'best_score' => 2000,
             ]);
 
     }

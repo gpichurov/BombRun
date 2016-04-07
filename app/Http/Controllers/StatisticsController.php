@@ -22,16 +22,23 @@ class StatisticsController extends Controller
 
     public function index(Request $request)
     {
+        if ((!$request->dir) || ($request->dir === 'asc')) {
+            $dir = 'desc';
+        } else {
+            $dir = 'asc';
+        }
+
         if  (!$request->sort) {
-            $sort = 'kills';
+            $sort = 'best_score';
         } else {
             $sort = $request['sort'];
         }
-        //dd($request);
+        //dd($request['search']);
         $users = DB::table('users')
-            ->select('id', 'name', 'coins','kills', 'scrolls', 'games', 'small_avatar')
-            ->orderBy($sort, 'desc')
+            ->select('id', 'name', 'coins','kills', 'scrolls', 'best_score', 'games', 'small_avatar')
+            ->where('name', 'like', '%' . $request['search'] . '%' )
+            ->orderBy($sort, $dir)
             ->paginate(10);
-        return view('/statistics', compact('users', 'sort'));
+        return view('/statistics', compact('users', 'sort', 'dir'));
     }
 }
