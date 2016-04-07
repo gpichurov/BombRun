@@ -146,14 +146,15 @@ class ItemController extends Controller
             'number' => 'required|integer|min:0',
             'available' => 'required|integer|min:0',
             'category' => 'required',
-            'image' => 'required|image',
+            'image' => 'image',
         ]);
 
         $item = Item::findOrfail($id);
 
         $item->update($request->all());
-
-        $this->saveImage($request, $item);
+        if ($request->image) {
+            $this->saveImage($request, $item);
+        }
 
         return redirect(route('shop.admin.edit', ['id' => $item->id]));
     }

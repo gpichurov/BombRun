@@ -13,7 +13,7 @@ class Item extends Model
             'big_image',
             'small_image',
             'price',
-            'numbers',
+            'number',
             'available',
             'category'
         ];

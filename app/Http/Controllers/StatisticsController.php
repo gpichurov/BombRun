@@ -6,18 +6,32 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\User;
+use App\Statistics;
 use DB;
 
 class StatisticsController extends Controller
 {
-    public function index()
+    /**
+     * Create a new controller instance.
+     *
+     */
+    public function __construct()
     {
-        $users = DB::table('users')
-            ->select('id', 'name', 'best_score', 'small_avatar')
-            ->orderBy('best_score', 'desc')
-            ->take(10)
-            ->get();
+        $this->middleware('auth');
+    }
 
-        return view('/statistics', compact('users'));
+    public function index(Request $request)
+    {
+        if  (!$request->sort) {
+            $sort = 'kills';
+        } else {
+            $sort = $request['sort'];
+        }
+        //dd($request);
+        $users = DB::table('users')
+            ->select('id', 'name', 'coins','kills', 'scrolls', 'games', 'small_avatar')
+            ->orderBy($sort, 'desc')
+            ->paginate(10);
+        return view('/statistics', compact('users', 'sort'));
     }
 }

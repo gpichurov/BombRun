@@ -150,13 +150,21 @@ class AuthController extends Controller
         $nameSmall = 'S_' . time() . '_' . 'fb.jpg';
         $pathSmall = storage_path('app/avatarImages/small/' . $nameSmall);
 
-        Image::make( $facebookUser->avatar)->resize(150, 150)->save($pathBig);
-        Image::make( $facebookUser->avatar)->resize(50, 50)->save($pathSmall);
+        $url = preg_replace('/\bnormal\b/i', 'large', $facebookUser->avatar);
+
+        Image::make( $url)->resize(150, 150)->save($pathBig);
+        Image::make( $url)->resize(50, 50)->save($pathSmall);
 
         $newUser->big_avatar = $nameBig;
         $newUser->small_avatar = $nameSmall;
         $newUser->save();
     }
+
+//    private function changeFBurl($url) {
+//
+//        $pattern = '/\bnormal\b/i';
+//        return preg_replace($pattern,"large",$url);
+//    }
 
     private function randomPassword( $length = 8 ) {
         $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-=+;:,.?";
