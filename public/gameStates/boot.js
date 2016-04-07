@@ -5,7 +5,6 @@
     var background;
 var bootState = {
 
-
     preload: function() {
         //game.load.image('background', 'assets/background.jpg');
     },
@@ -18,7 +17,6 @@ var bootState = {
 
         game.stage.backgroundColor = '#679BCA';
 
+    },
 
-
-    }
 };
