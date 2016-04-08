@@ -10,22 +10,22 @@ var startScreen = {
         this.load.image('buttonPlay', 'assets/play_button.png');
 
      //   game.load.image('background', 'assets/background.jpg');
-        game.load.image('logo', 'assets/logo3.png');
+        game.load.image('logo', 'assets/logo.png');
 
-        game.load.image('island', 'assets/isle2.png');
-        game.load.image('castle', 'assets/castle.png');
+        //game.load.image('island', 'assets/isle2.png');
+        //game.load.image('castle', 'assets/castle.png');
     },
 
     create: function () {
        // background = this.add.tileSprite(0,0, window.innerWidth * window.devicePixelRatio, window.innerHeight * window.devicePixelRatio, 'background');
         /*var nameLabel = game.add.text(490, 180, 'Awesome game',
             {font: '50px Arial', fill: '#fff'});*/
-        logo = this.add.image(450, 180, 'logo');
+        logo = this.add.image(400, 180, 'logo');
 
-        var button = this.game.add.button(530, 280, 'buttonPlay', this.start);
+        var btn = this.game.add.button(560, 340, 'buttonPlay', this.start);
 
-        island = game.add.sprite(850, 270, 'island');
-        castle = game.add.sprite(0, 60, 'castle');
+        //island = game.add.sprite(850, 270, 'island');
+        //castle = game.add.sprite(0, 60, 'castle');
     },
 
     start: function () {
