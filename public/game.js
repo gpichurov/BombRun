@@ -10,8 +10,12 @@ game.state.add('load', loadState);
 /*game.state.add('menu', menuState);*/
 game.state.add('startScreen', startScreen);
 game.state.add('firstTown', firstTown);
+
 game.state.add('mineRoom', mineRoom);
+game.state.add('underworld', underworld);
+game.state.add('greenUnderworld', greenUnderworld);
+
 /*game.state.add('play', playState);*/
 game.state.add('win', winState);
 
-game.state.start('mineRoom');
+game.state.start('boot');

@@ -15,7 +15,7 @@ var bootState = {
 
         game.state.start('load');
 
-        game.stage.backgroundColor = '#679BCA';
+
 
     },
 
