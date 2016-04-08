@@ -52,7 +52,6 @@
                     <li><a href="{{ url('/game') }}">Game</a></li>
                     <li><a href="{{ url('/shop') }}">Shop</a></li>
                     <li><a href="{{ url('/statistics') }}">Statistics</a></li>
-                    <li><a href="{{ url('/messages') }}">Messages</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->

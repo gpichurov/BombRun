@@ -20,11 +20,16 @@
             <tr>
                 <th>#</th>
                 <th class="col-sm-3">Name</th>
-                <th><a href="{{route('statistics.index', ['sort' => 'coins', 'dir' => $dir])}}">Coins <span class="glyphicon glyphicon-sort"></span></a></th>
-                <th><a href="{{route('statistics.index', ['sort' => 'kills', 'dir' => $dir])}}">Kills <span class="glyphicon glyphicon-sort"></span></a></th>
-                <th><a href="{{route('statistics.index', ['sort' => 'scrolls', 'dir' => $dir])}}">Scrolls <span class="glyphicon glyphicon-sort"></span></a></th>
-                <th><a href="{{route('statistics.index', ['sort' => 'games', 'dir' => $dir])}}">Games <span class="glyphicon glyphicon-menu-down"></span></a></th>
-                <th><a href="{{route('statistics.index', ['sort' => 'best_score', 'dir' => $dir])}}">Best Score <span class="glyphicon glyphicon-menu-down"></span></a></th>
+                <th><a href="{{route('statistics.index', ['sort' => 'coins', 'dir' => $dir, 'lastSort' => $sort])}}">
+                        Coins <span class="glyphicon glyphicon-sort"></span></a></th>
+                <th><a href="{{route('statistics.index', ['sort' => 'kills', 'dir' => $dir, 'lastSort' => $sort])}}">
+                        Kills <span class="glyphicon glyphicon-sort"></span></a></th>
+                <th><a href="{{route('statistics.index', ['sort' => 'scrolls', 'dir' => $dir, 'lastSort' => $sort])}}">
+                        Scrolls <span class="glyphicon glyphicon-sort"></span></a></th>
+                <th><a href="{{route('statistics.index', ['sort' => 'games', 'dir' => $dir, 'lastSort' => $sort])}}">
+                        Games <span class="glyphicon glyphicon-menu-down"></span></a></th>
+                <th><a href="{{route('statistics.index', ['sort' => 'best_score', 'dir' => $dir, 'lastSort' => $sort])}}">
+                        Best Score <span class="glyphicon glyphicon-menu-down"></span></a></th>
             </tr>
             </thead>
             <tbody>
@@ -32,7 +37,7 @@
             @foreach($users as $user)
                 <tr>
                     <td>{{ $number++ }}</td>
-                    <td><img src="avatar/small/{{$user->small_avatar}}" alt=""><a href="/profile/{{$user->id}}">{{$user->name}}</a></td>
+                    <td><img src="avatar/small/{{$user->small_avatar}}" alt=""><a href="/profile/{{$user->id}}">&nbsp;&nbsp;{{$user->name}}</a></td>
                     <td>{{$user->coins}}</td>
                     <td>{{$user->kills}}</td>
                     <td>{{$user->scrolls}}</td>

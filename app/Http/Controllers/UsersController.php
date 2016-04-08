@@ -87,12 +87,9 @@ class UsersController extends Controller
 
         $this->validate($request, [
             'name' => 'required|max:10|unique:users',
-            'password' => 'required|max:255'
         ]);
 
-        if (Hash::check($request->password, Auth::user()->password)) {
-            Auth::user()->update(['name' => $request->name]);
-        }
+        Auth::user()->update(['name' => $request->name]);
 
         $request->session()->flash('alert-success', 'Name was successful changed!');
         return redirect('settings');

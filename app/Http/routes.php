@@ -37,15 +37,7 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::resource('/statistics', 'StatisticsController');
 
-    Route::resource('/messages', 'MessagesController');
-
     Route::get('/game', 'GameController@index');
-});
-
-Route::group(['middleware' => 'web'], function () {
-
-
-
 });
 
 Route::group(['middleware' => ['web']], function () {
@@ -54,6 +46,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::resource('/shop/admin', 'ItemController');
 
 });
+
+
 
 Route::get('images/small/{filename}', function ($filename)
 {

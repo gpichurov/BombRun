@@ -22,7 +22,7 @@ class StatisticsController extends Controller
 
     public function index(Request $request)
     {
-        if ((!$request->dir) || ($request->dir === 'asc')) {
+        if ((!$request->dir) || ($request->dir == 'asc') || ($request->sort != $request->lastSort)) {
             $dir = 'desc';
         } else {
             $dir = 'asc';

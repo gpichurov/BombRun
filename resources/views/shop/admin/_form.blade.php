@@ -53,7 +53,8 @@
 
     <div class="form-group {{ $errors->has('category') ? 'has-error' : '' }}" >
         {!! Form::label('category', 'Category') !!}
-        {!! Form::select('category', ['bombs' => 'Bombs', 'energy' => 'Energy'], ['class' => 'form-control']) !!}
+        {!! Form::select('category', ['bombs' => 'Bombs', 'energy' => 'Energy', 'speed' => 'Speed'],
+               ['class' => 'form-control']) !!}
         @if ($errors->has('category'))
             <span class="help-block">{{ $errors->first('category') }}</span>
         @endif
