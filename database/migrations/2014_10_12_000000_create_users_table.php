@@ -24,6 +24,10 @@ class CreateUsersTable extends Migration
             $table->unsignedInteger('energy')->defaul(100);
             $table->unsignedInteger('bombs')->defaul(5);
             $table->unsignedInteger('speed')->defaul(100);
+            $table->unsignedInteger('coins')->defaul(0);
+            $table->unsignedInteger('kills')->defaul(0);
+            $table->unsignedInteger('scrolls')->defaul(0);
+            $table->unsignedInteger('games')->defaul(0);
             $table->unsignedInteger('best_score')->defaul(0);
             $table->rememberToken();
             $table->timestamps();

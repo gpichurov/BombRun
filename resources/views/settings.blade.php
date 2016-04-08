@@ -67,18 +67,6 @@
                             </div>
                         </div>
 
-                        <div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label class="control-label col-sm-2" for="pwd">Password:</label>
-                            <div class="col-sm-10">
-                                <input type="password" class="form-control" id="pwd" name="password"
-                                       placeholder="Enter password">
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
                                 <button type="submit" class="btn btn-success">Submit</button>

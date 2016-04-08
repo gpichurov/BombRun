@@ -78,8 +78,10 @@ var firstTown = {
         game.load.image('tilesetImg', 'assets/magecity.png');
         game.load.image('additionalTiles', 'assets/magecity1.png');
 
-       // game.load.spritesheet('character', 'assets/chars2.png', 48, 48, 36);
-        game.load.spritesheet('character', 'assets/chars1.png', 48, 48, 12);
+        game.load.spritesheet('character', 'assets/chars2.png', 48, 48, 36);
+     /*   game.load.spritesheet('character', 'assets/chars1.png', 48, 48, 12);*/
+        /*game.load.spritesheet('character', 'assets/chars22.png', 35, 34, 36);*/
+
 
         //game.load.spritesheet('enemy', 'assets/heroes.png', 34, 33, 48);
         game.load.image('darkMonster', 'assets/darkMonster.png');
@@ -131,15 +133,15 @@ var firstTown = {
         //300 x 200
         //za coins: 235 x 550
 
-        /*player.animations.add('left', [8, 9, 10], 10, true);
+        player.animations.add('left', [8, 9, 10], 10, true);
         player.animations.add('right', [16, 17, 18], 10, true);
         player.animations.add('up', [24, 25, 26], 10, true);
-        player.animations.add('down', [0, 1, 2], 10, true); */
+        player.animations.add('down', [0, 1, 2], 10, true);
 
-        player.animations.add('left', [3, 4, 5], 10, true);
+      /*  player.animations.add('left', [3, 4, 5], 10, true);
         player.animations.add('right', [6, 7, 8], 10, true);
         player.animations.add('up', [9, 10, 11], 10, true);
-        player.animations.add('down', [0, 1, 2], 10, true);
+        player.animations.add('down', [0, 1, 2], 10, true);*/
 
         game.physics.enable(player, Phaser.Physics.ARCADE);
 
@@ -325,7 +327,7 @@ var firstTown = {
     },
 
      enterDoor: function() {
-         if (this.keyCollected) {
+         if (!this.keyCollected) {
              if(localStorage.getItem('speed') == '120'){
 
                  localStorage.setItem('speed', speed);

@@ -150,6 +150,8 @@ var mineRoom = {
   /*      game.physics.arcade.collide(player, this.mapCubesLayer);*/
         game.physics.arcade.overlap(this.enemy, this.bombs, this.collectCoin, null, this);
 
+        game.physics.arcade.overlap(player, this.enemy, this.collisionPlayerEnemy, null, this);
+
         player.body.velocity.x = 0;
         player.body.velocity.y = 0;
 
@@ -219,14 +221,18 @@ var mineRoom = {
         } else {
             player.animations.stop();
         }
-if(distancePassed>100){
-    distancePassed=0;
-    if(energy>0){
-        this.energyLabel.setText("Energy: "+ (--energy));
-    }else{
-        player.animations.stop();
-    }
-}
+
+
+        if (distancePassed > 100){
+            distancePassed = 0;
+            if (energy > 0) {
+                this.energyLabel.setText("Energy: "+ (--energy));
+            } else {
+                player.animations.stop();
+            }
+        }
+
+
         var bomb1;
 
         if (this.bombButton.isDown && !this.dropping_bomb) {
@@ -311,7 +317,10 @@ if(distancePassed>100){
 
 
 
-
+    collisionPlayerEnemy: function () {
+        this.enemy.body.immovable = true;
+        player.kill();
+    },
 
 
 
@@ -365,7 +374,7 @@ if(distancePassed>100){
             //enemy.body.velocity.y  = 0;
             this.enemy.body.velocity.y *= -1;
         }
-    },
+    }
 
 
 
@@ -374,4 +383,4 @@ if(distancePassed>100){
 
 
 
-}
+};
