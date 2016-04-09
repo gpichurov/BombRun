@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Statistic extends Model
+class Inventory extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -12,7 +12,7 @@ class Statistic extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'coins', 'kills', 'scrolls', 'games', 'best_score'
+        'user_id', 'money', 'bombs', 'energy', 'speed'
     ];
 
     /**

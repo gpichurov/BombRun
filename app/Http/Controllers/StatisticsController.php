@@ -35,8 +35,10 @@ class StatisticsController extends Controller
         }
         //dd($request['search']);
         $users = DB::table('users')
-            ->select('id', 'name', 'coins','kills', 'scrolls', 'best_score', 'games', 'small_avatar')
-            ->where('name', 'like', '%' . $request['search'] . '%' )
+            ->join('statistics', 'users.id', '=', 'statistics.user_id')
+            ->select('users.id', 'users.name', 'users.small_avatar', 'statistics.coins','statistics.kills',
+                'statistics.scrolls', 'statistics.best_score', 'statistics.games')
+            ->where('users.name', 'like', '%' . $request['search'] . '%' )
             ->orderBy($sort, $dir)
             ->paginate(10);
         return view('/statistics', compact('users', 'sort', 'dir'));

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Inventory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Item;
@@ -169,5 +170,31 @@ class ItemController extends Controller
     {
         Item::where('id', $id)->delete();
         return redirect('/shop');
+    }
+
+    public function buy(Request $request)
+    {
+        $item = Item::findOrfail($request->id);
+        $inventory = Auth::user()->inventory;
+
+        if ($inventory->money >= $item->price) {
+            $inventory[$item->category] += $item->number;
+            $inventory->money -= $item->price;
+            $item->available -= 1;
+
+            $inventory->save();
+            $item->save();
+
+            $request->session()->flash('alert-success', 'Item was successful bought!');
+        } else {
+            $request->session()->flash('alert-danger', 'Not enough money!');
+        }
+
+
+        if (Auth::user()->admin){
+            return redirect('/shop/admin/' . $request->id);
+        } else {
+            return redirect('/shop/' . $request->id);
+        }
     }
 }

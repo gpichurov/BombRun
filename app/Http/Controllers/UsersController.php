@@ -62,7 +62,10 @@ class UsersController extends Controller
     public function show($id)
     {
         $user = User::where('id', $id)->first();
-
+        //dd(Auth::user()->id);
+        if ($id == Auth::user()->id) {
+            return redirect('/home');
+        }
         return view('profile', compact('user'));
     }
 

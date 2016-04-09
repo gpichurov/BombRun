@@ -24,8 +24,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-//        Image::make('http://graph.facebook.com/v2.5/1347720765254260/picture?type=large')
-//            ->save(storage_path('app/itemImages/small/' . 'dada.png'));
         return view('home');
     }
 }
