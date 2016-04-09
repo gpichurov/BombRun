@@ -2,21 +2,22 @@
 
 
 var underworld = {
-    map: '',
-    mapBottomLayer: '',
-    mapWallsLayer: '',
+/*    map: '',*/
+    /*mapBottomLayer: '',
+    mapWallsLayer: '',*/
     mapUpLayer: '',
-    bomb1: '',
+    identificator: 0,
+    /*bomb1: '',*/
     droppingBomb: false,
-    bombButton: '',
+    /*bombButton: '',
 
     enemy1:'',
-    enemy2:'',
+    enemy2:'',*/
 
     killEnemy1: false,
 
-    bombLabel: '',
-    energyLabel: '',
+    /*bombLabel: '',
+    energyLabel: '',*/
 
     smallMaps:'',
 
@@ -53,11 +54,17 @@ var underworld = {
         player.animations.add('up', [9, 10, 11], 10, true);
         player.animations.add('down', [0, 1, 2], 10, true);
 
-        this.enemy1 = new Enemy(game, 32, 32, 'characterEnemy', 120, 544, +1, 'x', '');
+        this.enemy1 = new Enemy(game, 32, 32, 'characterEnemy', 'switchSquare', 120, 539, +1, 'x', '');
         game.add.existing(this.enemy1);
 
-        this.enemy2 = new Enemy(game, 32, 32, 'characterEnemy', 140, 544, +1, 'x', '');
+        this.enemy2 = new Enemy(game, 320, 32, 'characterEnemy', 'switch', 120, 539, +1, 'y', '');
         game.add.existing(this.enemy2);
+
+        this.enemy3 = new Enemy(game, 32, 223, 'characterEnemy', 'switch', 120, 544, +1, 'x', '');
+        game.add.existing(this.enemy3);
+
+        this.enemy4 = new Enemy(game, 32, 415, 'characterEnemy', 'switch', 120, 544, +1, 'x', '');
+        game.add.existing(this.enemy4);
 
         this.smallMaps = game.add.group();
         this.smallMaps.enableBody = true;
@@ -99,22 +106,22 @@ var underworld = {
             this.smallMaps.kill();
         }
 
-        if (cursors.up.isDown && energy>0) {
+        if (cursors.up.isDown && energy > 0) {
             distancePassed++;
             player.body.velocity.y = -200;
             player.animations.play('up');
 
-        } else if (cursors.down.isDown && energy>0) {
+        } else if (cursors.down.isDown && energy > 0) {
             distancePassed++;
             player.body.velocity.y = 200;
             player.animations.play('down');
 
-        } else if (cursors.left.isDown && energy>0 ) {
+        } else if (cursors.left.isDown && energy > 0 ) {
             distancePassed++;
             player.body.velocity.x = -200;
             player.animations.play('left');
 
-        } else if (cursors.right.isDown && energy>0){
+        } else if (cursors.right.isDown && energy > 0){
             distancePassed++;
             player.body.velocity.x = 200;
             player.animations.play('right');
@@ -199,6 +206,8 @@ var underworld = {
 
     },
 
+
+
     collisionHandler: function(player, veg) {
         /*
          if (veg.frame == 17)
@@ -212,49 +221,53 @@ var underworld = {
 
     collectScroll: function (player, scroll) {
         scroll.kill();
-    },
+    }
 
-}
+};
+
+
+
+
 
 function collisionPlayerEnemy(player, enemy) {
-     enemy.body.immovable = true;
-     player.kill();
-};
+    enemy.body.immovable = true;
+    player.kill();
+}
 
-var identificator = 0;
 
-function collectCoin(player, coin) {
+function killEnemy(currentEnemy, explodingBomb) {
+    var a = explodingBomb.animations.currentFrame.index;
+    if (a == 8) {
+        currentEnemy.scale.setTo(1,1);
+        currentEnemyX = currentEnemy.body.x;
+        currentEnemyY = currentEnemy.body.y;
+        bombX = explodingBomb.body.x;
+        bombY = explodingBomb.body.y;
+        if (currentEnemyX - bombX <= 50 && currentEnemyY - bombY <= 50 && currentEnemyX - bombX >= 0 && currentEnemyY - bombY >= 0 ){
+            currentEnemy.kill();
 
-     var a = coin.animations.currentFrame.index;
-     if (a == 8) {
-         player.scale.setTo(1,1);
-         playerX = player.body.x;
-         playerY= player.body.y;
-         bombX = coin.body.x;
-         bombY = coin.body.y;
-         if (playerX-bombX<=50 && playerY-bombY<=50 && playerX-bombX>=0 && playerY-bombY>=0 ){
-         player.kill();
+            underworld.identificator++;
+            releasedObjects(underworld.identificator);
+            /*var singleScroll2 = underworld.smallMaps.create(currentEnemyX, currentEnemyY, 'smallMap');*/
+        }
+        //coin.kill();
 
-         identificator++;
-         releasedObjects(identificator);
-         /*var singleScroll2 = underworld.smallMaps.create(playerX, playerY, 'smallMap');*/
-     }
-     //coin.kill();
+    } else {
+        // coin.kill();
+        // currentEnemy.kill();
+        //this.killEnemy1 = true;
+    }
+}
 
-     } else {
-         // coin.kill();
-         // player.kill();
-         //this.killEnemy1 = true;
-     }
-};
+
 
 function releasedObjects(identificator) {
-   /* room = this;*/
+    /* room = this;*/
     for (var i = 1; i <= identificator; i++) {
         if (identificator == 1) {
-            var singleScroll2 = underworld.smallMaps.create(playerX, playerY, 'smallMap');
-        } else if (identificator == 2) {
-            var coin1 = coins.create(playerX, playerY, 'coin');
+            var singleScroll2 = underworld.smallMaps.create(currentEnemyX, currentEnemyY, 'smallMap');
+        } else if (identificator >= 2) {
+            var coin1 = coins.create(currentEnemyX, currentEnemyY, 'coin');
         }
     }
-};
+}

@@ -1,26 +1,29 @@
 
-var bombs;
+
 
 
 var mineRoom = {
-    map: '',
-    mapBottomLayer: '',
-    mapWallsLayer: '',
+/*    map: '',*/
+/*    mapBottomLayer: '',
+    mapWallsLayer: '',*/
+    identificator: 0,
     mapCubesLayer: '',
     droppingBomb: false,
-    bombButton: '',
+    /*bombButton: '',
 
     bomb1: '',
 
     enemy1:'',
-    enemy2:'',
+    enemy2:'',*/
 
     killEnemy1: false,
 
-    bombLabel: '',
-    energyLabel: '',
+   /* bombLabel: '',
+    energyLabel: '',*/
 
-    scroll2:'',
+    smallMaps:'',
+
+    //scroll2:'',
 
     create: function () {
         var button = game.add.button(game.width - 200, 20, 'backBtn', this.back);
@@ -50,16 +53,19 @@ var mineRoom = {
         player.animations.add('up', [9, 10, 11], 10, true);
         player.animations.add('down', [0, 1, 2], 10, true);
 
-        this.scroll2 = game.add.group();
-        this.scroll2.enableBody = true;
+        this.smallMaps = game.add.group();
+        this.smallMaps.enableBody = true;
+
+        coins = game.add.group();
+        coins.enableBody = true;
 
         bombs = game.add.group();
         bombs.enableBody = true;
 
-        this.enemy1 = new Enemy(game, 32, 32, 'characterEnemy', 120, 544, +1, 'x', '');
+        this.enemy1 = new Enemy(game, 32, 32, 'characterEnemy', 'switch', 120, 544, +1, 'y', '');
         game.add.existing(this.enemy1);
 
-        this.enemy2 = new Enemy(game, 32, 32, 'characterEnemy', 140, 544, +1, 'x', '');
+        this.enemy2 = new Enemy(game, 576, 576, 'characterEnemy', 'switch', 120, 544, -1, 'y', '');
         game.add.existing(this.enemy2);
 
         game.physics.enable(player, Phaser.Physics.ARCADE);
@@ -74,27 +80,27 @@ var mineRoom = {
     update: function () {
         game.physics.arcade.collide(player, this.mapWallsLayer);
 
-        game.physics.arcade.overlap(player, this.scroll2, this.collectScroll, null, this);
+        game.physics.arcade.overlap(player, this.smallMaps, this.collectScroll, null, this);
 
         player.body.velocity.x = 0;
         player.body.velocity.y = 0;
 
-        if (cursors.up.isDown && energy>0) {
+        if (cursors.up.isDown && energy > 0) {
             distancePassed++;
             player.body.velocity.y = -200;
             player.animations.play('up');
 
-        } else if (cursors.down.isDown && energy>0) {
+        } else if (cursors.down.isDown && energy > 0) {
             distancePassed++;
             player.body.velocity.y = 200;
             player.animations.play('down');
 
-        } else if (cursors.left.isDown && energy>0 ) {
+        } else if (cursors.left.isDown && energy > 0 ) {
             distancePassed++;
             player.body.velocity.x = -200;
             player.animations.play('left');
 
-        } else if (cursors.right.isDown && energy>0){
+        } else if (cursors.right.isDown && energy > 0){
             distancePassed++;
             player.body.velocity.x = 200;
             player.animations.play('right');
@@ -102,7 +108,6 @@ var mineRoom = {
         } else {
             player.animations.stop();
         }
-
 
         if (distancePassed > 100){
             distancePassed = 0;
@@ -178,6 +183,47 @@ var mineRoom = {
 
     collectScroll: function (player, scroll) {
         scroll.kill();
-    },
+    }
 
+};
+
+
+
+
+
+function killEnemy(currentEnemy, explodingBomb) {
+    var a = explodingBomb.animations.currentFrame.index;
+    if (a == 8) {
+        currentEnemy.scale.setTo(1,1);
+        currentEnemyX = currentEnemy.body.x;
+        currentEnemyY = currentEnemy.body.y;
+        bombX = explodingBomb.body.x;
+        bombY = explodingBomb.body.y;
+        if (currentEnemyX - bombX <= 50 && currentEnemyY - bombY <= 50 && currentEnemyX - bombX >= 0 && currentEnemyY - bombY >= 0 ){
+            currentEnemy.kill();
+
+            mineRoom.identificator++;
+            releasedObjects(mineRoom.identificator);
+            /*var singleScroll2 = underworld.smallMaps.create(currentEnemyX, currentEnemyY, 'smallMap');*/
+        }
+        //coin.kill();
+
+    } else {
+        // coin.kill();
+        // currentEnemy.kill();
+        //this.killEnemy1 = true;
+    }
+}
+
+
+
+function releasedObjects(identificator) {
+     room = this;
+    for (var i = 1; i <= identificator; i++) {
+        if (identificator == 1) {
+            var coin1 = coins.create(currentEnemyX, currentEnemyY, 'coin');
+        } else if (identificator) {
+            var scroll2 = mineRoom.smallMaps.create(currentEnemyX, currentEnemyY, 'scroll2');
+        }
+    }
 }

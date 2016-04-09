@@ -5,8 +5,14 @@
 
 var loadState = {
     preload: function () {
+       /* game.load.image('preloadBar', 'assets/.png');*/
+
         var loadingLabel = game.add.text(80, 150, 'Loading...',
             {font: '30px Courier', fill: '#ffffff'});
+
+
+
+
 
         //game.load.image('background', 'assets/background.jpg');
 
@@ -90,7 +96,7 @@ var loadState = {
 
         // from greenUnderworld
 
-
+        game.load.image('paper', 'assets/paper.png');
 
         game.load.tilemap('mapGreenUnderw', 'assets/greenUnderworld.json', null, Phaser.Tilemap.TILED_JSON);
 /*

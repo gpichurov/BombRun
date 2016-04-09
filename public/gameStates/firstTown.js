@@ -6,8 +6,8 @@ var coinsText;
 
 var firstTown = {
     //player: '',
-    map: '',
-    mapBottomLayer: '',
+   // map: '',
+   /* mapBottomLayer: '',*/
     mapStairsLayer: '',
     mapBuildingsLayer: '',
     mapTopLayer: '',
@@ -28,6 +28,8 @@ var firstTown = {
     scrollCollected: false,
 
     speedBoosted: false,
+
+    playerPos: { x: 300, y: 200 },
 
     preload: function () {
         game.stage.backgroundColor = '#000';
@@ -57,7 +59,8 @@ var firstTown = {
 
        // speed = 120;
 
-        player = game.add.sprite(300, 200, 'character');
+        //player = game.add.sprite(600, 250, 'character');
+        player = game.add.sprite(this.playerPos.x, this.playerPos.y, 'characterRooms');
 
         //300 x 200
         //230 x 600 za kliuch
@@ -66,9 +69,14 @@ var firstTown = {
         //1000 x 1000 za nai dolnata kushta i mineRoom
         //za coins: 235 x 550
 
-        player.animations.add('left', [8, 9, 10], 10, true);
+        /*player.animations.add('left', [8, 9, 10], 10, true);
         player.animations.add('right', [16, 17, 18], 10, true);
         player.animations.add('up', [24, 25, 26], 10, true);
+        player.animations.add('down', [0, 1, 2], 10, true);*/
+
+        player.animations.add('left', [3, 4, 5], 10, true);
+        player.animations.add('right', [6, 7, 8], 10, true);
+        player.animations.add('up', [9, 10, 11], 10, true);
         player.animations.add('down', [0, 1, 2], 10, true);
 
         game.physics.enable(player, Phaser.Physics.ARCADE);
@@ -135,9 +143,9 @@ var firstTown = {
         var coin11 = coins.create(910, 800, 'coin');
         var coin12 = coins.create(910, 880, 'coin');
 
-        var coin12 = coins.create(400, 300, 'coin');
-        var coin12 = coins.create(460, 300, 'coin');
-        var coin12 = coins.create(520, 300, 'coin');
+        var coin13 = coins.create(400, 300, 'coin');
+        var coin14 = coins.create(460, 300, 'coin');
+        var coin15 = coins.create(520, 300, 'coin');
 
         console.log(this.invisible.getChildIndex(invis));
 
@@ -185,6 +193,20 @@ var firstTown = {
         } else {
             player.animations.stop();
         }
+
+    },
+
+    shutdown: function() {
+
+    // save the frog's current position to use
+    // next time create is called.
+
+       /* fPos.x = frog.position.x;
+        fPos.y = frog.position.y;*/
+
+        this.playerPos.x = player.body.x;
+        this.playerPos.y = player.body.y;
+
 
     },
 

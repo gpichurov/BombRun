@@ -2,24 +2,29 @@
  * Created by maya on 09-Apr-16.
  */
 
-var greenUnderworld = {
-    map: '',
-    mapBottomLayer: '',
-    mapWallsLayer: '',
-    bomb1: '',
 
+var greenUnderworld = {
+   /* map: '',*/
+    /*mapBottomLayer: '',
+    mapWallsLayer: '',*/
+    identificator: 0,
     droppingBomb: false,
+    /*bomb1: '',
+
+
     bombButton: '',
 
     enemy1:'',
-    enemy2:'',
+    enemy2:'',*/
 
     killEnemy1: false,
 
-    bombLabel: '',
-    energyLabel: '',
+    /*bombLabel: '',
+    energyLabel: '',*/
 
     smallMaps:'',
+
+   /* scroll:'',*/
 
     create: function () {
         var button = game.add.button(game.width - 200, 20, 'backBtn', this.back);
@@ -45,21 +50,27 @@ var greenUnderworld = {
         this.mapBottomLayer.resizeWorld();
         this.mapWallsLayer.resizeWorld();
 
-        player = game.add.sprite(285, 230, 'characterRooms');
+        player = game.add.sprite(32, 32, 'characterRooms');
 
         player.animations.add('left', [3, 4, 5], 10, true);
         player.animations.add('right', [6, 7, 8], 10, true);
         player.animations.add('up', [9, 10, 11], 10, true);
         player.animations.add('down', [0, 1, 2], 10, true);
 
-        this.enemy1 = new Enemy(game, 32, 32, 'characterEnemy', 120, 544, +1, 'x', '');
+        this.enemy1 = new Enemy(game, 64, 256, 'characterEnemy', 'switchSquare', 100, 96, +1, 'x', '');
         game.add.existing(this.enemy1);
 
-        this.enemy2 = new Enemy(game, 32, 32, 'characterEnemy', 140, 544, +1, 'x', '');
+        this.enemy2 = new Enemy(game, 256, 256, 'characterEnemy', 'switchSquare', 100, 95, +1, 'x', '');
         game.add.existing(this.enemy2);
 
-      /*  this.smallMaps = game.add.group();
-        this.smallMaps.enableBody = true;*/
+        this.enemy3 = new Enemy(game, 448, 256, 'characterEnemy', 'switchSquare', 100, 96, +1, 'x', '');
+        game.add.existing(this.enemy3);
+
+        this.enemy4 = new Enemy(game, 544, 544, 'characterEnemy', 'switchSquare', 100, 480, -1, 'x', '');
+        game.add.existing(this.enemy4);
+
+        this.smallMaps = game.add.group();
+        this.smallMaps.enableBody = true;
 
         bombs = game.add.group();
         bombs.enableBody = true;
@@ -82,7 +93,7 @@ var greenUnderworld = {
     update: function () {
         game.physics.arcade.collide(player, this.mapWallsLayer);
 
-       /* game.physics.arcade.overlap(player, this.smallMaps, this.collectScroll, null, this);*/
+        game.physics.arcade.overlap(player, this.smallMaps, this.collectScroll, null, this);
 
         game.physics.arcade.overlap(player, coins, takeCoin, null, this);
 
@@ -91,11 +102,10 @@ var greenUnderworld = {
         player.body.velocity.x = 0;
         player.body.velocity.y = 0;
 
-/*
         if (game.physics.arcade.overlap(player, this.smallMaps, this.collectScroll, this))
         {
             this.smallMaps.kill();
-        }*/
+        }
 
         if (cursors.up.isDown && energy>0) {
             distancePassed++;
@@ -204,8 +214,50 @@ var greenUnderworld = {
 
     },
 
-    /*collectScroll: function (player, scroll) {
+    collectScroll: function (player, scroll) {
         scroll.kill();
-    },*/
+    }
+};
+
+function collisionPlayerEnemy(player, enemy) {
+    enemy.body.immovable = true;
+    player.kill();
+}
+
+function killEnemy(currentEnemy, explodingBomb) {
+    var a = explodingBomb.animations.currentFrame.index;
+    if (a == 8) {
+        currentEnemy.scale.setTo(1,1);
+        currentEnemyX = currentEnemy.body.x;
+        currentEnemyY = currentEnemy.body.y;
+        bombX = explodingBomb.body.x;
+        bombY = explodingBomb.body.y;
+        if (currentEnemyX - bombX <= 50 && currentEnemyY - bombY <= 50 && currentEnemyX - bombX >= 0 && currentEnemyY - bombY >= 0 ){
+            currentEnemy.kill();
+
+            greenUnderworld.identificator++;
+            releasedObjects(greenUnderworld.identificator);
+            /*var singleScroll2 = underworld.smallMaps.create(currentEnemyX, currentEnemyY, 'smallMap');*/
+        }//coin.kill();
+
+    } else {
+        // coin.kill();
+        // currentEnemy.kill();
+        //this.killEnemy1 = true;
+
+    }
+}
+
+
+
+function releasedObjects(identificator) {
+    /* room = this;*/
+    for (var i = 1; i <= identificator; i++) {
+        /*if (identificator == 1) {
+            var singleScroll2 = greenUnderworld.smallMaps.create(currentEnemyX, currentEnemyY, 'paper');
+        } else if (identificator >= 2) {
+            var coin1 = coins.create(currentEnemyX, currentEnemyY, 'coin');
+        }*/
+    }
 }
 

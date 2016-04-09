@@ -17,3 +17,22 @@ var distancePassed = 0;
 
 var energy = 30;
 
+var mapBottomLayer;
+var mapWallsLayer;
+
+var bombs;
+var bomb1;
+
+/*var smallMaps;*/
+
+var droppingBomb;
+var bombButton;
+
+var enemy1;
+var enemy2;
+
+var bombLabel;
+var energyLabel;
+
+var identificator = 0;
+
