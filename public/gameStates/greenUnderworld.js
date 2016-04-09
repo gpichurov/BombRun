@@ -21,36 +21,8 @@ var greenUnderworld = {
 
     smallMaps:'',
 
-    preload: function() {
-
-        game.stage.backgroundColor = '#000';
-
-        game.load.tilemap('map', 'assets/greenUnderworld.json', null, Phaser.Tilemap.TILED_JSON);
-
-        game.load.image('tilea4', 'assets/tilea4.png');
-        game.load.image('tilea5', 'assets/tilea5.png');
-
-        game.load.spritesheet('coin', 'assets/coin.png', 32, 32);
-
-        game.load.spritesheet('character', 'assets/organi11.png', 32, 32, 12);
-
-        game.load.image('button', 'assets/go-back-button.png');
-
-        game.load.spritesheet('bomb', 'assets/BombExploding.png', 32, 64, 13);
-/*
-        game.load.spritesheet('enemy', 'assets/EnemySpriteSheet2.png', 30, 30);*/
-
-        game.load.spritesheet('characterEnemy', 'assets/organi11.png', 32, 32, 12);
-/*
-        game.load.image('smallMap', 'assets/smallMap.png');*/
-
-        game.load.spritesheet('coin', 'assets/coin.png', 32, 32);
-
-    },
-
-
     create: function () {
-        var button = game.add.button(game.width - 200, 20, 'button', this.back);
+        var button = game.add.button(game.width - 200, 20, 'backBtn', this.back);
         //680 x 20
 
         this.energyLabel = game.add.text(game.width - 200, 160, 'Energy: ' + energy,
@@ -62,7 +34,7 @@ var greenUnderworld = {
         coinsText = game.add.text(game.width - 200, 300, 'Coins: ' + playerCoins,
             {font: '25px Arial', fill: '#fff'});
 
-        this.map = game.add.tilemap('map');
+        this.map = game.add.tilemap('mapGreenUnderw');
 
         this.map.addTilesetImage('tilea4', 'tilea4');
         this.map.addTilesetImage('tilea5', 'tilea5');
@@ -73,7 +45,7 @@ var greenUnderworld = {
         this.mapBottomLayer.resizeWorld();
         this.mapWallsLayer.resizeWorld();
 
-        player = game.add.sprite(285, 230, 'character2');
+        player = game.add.sprite(285, 230, 'characterRooms');
 
         player.animations.add('left', [3, 4, 5], 10, true);
         player.animations.add('right', [6, 7, 8], 10, true);

@@ -15,3 +15,5 @@ var playerCoins = 0;
 var maxBombs = 5;
 var distancePassed = 0;
 
+var energy = 30;
+

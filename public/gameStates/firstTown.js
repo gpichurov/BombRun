@@ -31,36 +31,13 @@ var firstTown = {
 
     preload: function () {
         game.stage.backgroundColor = '#000';
-
-        game.load.tilemap('map', 'assets/town-map.json', null, Phaser.Tilemap.TILED_JSON);
-
-        game.load.image('tilesetImg', 'assets/magecity.png');
-        game.load.image('additionalTiles', 'assets/magecity1.png');
-
-        game.load.spritesheet('character', 'assets/chars2.png', 48, 48, 36);
-
-        //game.load.image('darkMonster', 'assets/darkMonster.png');
-        //game.load.spritesheet('enemy', 'assets/EnemySpriteSheet2.png', 30, 30);
-
-        game.load.image('key1', 'assets/key1.png');
-        game.load.image('scroll', 'assets/scroll.png');
-
-        game.load.image('invisible', 'assets/key1.png');
-
-        game.load.image('speedBoost', 'assets/elixir.png');
-
-        game.load.spritesheet('coin', 'assets/coin.png', 32, 32);
-
-        game.load.image('singleCoin', 'assets/singleCoin.png');
-
-
     },
 
     create: function () {
 
         game.physics.startSystem(Phaser.Physics.ARCADE);
 
-        this.map = game.add.tilemap('map');
+        this.map = game.add.tilemap('mapFirstTown');
         this.map.addTilesetImage('Town', 'tilesetImg');
         this.map.addTilesetImage('Town additional stuff', 'additionalTiles');
 
@@ -80,9 +57,10 @@ var firstTown = {
 
        // speed = 120;
 
-        player = game.add.sprite(230, 600, 'character');
+        player = game.add.sprite(300, 200, 'character');
 
         //300 x 200
+        //230 x 600 za kliuch
         //600 x 250 do glavna vrata na glavnata sgrada
         //480 x 490 za vtora sgrada - tazi po sredata
         //1000 x 1000 za nai dolnata kushta i mineRoom

@@ -1,4 +1,3 @@
-var energy = 20;
 
 
 
@@ -21,15 +20,8 @@ var underworld = {
 
     smallMaps:'',
 
-    preload: function() {
-
-
-
-    },
-
-
     create: function () {
-        var button = game.add.button(game.width - 200, 20, 'button', this.back);
+        var button = game.add.button(game.width - 200, 20, 'backBtn', this.back);
         //680 x 20
 
         this.energyLabel = game.add.text(game.width - 200, 160, 'Energy: ' + energy,
@@ -54,7 +46,7 @@ var underworld = {
         this.mapWallsLayer.resizeWorld();
         this.mapUpLayer.resizeWorld();
 
-        player = game.add.sprite(285, 185, 'character2');
+        player = game.add.sprite(285, 185, 'characterRooms');
 
         player.animations.add('left', [3, 4, 5], 10, true);
         player.animations.add('right', [6, 7, 8], 10, true);

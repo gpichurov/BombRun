@@ -6,14 +6,6 @@ var startScreen = {
 
     preload: function () {
         game.stage.backgroundColor = '#679BCA';
-
-        this.load.image('buttonPlay', 'assets/play_button.png');
-
-     //   game.load.image('background', 'assets/background.jpg');
-        game.load.image('logo', 'assets/logo.png');
-
-        //game.load.image('island', 'assets/isle2.png');
-        //game.load.image('castle', 'assets/castle.png');
     },
 
     create: function () {
@@ -31,6 +23,7 @@ var startScreen = {
     start: function () {
         //game.state.start('menu');
         game.state.start('firstTown');
-    },
+       // game.state.start('greenUnderworld');
+    }
 
 };
