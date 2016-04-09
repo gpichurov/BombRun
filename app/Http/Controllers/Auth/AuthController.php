@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 //use Laravel\Socialite;
 //use Laravel\Socialite\Facades\Socialite;
+use App\Inventory;
+use App\Statistic;
 use Auth;
 use Socialite;
 use App\User;
@@ -71,13 +73,16 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $newUser = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'big_avatar' => 'B_default.png',
-            'small_avatar' => 'S_default.png',
         ]);
+
+        Inventory::create(['user_id' => $newUser->id]);
+        Statistic::create(['user_id' => $newUser->id]);
+
+        return $newUser;
     }
 
     public function redirectToProvider()
@@ -87,9 +92,6 @@ class AuthController extends Controller
 
     public function handleProviderCallback()
     {
-        //$user = Socialite::with('facebook')->user();
-
-        //dd($user);
 
         try {
             $user = Socialite::with('facebook')->user();
@@ -103,20 +105,6 @@ class AuthController extends Controller
 
         return redirect('/home');
 
-//        // OAuth Two Providers
-//        $token = $user->token;
-//
-//// OAuth One Providers
-//        $token = $user->token;
-//        $tokenSecret = $user->tokenSecret;
-//
-//// All Providers
-//        $user->getId();
-//        $user->getNickname();
-//        $user->getName();
-//        $user->getEmail();
-//        $user->getAvatar();
-//
     }
     /**
      * Return user if exists; create and return if doesn't
@@ -139,6 +127,8 @@ class AuthController extends Controller
             'big_avatar' => 'B_default.png',
             'small_avatar' => 'S_default.png',
         ]);
+        Inventory::create(['user_id' => $newUser->id]);
+        Statistic::create(['user_id' => $newUser->id]);
         $this->addFBImage($facebookUser, $newUser);
 
         return $newUser;

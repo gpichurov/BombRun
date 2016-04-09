@@ -34,6 +34,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('profile/{id}', 'UsersController@show');
 
     Route::resource('/shop', 'ItemController');
+    Route::post('/shop/buy/{id}', 'ItemController@buy');
 
     Route::resource('/statistics', 'StatisticsController');
 
@@ -44,6 +45,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::auth();
     Route::get('/admin', 'AdminController@index');
     Route::resource('/shop/admin', 'ItemController');
+    Route::post('/shop/admin/buy/{id}', 'ItemController@buy');
 
 });
 

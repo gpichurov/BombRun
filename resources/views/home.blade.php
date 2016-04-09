@@ -10,6 +10,9 @@
                 <div class="panel-body">
                     <img src="profile/avatar/big/{{Auth::user()->big_avatar}}" alt="">
                     <h3>{{ Auth::user()->name }}</h3>
+                    <h3>money:  {{ Auth::user()->inventory->money }}</h3>
+                    <h3>bombs:  {{ Auth::user()->inventory->bombs }}</h3>
+                    <h3>energy:  {{ Auth::user()->inventory->energy }}</h3>
                 </div>
             </div>
         </div>

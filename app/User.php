@@ -12,8 +12,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'facebook_id', 'big_avatar',
-        'small_avatar','coins','kills', 'scrolls', 'games', 'best_score'
+        'name', 'email', 'password', 'facebook_id', 'big_avatar','small_avatar'
     ];
 
     /**
@@ -25,4 +24,11 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function statistic() {
+        return $this->hasOne('App\Statistic');
+    }
+
+    public function inventory() {
+        return $this->hasOne('App\Inventory');
+    }
 }
