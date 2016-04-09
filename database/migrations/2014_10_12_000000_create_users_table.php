@@ -18,9 +18,9 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('facebook_id')->nullable();
-            $table->string('big_avatar')->defaul('B_default.png');
-            $table->string('small_avatar')->defaul('S_default.png');
-            $table->boolean('admin')->defaul(false);
+            $table->string('big_avatar')->default('B_default.png');
+            $table->string('small_avatar')->default('S_default.png');
+            $table->boolean('admin')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });

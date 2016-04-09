@@ -15,11 +15,11 @@ class CreateStatisticsTable extends Migration
         Schema::create('statistics', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id')->unique();
-            $table->unsignedInteger('coins')->defaul(0);
-            $table->unsignedInteger('kills')->defaul(0);
-            $table->unsignedInteger('scrolls')->defaul(0);
-            $table->unsignedInteger('games')->defaul(0);
-            $table->unsignedInteger('best_score')->defaul(0);
+            $table->unsignedInteger('coins')->default(0);
+            $table->unsignedInteger('kills')->default(0);
+            $table->unsignedInteger('scrolls')->default(0);
+            $table->unsignedInteger('games')->default(0);
+            $table->unsignedInteger('best_score')->default(0);
             $table->timestamps();
 
             $table

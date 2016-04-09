@@ -15,10 +15,10 @@ class CreateInventoriesTable extends Migration
         Schema::create('inventories', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id')->unique();
-            $table->unsignedInteger('energy')->defaul(5);
-            $table->unsignedInteger('bombs')->defaul(5);
-            $table->unsignedInteger('speed')->defaul(5);
-            $table->unsignedInteger('money')->defaul(100);
+            $table->unsignedInteger('energy')->default(5);
+            $table->unsignedInteger('bombs')->default(5);
+            $table->unsignedInteger('speed')->default(5);
+            $table->unsignedInteger('money')->default(100);
             $table->timestamps();
 
             $table
