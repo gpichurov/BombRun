@@ -21,8 +21,8 @@ var mineRoom = {
    /* bombLabel: '',
     energyLabel: '',*/
 
-    smallMaps:'',
-  /*  counterEnemy: 0,*/
+    smallMaps: '',
+    counterEnemy: 0,
 
     //scroll2:'',
 
@@ -81,11 +81,11 @@ var mineRoom = {
         this.enemy4 = new Enemy(game, 32, 576, 'characterEnemy', 'switch', 120, 544, +1, 'x', '');
         game.add.existing(this.enemy4);
 
-        this.enemy5 = new Enemy(game, 224, 128, 'characterEnemy', 'switch', 120, 288, +1, 'y', '');
+       /* this.enemy5 = new Enemy(game, 224, 128, 'characterEnemy', 'switch', 120, 288, +1, 'y', '');
         game.add.existing(this.enemy5);
 
         this.enemy6 = new Enemy(game, 384, 480, 'characterEnemy', 'switch', 120, 352, -1, 'x', '');
-        game.add.existing(this.enemy6);
+        game.add.existing(this.enemy6);*/
 
         game.physics.enable(player, Phaser.Physics.ARCADE);
         game.camera.follow(player);
@@ -101,7 +101,7 @@ var mineRoom = {
 
         game.physics.arcade.overlap(player, this.smallMaps, this.collectScroll, null, this);
 
-        game.physics.arcade.overlap(player, this.invisible, openDoor(this.room), null, this);
+        game.physics.arcade.overlap(player, this.invisible, openDoor, null, this);
 
         player.body.velocity.x = 0;
         player.body.velocity.y = 0;

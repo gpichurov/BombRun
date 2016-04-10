@@ -60,4 +60,4 @@ var gotAScroll2 = false;
 var gotAScroll3 = false;
 
 var room;
-var countEnemy = 0;
+var countAllEnemies = 0;

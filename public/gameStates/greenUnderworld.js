@@ -24,7 +24,8 @@ var greenUnderworld = {
     energyLabel: '',*/
 
     smallMaps: '',
-  /*  counterEnemy: 0,*/
+    counterEnemy: 0,
+    room: 'greenUnderworld',
 
    /* scroll:'',*/
 

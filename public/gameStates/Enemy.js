@@ -78,7 +78,10 @@ Enemy.prototype.killEnemy = function (currentEnemy, explodingBomb) {
         bombY = explodingBomb.body.y;
         if (currentEnemyX - bombX <= 50 && currentEnemyY - bombY <= 50 && currentEnemyX - bombX >= 0 && currentEnemyY - bombY >= 0 ){
             currentEnemy.kill();
-            //countEnemy++;
+            countAllEnemies++;
+            underworld.counterEnemy = countAllEnemies;
+            greenUnderworld.counterEnemy = countAllEnemies;
+            mineRoom.counterEnemy = countAllEnemies;
             console.log('yes');
 
             /*identificator++;
@@ -99,20 +102,29 @@ Enemy.prototype.collisionPlayerEnemy = function(player, enemy) {
     player.kill();
 };
 
-function openDoor(room) {
-    if (room == 'underworld') {
+function openDoor() {
+    /*if (room == 'underworld') {
         if (underworld.counterEnemy == 4) {
+            countAllEnemies = 0;
             game.state.start('firstTown');
+
         }
     } else if (room == 'greenUnderworld') {
-        if (countEnemy == 4) {
+        if (greenUnderworld.counterEnemy == 4) {
+            countAllEnemies = 0;
             game.state.start('firstTown');
         }
     } else if (room == 'mineRoom') {
-        if (countEnemy == 6) {
+        if (mineRoom.counterEnemy == 4) {
+            countAllEnemies = 0;
             game.state.start('firstTown');
         }
+    }*/
+
+    if (countAllEnemies == 4 || countAllEnemies == 8 || countAllEnemies == 12) {
+        game.state.start('firstTown');
     }
+
 }
 
 /*

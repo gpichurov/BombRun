@@ -21,6 +21,7 @@ var underworld = {
 
     smallMaps:'',
     invisible: '',
+    room: 'underworld',
 
     counterEnemy: 0,
 

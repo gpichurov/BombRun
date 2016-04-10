@@ -70,12 +70,12 @@ var firstTown = {
             player.defPosX = 480;
             player.defPosY = 490;
         } else if (currentState == 'underworld') {
-            player.defPosX = 1185;
-            player.defPosY = 1030;
+            player.defPosX = 600;
+            player.defPosY = 250;
         }
 
 
-        player = game.add.sprite(1185, 1030, 'characterRooms');
+        player = game.add.sprite(player.defPosX, player.defPosY, 'characterRooms');
        /* player.visible = true;*/
 
         //300 x 200
@@ -247,8 +247,8 @@ var firstTown = {
     },
 
     enterMineDoor: function() {
-        player.posX = 1185;
-        player.posY = 1000;
+        countAllEnemies = 0;
+
         currentState = 'mineRoom';
         game.state.start('mineRoom');
         //game.switchState('mineRoom');
@@ -256,6 +256,7 @@ var firstTown = {
     },
 
     enterGreenUnderwDoor: function() {
+        countAllEnemies = 0;
         currentState = 'greenUnderworld';
         game.state.start('greenUnderworld');
         //game.switchState('greenUnderworld');
@@ -275,11 +276,8 @@ var firstTown = {
              localStorage.setItem('speed',speed);
 
              }*/
-
+            countAllEnemies = 0;
             currentState = 'underworld';
-
-            player.posX = 610;
-            player.posY = 170;
 
             game.state.start('underworld');
             //game.switchState('underworld');
