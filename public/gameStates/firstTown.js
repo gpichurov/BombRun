@@ -65,7 +65,7 @@ var firstTown = {
 
         if (currentState == 'mineRoom') {
             player.defPosX = 1185;
-            player.defPosY = 1000;
+            player.defPosY = 1010;
         } else if (currentState == 'greenUnderworld') {
             player.defPosX = 480;
             player.defPosY = 490;
@@ -73,7 +73,6 @@ var firstTown = {
             player.defPosX = 600;
             player.defPosY = 250;
         }
-
 
         player = game.add.sprite(player.defPosX, player.defPosY, 'characterRooms');
        /* player.visible = true;*/

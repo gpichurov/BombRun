@@ -21,7 +21,7 @@ var loadState = {
 
         game.load.image('buttonPlay', 'assets/play_button.png');
 
-        game.load.image('logo', 'assets/logo.png');
+        game.load.image('logo', 'assets/bomb-run.png');
 
 
         // from firstTown
