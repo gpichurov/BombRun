@@ -16,6 +16,10 @@ var startScreen = {
 
         var btn = this.game.add.button(560, 340, 'buttonPlay', this.start);
 
+    /*    player = game.add.sprite(player.posX, player.posY, 'characterRooms');
+
+        player.visible = false;*/
+
         //island = game.add.sprite(850, 270, 'island');
         //castle = game.add.sprite(0, 60, 'castle');
     },

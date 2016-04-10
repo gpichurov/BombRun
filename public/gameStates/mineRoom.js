@@ -1,6 +1,6 @@
 
 
-
+/*room = 'mineRoom';*/
 
 var mineRoom = {
 /*    map: '',*/
@@ -15,13 +15,14 @@ var mineRoom = {
 
     enemy1:'',
     enemy2:'',*/
-
+    invisible:'',
     killEnemy1: false,
-
+    room: 'mineRoom',
    /* bombLabel: '',
     energyLabel: '',*/
 
     smallMaps:'',
+  /*  counterEnemy: 0,*/
 
     //scroll2:'',
 
@@ -62,11 +63,29 @@ var mineRoom = {
         bombs = game.add.group();
         bombs.enableBody = true;
 
+        this.invisible = game.add.group();
+        this.invisible.enableBody = true;
+
+        var invis = this.invisible.create(605, 150, 'invisible');
+        //invis.visible = false;
+
         this.enemy1 = new Enemy(game, 32, 32, 'characterEnemy', 'switch', 120, 544, +1, 'y', '');
         game.add.existing(this.enemy1);
 
         this.enemy2 = new Enemy(game, 576, 576, 'characterEnemy', 'switch', 120, 544, -1, 'y', '');
         game.add.existing(this.enemy2);
+
+        this.enemy3 = new Enemy(game, 576, 32, 'characterEnemy', 'switch', 120, 544, -1, 'x', '');
+        game.add.existing(this.enemy3);
+
+        this.enemy4 = new Enemy(game, 32, 576, 'characterEnemy', 'switch', 120, 544, +1, 'x', '');
+        game.add.existing(this.enemy4);
+
+        this.enemy5 = new Enemy(game, 224, 128, 'characterEnemy', 'switch', 120, 288, +1, 'y', '');
+        game.add.existing(this.enemy5);
+
+        this.enemy6 = new Enemy(game, 384, 480, 'characterEnemy', 'switch', 120, 352, -1, 'x', '');
+        game.add.existing(this.enemy6);
 
         game.physics.enable(player, Phaser.Physics.ARCADE);
         game.camera.follow(player);
@@ -81,6 +100,8 @@ var mineRoom = {
         game.physics.arcade.collide(player, this.mapWallsLayer);
 
         game.physics.arcade.overlap(player, this.smallMaps, this.collectScroll, null, this);
+
+        game.physics.arcade.overlap(player, this.invisible, openDoor(this.room), null, this);
 
         player.body.velocity.x = 0;
         player.body.velocity.y = 0;
@@ -183,15 +204,26 @@ var mineRoom = {
 
     collectScroll: function (player, scroll) {
         scroll.kill();
+       // gotAScroll = true;
+    },
+
+    enterFirstWorld: function () {
+        if (killedEnemiesMine) {
+            game.state.start('firstTown');
+        }
     }
 
 };
 
+/*
+function collisionPlayerEnemy(player, enemy) {
+    enemy.body.immovable = true;
+    player.kill();
+}
+*/
 
 
-
-
-function killEnemy(currentEnemy, explodingBomb) {
+/*function killEnemy(currentEnemy, explodingBomb) {
     var a = explodingBomb.animations.currentFrame.index;
     if (a == 8) {
         currentEnemy.scale.setTo(1,1);
@@ -201,19 +233,22 @@ function killEnemy(currentEnemy, explodingBomb) {
         bombY = explodingBomb.body.y;
         if (currentEnemyX - bombX <= 50 && currentEnemyY - bombY <= 50 && currentEnemyX - bombX >= 0 && currentEnemyY - bombY >= 0 ){
             currentEnemy.kill();
-
+            mineRoom.counterEnemy++;
+            if (mineRoom.counterEnemy == 6) {
+                killedEnemiesMine = true;
+            }
             mineRoom.identificator++;
             releasedObjects(mineRoom.identificator);
-            /*var singleScroll2 = underworld.smallMaps.create(currentEnemyX, currentEnemyY, 'smallMap');*/
-        }
-        //coin.kill();
+            /!*var singleScroll2 = underworld.smallMaps.create(currentEnemyX, currentEnemyY, 'smallMap');*!/
+        }//coin.kill();
 
     } else {
         // coin.kill();
         // currentEnemy.kill();
         //this.killEnemy1 = true;
+
     }
-}
+}*/
 
 
 

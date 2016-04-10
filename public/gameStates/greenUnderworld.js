@@ -2,6 +2,7 @@
  * Created by maya on 09-Apr-16.
  */
 
+room = 'greenUnderworld';
 
 var greenUnderworld = {
    /* map: '',*/
@@ -16,13 +17,14 @@ var greenUnderworld = {
 
     enemy1:'',
     enemy2:'',*/
-
+    invisible: '',
     killEnemy1: false,
 
     /*bombLabel: '',
     energyLabel: '',*/
 
-    smallMaps:'',
+    smallMaps: '',
+  /*  counterEnemy: 0,*/
 
    /* scroll:'',*/
 
@@ -56,6 +58,12 @@ var greenUnderworld = {
         player.animations.add('right', [6, 7, 8], 10, true);
         player.animations.add('up', [9, 10, 11], 10, true);
         player.animations.add('down', [0, 1, 2], 10, true);
+
+        this.invisible = game.add.group();
+        this.invisible.enableBody = true;
+
+        var invis = this.invisible.create(0, 330, 'invisible');
+        //invis.visible = false;
 
         this.enemy1 = new Enemy(game, 64, 256, 'characterEnemy', 'switchSquare', 100, 96, +1, 'x', '');
         game.add.existing(this.enemy1);
@@ -95,6 +103,8 @@ var greenUnderworld = {
 
         game.physics.arcade.overlap(player, this.smallMaps, this.collectScroll, null, this);
 
+        game.physics.arcade.overlap(player, this.invisible, openDoor, null, this);
+
         game.physics.arcade.overlap(player, coins, takeCoin, null, this);
 
         coinsText.setText('Coins: ' + playerCoins);
@@ -107,22 +117,22 @@ var greenUnderworld = {
             this.smallMaps.kill();
         }
 
-        if (cursors.up.isDown && energy>0) {
+        if (cursors.up.isDown && energy > 0) {
             distancePassed++;
             player.body.velocity.y = -200;
             player.animations.play('up');
 
-        } else if (cursors.down.isDown && energy>0) {
+        } else if (cursors.down.isDown && energy > 0) {
             distancePassed++;
             player.body.velocity.y = 200;
             player.animations.play('down');
 
-        } else if (cursors.left.isDown && energy>0 ) {
+        } else if (cursors.left.isDown && energy > 0) {
             distancePassed++;
             player.body.velocity.x = -200;
             player.animations.play('left');
 
-        } else if (cursors.right.isDown && energy>0){
+        } else if (cursors.right.isDown && energy > 0){
             distancePassed++;
             player.body.velocity.x = 200;
             player.animations.play('right');
@@ -142,7 +152,7 @@ var greenUnderworld = {
 
         if (this.bombButton.isDown && !this.dropping_bomb) {
             if(maxBombs > 0){
-                this.bomb1 = bombs.create(player.body.x, player.body.y-32, 'bomb');
+                this.bomb1 = bombs.create(player.body.x, player.body.y - 32, 'bomb');
                 /*  this.bomb = game.add.sprite(player.body.x, player.body.y-32, 'bomb');*/
                 //this.bomb = game.add.sprite(player.body.x, player.body.y, 'bomb');
                 var anim = this.bomb1.animations.add('explode', [0, 1, 2, 3, 4, 5, 6, 7, 8], 30, true);
@@ -216,15 +226,21 @@ var greenUnderworld = {
 
     collectScroll: function (player, scroll) {
         scroll.kill();
+    },
+
+    enterFirstWorld: function () {
+        if (killedEnemiesGreenUnderw) {
+            game.state.start('firstTown');
+        }
     }
 };
 
-function collisionPlayerEnemy(player, enemy) {
+/*function collisionPlayerEnemy(player, enemy) {
     enemy.body.immovable = true;
     player.kill();
-}
+}*/
 
-function killEnemy(currentEnemy, explodingBomb) {
+/*function killEnemy(currentEnemy, explodingBomb) {
     var a = explodingBomb.animations.currentFrame.index;
     if (a == 8) {
         currentEnemy.scale.setTo(1,1);
@@ -234,10 +250,15 @@ function killEnemy(currentEnemy, explodingBomb) {
         bombY = explodingBomb.body.y;
         if (currentEnemyX - bombX <= 50 && currentEnemyY - bombY <= 50 && currentEnemyX - bombX >= 0 && currentEnemyY - bombY >= 0 ){
             currentEnemy.kill();
-
+            greenUnderworld.counterEnemy++;
+            console.log(greenUnderworld.counterEnemy);
+            if (greenUnderworld.counterEnemy == 4) {
+                killedEnemiesGreenUnderw = true;
+                console.log('4 enemies: ' + greenUnderworld.counterEnemy);
+            }
             greenUnderworld.identificator++;
             releasedObjects(greenUnderworld.identificator);
-            /*var singleScroll2 = underworld.smallMaps.create(currentEnemyX, currentEnemyY, 'smallMap');*/
+            /!*var singleScroll2 = underworld.smallMaps.create(currentEnemyX, currentEnemyY, 'smallMap');*!/
         }//coin.kill();
 
     } else {
@@ -246,7 +267,7 @@ function killEnemy(currentEnemy, explodingBomb) {
         //this.killEnemy1 = true;
 
     }
-}
+}*/
 
 
 

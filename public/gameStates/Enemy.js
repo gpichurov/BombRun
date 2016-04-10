@@ -61,13 +61,14 @@ Enemy.prototype.update = function() {
         //this.switch_direction_Square();
     }
 
-    game.physics.arcade.overlap(this, bombs, killEnemy, null, this);
+    game.physics.arcade.overlap(this, bombs, this.killEnemy, null, this);
 
-    game.physics.arcade.overlap(player, this, collisionPlayerEnemy, null, this);
+    game.physics.arcade.overlap(player, this, this.collisionPlayerEnemy, null, this);
 
 };
 
-/*Enemy.prototype.killEnemy = function (currentEnemy, explodingBomb) {
+Enemy.prototype.killEnemy = function (currentEnemy, explodingBomb) {
+    console.log(this);
     var a = explodingBomb.animations.currentFrame.index;
     if (a == 8) {
         currentEnemy.scale.setTo(1,1);
@@ -77,10 +78,12 @@ Enemy.prototype.update = function() {
         bombY = explodingBomb.body.y;
         if (currentEnemyX - bombX <= 50 && currentEnemyY - bombY <= 50 && currentEnemyX - bombX >= 0 && currentEnemyY - bombY >= 0 ){
             currentEnemy.kill();
+            //countEnemy++;
+            console.log('yes');
 
-            identificator++;
-            releasedObjects(identificator);
-            /!*var singleScroll2 = underworld.smallMaps.create(currentEnemyX, currentEnemyY, 'smallMap');*!/
+            /*identificator++;
+            releasedObjects(identificator);*/
+            /*var singleScroll2 = underworld.smallMaps.create(currentEnemyX, currentEnemyY, 'smallMap');*/
         }
         //coin.kill();
 
@@ -89,12 +92,28 @@ Enemy.prototype.update = function() {
         // currentEnemy.kill();
         //this.killEnemy1 = true;
     }
-};*/
+};
 
-/*Enemy.prototype.collisionPlayerEnemy = function(player, enemy) {
+Enemy.prototype.collisionPlayerEnemy = function(player, enemy) {
     enemy.body.immovable = true;
     player.kill();
-};*/
+};
+
+function openDoor(room) {
+    if (room == 'underworld') {
+        if (underworld.counterEnemy == 4) {
+            game.state.start('firstTown');
+        }
+    } else if (room == 'greenUnderworld') {
+        if (countEnemy == 4) {
+            game.state.start('firstTown');
+        }
+    } else if (room == 'mineRoom') {
+        if (countEnemy == 6) {
+            game.state.start('firstTown');
+        }
+    }
+}
 
 /*
 Enemy.prototype.releasedObjects = function(identificator) {

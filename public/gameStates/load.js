@@ -11,7 +11,7 @@ var loadState = {
             {font: '30px Courier', fill: '#ffffff'});
 
 
-
+        game.load.image('pauseBtn', 'assets/pauseBtn.png');
 
 
         //game.load.image('background', 'assets/background.jpg');
@@ -125,6 +125,9 @@ var loadState = {
     create: function () {
         //game.state.start('menu');
        // this.background = this.add.tileSprite(0,0, this.world.width, this.world.height, 'background');
+
+
+
         game.state.start('startScreen');
 
 

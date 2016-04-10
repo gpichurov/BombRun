@@ -29,7 +29,8 @@ var firstTown = {
 
     speedBoosted: false,
 
-    playerPos: { x: 300, y: 200 },
+    //playerPos: { x: 300, y: 200 },
+    pauseButton:'',
 
     preload: function () {
         game.stage.backgroundColor = '#000';
@@ -38,6 +39,9 @@ var firstTown = {
     create: function () {
 
         game.physics.startSystem(Phaser.Physics.ARCADE);
+
+
+
 
         this.map = game.add.tilemap('mapFirstTown');
         this.map.addTilesetImage('Town', 'tilesetImg');
@@ -59,8 +63,20 @@ var firstTown = {
 
        // speed = 120;
 
-        //player = game.add.sprite(600, 250, 'character');
-        player = game.add.sprite(this.playerPos.x, this.playerPos.y, 'characterRooms');
+        if (currentState == 'mineRoom') {
+            player.defPosX = 1185;
+            player.defPosY = 1000;
+        } else if (currentState == 'greenUnderworld') {
+            player.defPosX = 480;
+            player.defPosY = 490;
+        } else if (currentState == 'underworld') {
+            player.defPosX = 1185;
+            player.defPosY = 1030;
+        }
+
+
+        player = game.add.sprite(1185, 1030, 'characterRooms');
+       /* player.visible = true;*/
 
         //300 x 200
         //230 x 600 za kliuch
@@ -69,15 +85,22 @@ var firstTown = {
         //1000 x 1000 za nai dolnata kushta i mineRoom
         //za coins: 235 x 550
 
-        /*player.animations.add('left', [8, 9, 10], 10, true);
-        player.animations.add('right', [16, 17, 18], 10, true);
-        player.animations.add('up', [24, 25, 26], 10, true);
-        player.animations.add('down', [0, 1, 2], 10, true);*/
-
         player.animations.add('left', [3, 4, 5], 10, true);
         player.animations.add('right', [6, 7, 8], 10, true);
         player.animations.add('up', [9, 10, 11], 10, true);
         player.animations.add('down', [0, 1, 2], 10, true);
+
+        this.pauseButton = this.game.add.sprite(0, 0, 'pauseBtn');
+        this.pauseButton.inputEnabled = true;
+        this.pauseButton.events.onInputUp.add(function () {
+            this.game.paused = true;
+        },this);
+        this.game.input.onDown.add(function () {
+            if(this.game.paused) {
+                this.game.paused = false;
+            }
+        },this);
+
 
         game.physics.enable(player, Phaser.Physics.ARCADE);
 
@@ -147,7 +170,6 @@ var firstTown = {
         var coin14 = coins.create(460, 300, 'coin');
         var coin15 = coins.create(520, 300, 'coin');
 
-        console.log(this.invisible.getChildIndex(invis));
 
         coins.callAll('animations.add', 'animations', 'spin', [0, 1, 2, 3, 4, 5], 10, true);
         coins.callAll('animations.play', 'animations', 'spin');
@@ -204,8 +226,11 @@ var firstTown = {
        /!* fPos.x = frog.position.x;
         fPos.y = frog.position.y;*!/
 
-        this.playerPos.x = player.body.x;
-        this.playerPos.y = player.body.y;
+        player.defPosX = player.posX;
+        player.defPosY = player.posY;
+
+        /!*this.playerPos.x = player.body.x;
+        this.playerPos.y = player.body.y;*!/
 
 
     },*/
@@ -222,14 +247,18 @@ var firstTown = {
     },
 
     enterMineDoor: function() {
-
+        player.posX = 1185;
+        player.posY = 1000;
+        currentState = 'mineRoom';
         game.state.start('mineRoom');
+        //game.switchState('mineRoom');
 
     },
 
     enterGreenUnderwDoor: function() {
-
+        currentState = 'greenUnderworld';
         game.state.start('greenUnderworld');
+        //game.switchState('greenUnderworld');
 
     },
 
@@ -246,7 +275,14 @@ var firstTown = {
              localStorage.setItem('speed',speed);
 
              }*/
+
+            currentState = 'underworld';
+
+            player.posX = 610;
+            player.posY = 170;
+
             game.state.start('underworld');
+            //game.switchState('underworld');
 
         }
     },
@@ -281,13 +317,17 @@ var firstTown = {
 
     collisionHandler: function(player, veg) {
         return true;
-    },
+    }
 
 };
 
 function takeCoin(player, coin) {
-    coin.kill();
+
+    coin.body = null;
+
+    coin.destroy();
+   // coin.kill();
     playerCoins += 10;
     /*localStorage.setItem('playerCoins', playerCoins);*/
-};
+}
 
