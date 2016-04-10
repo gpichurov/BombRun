@@ -29,7 +29,7 @@
                         <div class="form-group {{ $errors->has('avatar') ? 'has-error' : '' }}" >
                             {!! Form::label('avatar', 'Avatar:', ['class' => 'control-label col-sm-2']) !!}
                             <div class="col-sm-10">
-                                {!! Form::file('avatar', ['class' => 'form-control']) !!}
+                                {!! Form::file('avatar', ['class' => 'form-control file']) !!}
                             </div>
                             @if ($errors->has('avatar'))
                                 <span class="help-block">{{ $errors->first('avatar') }}</span>

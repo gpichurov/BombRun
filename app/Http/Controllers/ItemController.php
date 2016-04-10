@@ -157,6 +157,8 @@ class ItemController extends Controller
             $this->saveImage($request, $item);
         }
 
+        $request->session()->flash('alert-success', 'Changes ware successful!');
+
         return redirect(route('shop.admin.edit', ['id' => $item->id]));
     }
 

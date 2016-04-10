@@ -1,4 +1,12 @@
 <div class="panel col-sm-offset-2 col-sm-8">
+    <div class="flash-message">
+        @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+            @if(Session::has('alert-' . $msg))
+                <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }}
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
+            @endif
+        @endforeach
+    </div>
     @if(empty($model))
         {!! Form::open([
             'url' => route('shop.admin.store'),

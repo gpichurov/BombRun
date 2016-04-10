@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Statistics;
 use Hash;
 use File;
 use Image;
 use Storage;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
+use DB;
 
 class UsersController extends Controller
 {
@@ -61,11 +63,19 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        $user = User::where('id', $id)->first();
-        //dd(Auth::user()->id);
+        //$user = User::where('id', $id)->first();
+
         if ($id == Auth::user()->id) {
             return redirect('/home');
         }
+
+        $user = DB::table('users')
+            ->join('statistics', 'users.id', '=', 'statistics.user_id')
+            ->select('users.id', 'users.name', 'users.big_avatar', 'statistics.coins','statistics.kills',
+                'statistics.scrolls', 'statistics.best_score', 'statistics.games')
+            ->where('users.id', $id)
+            ->first();
+
         return view('profile', compact('user'));
     }
 
