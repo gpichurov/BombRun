@@ -196,19 +196,19 @@ var firstTown = {
 
     },
 
-    shutdown: function() {
+    /*shutdown: function() {
 
     // save the frog's current position to use
     // next time create is called.
 
-       /* fPos.x = frog.position.x;
-        fPos.y = frog.position.y;*/
+       /!* fPos.x = frog.position.x;
+        fPos.y = frog.position.y;*!/
 
         this.playerPos.x = player.body.x;
         this.playerPos.y = player.body.y;
 
 
-    },
+    },*/
 
     collectKeys: function(player, key) {
         key.kill();

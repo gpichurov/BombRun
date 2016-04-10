@@ -34,5 +34,4 @@ var enemy2;
 var bombLabel;
 var energyLabel;
 
-var identificator = 0;
 
