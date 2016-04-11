@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-
+use App\Inventory;
 class GameController extends Controller
 {
     /**
@@ -15,7 +15,7 @@ class GameController extends Controller
      */
     public function __construct()
     {
-        //$this->middleware('auth');
+        //$this->middleware('auth', ['except' => ['receive']]);
     }
 
     /**
@@ -25,6 +25,26 @@ class GameController extends Controller
      */
     public function index()
     {
-        return view('game');
+        $user = \Auth::user();
+        $inventory = $user->inventory()->get();
+        $data['id'] = $user->id;
+        $data['bombs'] = $inventory[0]->bombs;
+        $data['energy'] = $inventory[0]->energy;
+        $data['speed'] = $inventory[0]->speed;
+
+        $data = json_encode($data);
+
+        //return $data;
+        return view('game', compact('data'));
+    }
+
+    public function receive()
+    {
+        $data = Input::json();
+
+        $user = User::findOrFail($data['id']);
+
+
+        dd($data);
     }
 }

@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+    <script>jsondata = '{!! $data !!}';</script>
+
     <script type="text/javascript" src="bower_components/phaser/build/phaser.min.js"></script>
 
     <!--   <script type="text/javascript" src="main.js"></script>-->

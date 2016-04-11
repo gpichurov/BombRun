@@ -38,7 +38,7 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/shop';
 
     /**
      * Create a new authentication controller instance.
@@ -103,7 +103,7 @@ class AuthController extends Controller
 
         Auth::login($authUser, true);
 
-        return redirect('/home');
+        return redirect('/shop');
 
     }
     /**

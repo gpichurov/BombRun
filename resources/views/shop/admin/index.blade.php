@@ -70,7 +70,7 @@
                             <div class="wrapper">
                                 <div class="post-meta">
                                     <div class="price text-right">{{ $item->price }}
-                                        <img src="images/coin.png" alt="" height="20" width="20">
+                                        <img src="images/coins.png" alt="" height="20" width="20">
                                     </div>
                                 </div>
                             </div>

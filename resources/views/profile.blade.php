@@ -25,7 +25,7 @@
                             <td><h3>{{$user->kills}}</h3></td>
                         </tr>
                         <tr>
-                            <td><img src="../images/coin.png" alt=""></td>
+                            <td><img src="../images/coins.png" alt=""></td>
                             <td><h3>Coins collected:</h3></td>
                             <td><h3>{{$user->coins}}</h3></td>
                         </tr>
