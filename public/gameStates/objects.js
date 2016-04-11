@@ -66,7 +66,6 @@ var collectedScrolls = 0;
 var roomsEntered = 0;
 
 function updateData() {
-    e.preventDefault();
     var data = {
         id: userId,
         coins: playerCoins,
