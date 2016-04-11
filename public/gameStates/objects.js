@@ -68,22 +68,30 @@ var data;
 function updateData() {
     //alert('Sent');
     data = {
-        id: userId,
-        coins: playerCoins,
-        bombs: maxBombs,
-        speed: speed,
-        scrolls: collectedScrolls,
-        energy: energy
+        //id: userId,
+        //coins: playerCoins,
+        //bombs: maxBombs,
+        //speed: speed,
+        //scrolls: collectedScrolls,
+        //energy: energy
+        id: 1,
+        coins: 2,
+        bombs: 3,
+        speed: 4,
+        scrolls: 5,
+        energy: 6
     };
     var p = JSON.stringify(data);
     //console.log(p);
     $.ajax({
         method: "POST",
         url: "/game",
-        data: {
-            "p": p
+        data: {"p": p},
+        success: function (p) {
+            console.log(p);
+        },error:function() {
+            alert("error!!!!");
         }
-
     }).done(function( msg ) {
 
         //alert(msg);

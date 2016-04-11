@@ -58,7 +58,9 @@
                             </div>
                         </div>
                     </form>
-                    <div><a href="{{ url('/login/facebook') }}">or login with facebook</a></div>
+                    <div class="col-md-6 col-md-offset-3">
+                        <a href="{{ url('/login/facebook') }}"><img src="images/fb_login.png" class="img-responsive" alt=""></a>
+                    </div>
                 </div>
             </div>
         </div>

@@ -9,6 +9,7 @@ use App\Inventory;
 use App\User;
 use App\Statistic;
 use Illuminate\Support\Facades\Input;
+use Auth;
 
 class GameController extends Controller
 {
@@ -45,12 +46,14 @@ class GameController extends Controller
     public function receive(Request $request)
     {
         $data = Input::json();
-        $id = $data->get('id');
-        $user = User::where('id', '=', $id);
+
         dd($data);
-        $inventory = Inventory::where('user_id', '=', $id);
-        $statistic = Statistic::where('user_id', '=', $id);
-        //dd($data);
+        $id = $data->get('id');
+        $user = User::where('id', '=', $id)->first();
+
+
+        $inventory = Inventory::where('user_id', '=', $id)->first();
+        $statistic = Statistic::where('user_id', '=', $id)->first();
         $inv = $data->get('bombs');
 
         $inventory->energy = $data->get('energy');
@@ -60,8 +63,10 @@ class GameController extends Controller
         $statistic->scrolls = $data->get('scrolls');
         $statistic->games = 1;
 
-        $statistic->update(['coins' => $data->get('coins'), 'games' => 1]);
-        $inventory->update(['bombs' => $data->get('bombs'), 'energy' => $data->get('energy'), 'speed' => $data->get('speed')]);
+        $statistic->save();
+        $inventory->save();
+        //$statistic->update(['coins' => $data->get('coins')]);
+        //$inventory->update(['bombs' => $data->get('bombs'), 'energy' => $data->get('energy'), 'speed' => $data->get('speed')]);
         //dd($user->inventory);
     }
 }

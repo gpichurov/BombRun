@@ -2,6 +2,14 @@
 
 @section('content')
 <div class="container col-sm-offset-4 col-sm-4">
+    <div class="flash-message">
+        @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+            @if(Session::has('alert-' . $msg))
+                <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }}
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
+            @endif
+        @endforeach
+    </div>
     <div class="panel panel-default text-center" style="padding: 1em">
         <div class="panel-heading">{{ $item->name }}</div>
         <div class="panel-body">
@@ -30,7 +38,8 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2">{!! Form::open(['url' => url('shop/admin/buy', ['id' => $item->id]), 'method' => 'POST']) !!}
+                    <td colspan="2">
+                        {!! Form::open(['url' => url('shop/buy', ['id' => $item->id]), 'method' => 'POST']) !!}
                         <button type="submit" class="btn btn-success pull " onclick="return confirm('Are you sure');">Buy</button>
                         {!! Form::close() !!}
                     </td>

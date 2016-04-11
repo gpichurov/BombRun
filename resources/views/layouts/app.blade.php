@@ -19,8 +19,12 @@
     <style>
         body {
             font-family: 'Lato';
+            background-image: url("images/wall.png");
         }
-
+         .panel{
+             background-color: transparent;
+             border: 1px #222;
+         }
         .fa-btn {
             margin-right: 6px;
         }
@@ -68,6 +72,7 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ url('/home') }}"><i class="fa fa-btn glyphicon glyphicon-user"></i>Profile</a></li>
                                 <li><a href="{{ url('/settings') }}"><i class="fa fa-btn glyphicon glyphicon-cog"></i>Settings</a></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>

@@ -38,7 +38,8 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>{!! Form::open(['url' => url('shop/admin/buy', ['id' => $item->id]), 'method' => 'POST']) !!}
+                        <td>
+                            {!! Form::open(['url' => url('shop/admin/buy', ['id' => $item->id]), 'method' => 'POST']) !!}
                             <button type="submit" class="btn btn-success pull " onclick="return confirm('Are you sure');">Buy</button>
                             {!! Form::close() !!}
                         </td>

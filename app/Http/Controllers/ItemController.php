@@ -22,7 +22,7 @@ class ItemController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('admin', ['except' => ['index', 'show']]);
+        $this->middleware('admin', ['except' => ['index', 'show', 'buy']]);
     }
 
     /**
@@ -198,5 +198,6 @@ class ItemController extends Controller
         } else {
             return redirect('/shop/' . $request->id);
         }
+
     }
 }

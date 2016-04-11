@@ -26,7 +26,9 @@
 
 
     <div class="container"  >
-        <h1 class="text-center col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-4" style="margin-top: 20%">BOMB RUN</h1>
+        <h1 class="text-center col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-4" style="margin-top: 20%">
+            <img src="images/bomb-run.png" class="img-responsive" alt="">
+        </h1>
         <br>
         <a href="{{ url('game') }}" class="btn btn-warning  col-sm-2 col-sm-offset-5 col-xs-2 col-xs-offset-5">To the game</a>
     </div>
