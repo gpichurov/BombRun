@@ -66,7 +66,7 @@ var collectedScrolls = 0;
 var roomsEntered = 0;
 var data;
 function updateData() {
-    alert('Sent');
+    //alert('Sent');
     data = {
         id: userId,
         coins: playerCoins,
@@ -76,17 +76,17 @@ function updateData() {
         energy: energy
     };
     var p = JSON.stringify(data);
-    console.log(p);
+    //console.log(p);
     $.ajax({
         method: "POST",
         url: "/game",
         data: {
-            "data": JSON.stringify(data)
+            "p": p
         }
 
     }).done(function( msg ) {
 
-        alert(msg);
+        //alert(msg);
 
     });
 }

@@ -39,6 +39,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::resource('/statistics', 'StatisticsController');
 
     Route::get('/game', 'GameController@index');
+    Route::post('/game', 'GameController@receive');
 });
 
 Route::group(['middleware' => ['web']], function () {

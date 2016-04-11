@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Inventory;
+use App\User;
+use App\Statistic;
+use Illuminate\Support\Facades\Input;
+
 class GameController extends Controller
 {
     /**
@@ -15,7 +19,7 @@ class GameController extends Controller
      */
     public function __construct()
     {
-        //$this->middleware('auth', ['except' => ['receive']]);
+        $this->middleware('auth', ['except' => 'receive']);
     }
 
     /**
@@ -38,13 +42,26 @@ class GameController extends Controller
         return view('game', compact('data'));
     }
 
-    public function receive()
+    public function receive(Request $request)
     {
         $data = Input::json();
-
-        $user = User::findOrFail($data['id']);
-
-
+        $id = $data->get('id');
+        $user = User::where('id', '=', $id);
         dd($data);
+        $inventory = Inventory::where('user_id', '=', $id);
+        $statistic = Statistic::where('user_id', '=', $id);
+        //dd($data);
+        $inv = $data->get('bombs');
+
+        $inventory->energy = $data->get('energy');
+        $inventory->speed = $data->get('speed');
+        $inventory->money = $data->get('coins');
+        $statistic->coins = $data->get('coins');
+        $statistic->scrolls = $data->get('scrolls');
+        $statistic->games = 1;
+
+        $statistic->update(['coins' => $data->get('coins'), 'games' => 1]);
+        $inventory->update(['bombs' => $data->get('bombs'), 'energy' => $data->get('energy'), 'speed' => $data->get('speed')]);
+        //dd($user->inventory);
     }
 }
