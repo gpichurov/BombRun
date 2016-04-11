@@ -19,6 +19,7 @@ game.state.add('underworld', underworld);
 
 
 /*game.state.add('play', playState);*/
+game.state.add('gameOver', gameOver);
 game.state.add('win', winState);
 
 game.state.start('boot');

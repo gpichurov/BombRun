@@ -68,7 +68,6 @@ Enemy.prototype.update = function() {
 };
 
 Enemy.prototype.killEnemy = function (currentEnemy, explodingBomb) {
-    console.log(this);
     var a = explodingBomb.animations.currentFrame.index;
     if (a == 8) {
         currentEnemy.scale.setTo(1,1);
@@ -82,7 +81,6 @@ Enemy.prototype.killEnemy = function (currentEnemy, explodingBomb) {
             underworld.counterEnemy = countAllEnemies;
             greenUnderworld.counterEnemy = countAllEnemies;
             mineRoom.counterEnemy = countAllEnemies;
-            console.log('yes');
 
            // identificator++;
             this.releasedObjects();

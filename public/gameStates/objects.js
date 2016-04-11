@@ -2,8 +2,7 @@
  * Created by maya on 06-Apr-16.
  */
 
-var test = JSON.parse(jsondata);
-console.log(test);
+var phpData = JSON.parse(jsondata);
 
 var player = {
     defPosX: 300,
@@ -22,10 +21,11 @@ var cursors;
 
 var maxSpeed = 260;
 
-var speed = 230;
+var userId = phpData.id;
+var speed = 230 + phpData.speed;
 var playerCoins = 0;
-var maxBombs = 300;
-var energy = 300;
+var maxBombs = 300 + phpData.bombs;
+var energy = 300 + phpData.energy;
 
 var distancePassed = 0;
 
@@ -73,8 +73,7 @@ function updateData() {
     e.preventDefault();
     //alert('Sent');
     var data = {
-       /* id: ,
-        name: ,*/
+        id: userId,
         coins: playerCoins,
         bombs: maxBombs,
         speed: speed,
