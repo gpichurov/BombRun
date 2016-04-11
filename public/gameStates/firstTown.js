@@ -227,6 +227,7 @@ var firstTown = {
 
 
         if (roomsEntered == 3) {
+            updateData();
             game.state.start('win');
         }
 

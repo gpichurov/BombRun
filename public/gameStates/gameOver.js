@@ -12,7 +12,7 @@ var gameOver = {
 
         var wKey = game.input.keyboard.addKey(Phaser.Keyboard.W);
 
-        updateData();
+
 
         wKey.onDown.addOnce(this.restart, this);
     },
