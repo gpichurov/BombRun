@@ -21,7 +21,9 @@ var underworld = {
 
     smallMaps:'',
     invisible: '',
+    invis:'',
     room: 'underworld',
+    scrolls: '',
 
     counterEnemy: 0,
 
@@ -61,9 +63,12 @@ var underworld = {
         this.invisible = game.add.group();
         this.invisible.enableBody = true;
         //this.invisible.scale.setTo(2, 2);
-
-        var invis = this.invisible.create(78, 610, 'invisible');
+        this.invis = this.invisible.create(78, 610, 'invisible');
         //invis.visible = false;
+
+        this.scrolls = game.add.group();
+        this.scrolls.enableBody = true;
+        var scroll = this.scrolls.create(240, 240, 'paper');
 
         this.enemy1 = new Enemy(game, 32, 32, 'characterEnemy', 'switchSquare', 120, 539, +1, 'x', '');
         game.add.existing(this.enemy1);
@@ -103,7 +108,7 @@ var underworld = {
         game.physics.arcade.collide(player, this.mapWallsLayer);
         game.physics.arcade.collide(player, this.mapUpLayer);
 
-        game.physics.arcade.overlap(player, this.smallMaps, this.collectScroll, null, this);
+        game.physics.arcade.overlap(player, this.scrolls, this.collectScroll, null, this);
 
         game.physics.arcade.overlap(player, this.invisible, openDoor, null, this);
 
@@ -229,6 +234,7 @@ var underworld = {
     },
 
     collectScroll: function (player, scroll) {
+        collectedScrolls++;
         scroll.kill();
     }
 

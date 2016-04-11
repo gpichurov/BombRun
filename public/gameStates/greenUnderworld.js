@@ -26,6 +26,8 @@ var greenUnderworld = {
     smallMaps: '',
     counterEnemy: 0,
     room: 'greenUnderworld',
+    invis:'',
+    scrolls: '',
 
    /* scroll:'',*/
 
@@ -62,9 +64,12 @@ var greenUnderworld = {
 
         this.invisible = game.add.group();
         this.invisible.enableBody = true;
-
-        var invis = this.invisible.create(0, 330, 'invisible');
+        this.invis = this.invisible.create(0, 330, 'invisible');
         //invis.visible = false;
+
+        this.scrolls = game.add.group();
+        this.scrolls.enableBody = true;
+        var scroll = this.scrolls.create(260, 280, 'scroll2');
 
         this.enemy1 = new Enemy(game, 64, 256, 'characterEnemy', 'switchSquare', 100, 96, +1, 'x', '');
         game.add.existing(this.enemy1);
@@ -102,7 +107,7 @@ var greenUnderworld = {
     update: function () {
         game.physics.arcade.collide(player, this.mapWallsLayer);
 
-        game.physics.arcade.overlap(player, this.smallMaps, this.collectScroll, null, this);
+        game.physics.arcade.overlap(player, this.scrolls, this.collectScroll, null, this);
 
         game.physics.arcade.overlap(player, this.invisible, openDoor, null, this);
 
@@ -112,11 +117,11 @@ var greenUnderworld = {
 
         player.body.velocity.x = 0;
         player.body.velocity.y = 0;
-
-        if (game.physics.arcade.overlap(player, this.smallMaps, this.collectScroll, this))
+/*
+        if (game.physics.arcade.overlap(player, this.scrolls, this.collectScroll, this))
         {
-            this.smallMaps.kill();
-        }
+            this.scrolls.kill();
+        }*/
 
         if (cursors.up.isDown && energy > 0) {
             distancePassed++;
@@ -218,22 +223,23 @@ var greenUnderworld = {
         return true;
 
     },
-
+/*
     collisionHandler: function(player, veg) {
 
         return true;
 
-    },
+    },*/
 
     collectScroll: function (player, scroll) {
+        collectedScrolls++;
         scroll.kill();
-    },
+    }
 
-    enterFirstWorld: function () {
+  /*  enterFirstWorld: function () {
         if (killedEnemiesGreenUnderw) {
             game.state.start('firstTown');
         }
-    }
+    }*/
 };
 
 /*function collisionPlayerEnemy(player, enemy) {

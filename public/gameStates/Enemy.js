@@ -84,8 +84,8 @@ Enemy.prototype.killEnemy = function (currentEnemy, explodingBomb) {
             mineRoom.counterEnemy = countAllEnemies;
             console.log('yes');
 
-            /*identificator++;
-            releasedObjects(identificator);*/
+           // identificator++;
+            this.releasedObjects();
             /*var singleScroll2 = underworld.smallMaps.create(currentEnemyX, currentEnemyY, 'smallMap');*/
         }
         //coin.kill();
@@ -103,41 +103,36 @@ Enemy.prototype.collisionPlayerEnemy = function(player, enemy) {
 };
 
 function openDoor() {
-    /*if (room == 'underworld') {
-        if (underworld.counterEnemy == 4) {
-            countAllEnemies = 0;
-            game.state.start('firstTown');
-
-        }
-    } else if (room == 'greenUnderworld') {
-        if (greenUnderworld.counterEnemy == 4) {
-            countAllEnemies = 0;
-            game.state.start('firstTown');
-        }
-    } else if (room == 'mineRoom') {
-        if (mineRoom.counterEnemy == 4) {
-            countAllEnemies = 0;
-            game.state.start('firstTown');
-        }
-    }*/
 
     if (countAllEnemies == 4 || countAllEnemies == 8 || countAllEnemies == 12) {
-        game.state.start('firstTown');
+        if (currentState == 'mineRoom') {
+            mineRoom.invis.visible = false;
+            roomsEntered++;
+            game.state.start('firstTown');
+        } else if (currentState == 'underworld') {
+            underworld.invis.visible = false;
+            roomsEntered++;
+            game.state.start('firstTown');
+        } else if (currentState == 'greenUnderworld') {
+            greenUnderworld.invis.visible = false;
+            roomsEntered++;
+            game.state.start('firstTown');
+        }
+
     }
 
 }
 
-/*
-Enemy.prototype.releasedObjects = function(identificator) {
-    /!* room = this;*!/
-    for (var i = 1; i <= identificator; i++) {
+Enemy.prototype.releasedObjects = function() {
+    /* room = this;*/
+   /* for (var i = 1; i <= identificator; i++) {
         if (identificator == 1) {
             var singleScroll2 = underworld.smallMaps.create(currentEnemyX, currentEnemyY, 'smallMap');
-        } else if (identificator == 2) {
+        } else if (identificator == 2) {*/
             var coin1 = coins.create(currentEnemyX, currentEnemyY, 'coin');
-        }
-    }
-};*/
+      /*  }
+    }*/
+};
 
 Enemy.prototype.move = function (action) {
     if (action == 'switch') {

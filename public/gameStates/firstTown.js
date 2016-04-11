@@ -32,6 +32,8 @@ var firstTown = {
     //playerPos: { x: 300, y: 200 },
     pauseButton:'',
 
+    coinsCollected: [],
+
     preload: function () {
         game.stage.backgroundColor = '#000';
     },
@@ -65,7 +67,8 @@ var firstTown = {
 
         if (currentState == 'mineRoom') {
             player.defPosX = 1185;
-            player.defPosY = 1010;
+            player.defPosY = 1030;
+
         } else if (currentState == 'greenUnderworld') {
             player.defPosX = 480;
             player.defPosY = 490;
@@ -114,15 +117,21 @@ var firstTown = {
         this.map.setCollisionByExclusion([], true, this.mapTopLayer);
         this.map.setCollisionByExclusion([], true, this.mapGroundDecorations);
 
-        this.keys = game.add.group();
+        if (setKey) {
+            this.keys = game.add.group();
+            this.keys.enableBody = true;
+            var key = this.keys.create(285, 630, 'key1');
+        } else {
+            this.keyMineCollected = true;
+        }
 
-        this.keys.enableBody = true;
-        var key = this.keys.create(285, 630, 'key1');
-
-        this.scrolls = game.add.group();
-
-        this.scrolls.enableBody = true;
-        var scroll = this.scrolls.create(240, 950, 'scroll');
+        if (setScroll) {
+            this.scrolls = game.add.group();
+            this.scrolls.enableBody = true;
+            var scroll = this.scrolls.create(240, 950, 'scroll');
+        } else {
+            this.scrollCollected = true;
+        }
 
         this.invisible = game.add.group();
         this.invisible.enableBody = true;
@@ -139,7 +148,7 @@ var firstTown = {
         this.speedBoosts = game.add.group();
         this.speedBoosts.enableBody = true;
         var speedBoost1 = this.speedBoosts.create(200, 300, 'speedBoost');
-        var speedBoost3 = this.speedBoosts.create(600, 290, 'speedBoost');
+       /* var speedBoost3 = this.speedBoosts.create(600, 290, 'speedBoost');*/
         var speedBoost2 = this.speedBoosts.create(1150, 320, 'speedBoost');
 
         coins = game.add.group();
@@ -168,6 +177,10 @@ var firstTown = {
         var coin13 = coins.create(400, 300, 'coin');
         var coin14 = coins.create(460, 300, 'coin');
         var coin15 = coins.create(520, 300, 'coin');
+
+        this.coinsCollected.push(coin1, coin2, coin3, coin4, coin5, coin6, coin7, coin8, coin9, coin10, coin11, coin12, coin13, coin14, coin15);
+
+        console.log(this.coinsCollected.length);
 
 
         coins.callAll('animations.add', 'animations', 'spin', [0, 1, 2, 3, 4, 5], 10, true);
@@ -215,6 +228,12 @@ var firstTown = {
             player.animations.stop();
         }
 
+
+        if (roomsEntered == 3) {
+            game.state.start('win');
+        }
+
+
     },
 
     /*shutdown: function() {
@@ -235,35 +254,45 @@ var firstTown = {
     },*/
 
     collectKeys: function(player, key) {
+        setKey = false;
         key.kill();
         this.keyMineCollected = true;
 
     },
 
     collectScrolls: function(player, scroll) {
+        setScroll = false;
+        collectedScrolls++;
         scroll.kill();
         this.scrollCollected = true;
     },
 
     enterMineDoor: function() {
-        countAllEnemies = 0;
+        if (currentState != 'mineRoom') {
+            countAllEnemies = 0;
 
-        currentState = 'mineRoom';
-        game.state.start('mineRoom');
+            currentState = 'mineRoom';
+            game.state.start('mineRoom');
+        }
+
+
         //game.switchState('mineRoom');
 
     },
 
     enterGreenUnderwDoor: function() {
-        countAllEnemies = 0;
-        currentState = 'greenUnderworld';
-        game.state.start('greenUnderworld');
+        if (currentState != 'greenUnderworld') {
+            countAllEnemies = 0;
+            currentState = 'greenUnderworld';
+            game.state.start('greenUnderworld');
+        }
+
         //game.switchState('greenUnderworld');
 
     },
 
     enterUnderwDoor: function() {
-        if (!this.keyMineCollected) {
+        if (this.keyMineCollected && currentState != 'underworld') {
             /*if(localStorage.getItem('speed') == '120'){
 
              localStorage.setItem('speed', speed);
@@ -275,11 +304,13 @@ var firstTown = {
              localStorage.setItem('speed',speed);
 
              }*/
+
+            //game.switchState('underworld');
+
             countAllEnemies = 0;
             currentState = 'underworld';
 
             game.state.start('underworld');
-            //game.switchState('underworld');
 
         }
     },
@@ -319,7 +350,7 @@ var firstTown = {
 };
 
 function takeCoin(player, coin) {
-
+    /*coins.*/
     coin.body = null;
 
     coin.destroy();

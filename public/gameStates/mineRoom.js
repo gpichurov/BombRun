@@ -23,6 +23,8 @@ var mineRoom = {
 
     smallMaps: '',
     counterEnemy: 0,
+    invis:'',
+    scrolls: '',
 
     //scroll2:'',
 
@@ -65,9 +67,12 @@ var mineRoom = {
 
         this.invisible = game.add.group();
         this.invisible.enableBody = true;
-
-        var invis = this.invisible.create(605, 150, 'invisible');
+        this.invis = this.invisible.create(605, 150, 'invisible');
         //invis.visible = false;
+
+        this.scrolls = game.add.group();
+        this.scrolls.enableBody = true;
+        var scroll = this.scrolls.create(240, 290, 'smallMap');
 
         this.enemy1 = new Enemy(game, 32, 32, 'characterEnemy', 'switch', 120, 544, +1, 'y', '');
         game.add.existing(this.enemy1);
@@ -99,9 +104,11 @@ var mineRoom = {
     update: function () {
         game.physics.arcade.collide(player, this.mapWallsLayer);
 
-        game.physics.arcade.overlap(player, this.smallMaps, this.collectScroll, null, this);
+        game.physics.arcade.overlap(player, this.scrolls, this.collectScroll, null, this);
 
         game.physics.arcade.overlap(player, this.invisible, openDoor, null, this);
+
+        game.physics.arcade.overlap(player, coins, takeCoin, null, this);
 
         player.body.velocity.x = 0;
         player.body.velocity.y = 0;
@@ -141,7 +148,7 @@ var mineRoom = {
 
         if (this.bombButton.isDown && !this.dropping_bomb) {
             if(maxBombs > 0){
-            this.bomb1 = bombs.create(player.body.x, player.body.y-32, 'bomb');
+            this.bomb1 = bombs.create(player.body.x, player.body.y - 32, 'bomb');
             var anim = this.bomb1.animations.add('explode', [0, 1, 2, 3, 4, 5, 6, 7, 8], 30, true);
 
             maxBombs -= 1;
@@ -198,20 +205,21 @@ var mineRoom = {
         return true;
     },
 
-    collisionHandler: function(player, veg) {
+    /*collisionHandler: function(player, veg) {
         return true;
-    },
+    },*/
 
     collectScroll: function (player, scroll) {
+        collectedScrolls++;
         scroll.kill();
        // gotAScroll = true;
-    },
-
-    enterFirstWorld: function () {
-        if (killedEnemiesMine) {
-            game.state.start('firstTown');
-        }
     }
+
+    /*enterFirstWorld: function () {
+     if (killedEnemiesMine) {
+     game.state.start('firstTown');
+     }
+     }*/
 
 };
 
