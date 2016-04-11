@@ -6,10 +6,7 @@ var phpData = JSON.parse(jsondata);
 
 var player = {
     defPosX: 300,
-    defPosY: 200,
-    playerCoins: 0,
-    speed: 230,
-    energy: 30
+    defPosY: 200
 };
 
 var map;
@@ -68,10 +65,8 @@ var collectedScrolls = 0;
 
 var roomsEntered = 0;
 
-
 function updateData() {
     e.preventDefault();
-    //alert('Sent');
     var data = {
         id: userId,
         coins: playerCoins,
@@ -80,9 +75,8 @@ function updateData() {
         scrolls: collectedScrolls,
         energy: energy
     };
-    //console.log(data);
     $.ajax({
-        method: "POST",
+        method: "PUT",
         url: "/game",
         data: {
             "data": JSON.stringify(data)
