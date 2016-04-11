@@ -75,6 +75,8 @@ function updateData() {
         scrolls: collectedScrolls,
         energy: energy
     };
+    var p = JSON.stringify(data);
+    console.log(p);
     $.ajax({
         method: "POST",
         url: "/game",
