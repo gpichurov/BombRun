@@ -64,9 +64,10 @@ var collectedScrolls = 0;
 //var coinsCollected = [];
 
 var roomsEntered = 0;
-
+var data;
 function updateData() {
-    var data = {
+    alert('Sent');
+    data = {
         id: userId,
         coins: playerCoins,
         bombs: maxBombs,
@@ -75,10 +76,15 @@ function updateData() {
         energy: energy
     };
     $.ajax({
-        method: "PUT",
+        method: "POST",
         url: "/game",
         data: {
             "data": JSON.stringify(data)
         }
-    })
+
+    }).done(function( msg ) {
+
+        alert(msg);
+
+    });
 }
