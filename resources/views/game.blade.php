@@ -13,6 +13,7 @@
     <script type="text/javascript" src="gameStates/mineRoom.js"></script>
     <script type="text/javascript" src="gameStates/underworld.js"></script>
     <script type="text/javascript" src="gameStates/greenUnderworld.js"></script>
+    <script type="text/javascript" src="gameStates/gameOver.js"></script>
     <script type="text/javascript" src="gameStates/startScreen.js"></script>
     <script type="text/javascript" src="gameStates/win.js"></script>
     <script type="text/javascript" src="game.js"></script>
