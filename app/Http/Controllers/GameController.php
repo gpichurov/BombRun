@@ -47,6 +47,7 @@ class GameController extends Controller
     {
         $data = Input::json();
 
+
         dd($data);
         $id = $data->get('id');
         $user = User::where('id', '=', $id)->first();

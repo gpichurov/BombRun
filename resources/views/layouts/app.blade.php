@@ -20,6 +20,7 @@
         body {
             font-family: 'Lato';
             background-image: url("images/wall.png");
+
         }
          .panel{
              background-color: transparent;

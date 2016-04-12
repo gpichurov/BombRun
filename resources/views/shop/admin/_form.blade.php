@@ -1,3 +1,8 @@
+<style>
+    body {
+        background-image: url("/images/wall.png");
+    }
+</style>
 <div class="panel col-sm-offset-2 col-sm-8">
     <div class="flash-message">
         @foreach (['danger', 'warning', 'success', 'info'] as $msg)
