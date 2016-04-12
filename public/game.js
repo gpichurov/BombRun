@@ -2,7 +2,7 @@
  * Created by maya on 26-Mar-16.
  */
 
-var game = new Phaser.Game("100%", "100%", Phaser.AUTO, 'game-div');
+var game = new Phaser.Game(1300, 580, Phaser.AUTO, 'game-div');
 
 //1350 x 600
 // "100%"  "100%"

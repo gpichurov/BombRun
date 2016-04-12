@@ -107,11 +107,14 @@ function openDoor() {
     if (countAllEnemies == 4 || countAllEnemies == 8 || countAllEnemies == 12) {
         if (currentState == 'mineRoom') {
             mineRoom.invis.visible = false;
+
             roomsEntered++;
             game.state.start('firstTown');
         } else if (currentState == 'underworld') {
             underworld.invis.visible = false;
+
             roomsEntered++;
+            /*hideKey(currentState);*/
             game.state.start('firstTown');
         } else if (currentState == 'greenUnderworld') {
             greenUnderworld.invis.visible = false;
@@ -122,6 +125,12 @@ function openDoor() {
     }
 
 }
+
+/*function hideKey(state) {
+    if (state == 'underworld') {
+        firstTown.invisible.getChildAt(0).visible = false;
+    }
+}*/
 
 Enemy.prototype.releasedObjects = function() {
     /* room = this;*/

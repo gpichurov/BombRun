@@ -66,34 +66,38 @@ var collectedScrolls = 0;
 var roomsEntered = 0;
 var data;
 function updateData() {
-    //alert('Sent');
+    alert('Sent');
     data = {
-        //id: userId,
-        //coins: playerCoins,
-        //bombs: maxBombs,
-        //speed: speed,
-        //scrolls: collectedScrolls,
-        //energy: energy
-        id: 1,
+        id: userId,
+        coins: playerCoins,
+        bombs: maxBombs,
+        speed: speed,
+        scrolls: collectedScrolls,
+        energy: energy
+        /*id: 1,
         coins: 2,
         bombs: 3,
         speed: 4,
         scrolls: 5,
-        energy: 6
+        energy: 6*/
     };
-    var p = JSON.stringify(data);
+
     //console.log(p);
     $.ajax({
         method: "POST",
         url: "/game",
-        data: {"p": p},
+        data: data,
         success: function (p) {
             console.log(p);
         },error:function() {
             alert("error!!!!");
         }
-    }).done(function( msg ) {
+    }).then(function( msg ) {
+        console.log(arguments);
+        //alert(msg);
 
+    }, function( msg ) {
+        console.log(arguments);
         //alert(msg);
 
     });

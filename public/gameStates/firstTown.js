@@ -271,6 +271,8 @@ var firstTown = {
 
             currentState = 'mineRoom';
             game.state.start('mineRoom');
+        } else {
+            invis2.visible = false;
         }
 
 
@@ -283,6 +285,8 @@ var firstTown = {
             countAllEnemies = 0;
             currentState = 'greenUnderworld';
             game.state.start('greenUnderworld');
+        } else {
+            invis3.visible = false;
         }
 
         //game.switchState('greenUnderworld');
@@ -310,6 +314,8 @@ var firstTown = {
 
             game.state.start('underworld');
 
+        } else {
+            invis.visible = false;
         }
     },
 
