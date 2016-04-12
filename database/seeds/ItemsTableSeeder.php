@@ -73,7 +73,7 @@ class ItemsTableSeeder extends Seeder
                 'price' => 20,
                 'number' => 20,
                 'available' => 99999,
-                'category' => 'speed',
+                'category' => 'energy',
                 'big_image' => 'B_def_energy.png',
                 'small_image' => 'S_def_energy.png',
             ]);

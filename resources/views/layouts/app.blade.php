@@ -43,7 +43,11 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/profile',Auth::user()->id) }}">Home</a></li>
+                    @if (!Auth::user())
+                        <li><a href="{{ url('/')}}">Home</a></li>
+                    @else
+                        <li><a href="{{ url('/profile',Auth::user()->id) }}">Home</a></li>
+                    @endif
                     <li><a href="{{ url('/game') }}">Game</a></li>
                     <li><a href="{{ url('/shop') }}">Shop</a></li>
                     <li><a href="{{ url('/statistics') }}">Statistics</a></li>
@@ -52,7 +56,7 @@
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
-                    @if (Auth::guest())
+                    @if (!Auth::user())
                         <li><a href="{{ url('/login') }}">Login</a></li>
                         <li><a href="{{ url('/register') }}">Register</a></li>
                     @else
