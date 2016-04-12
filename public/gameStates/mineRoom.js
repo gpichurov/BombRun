@@ -26,6 +26,8 @@ var mineRoom = {
     counterEnemy: 0,
     invis:'',
     scrolls: '',
+    eKey:'',
+    sKey:'',
 
     //scroll2:'',
 
@@ -34,14 +36,9 @@ var mineRoom = {
     },
 
     create: function () {
-        /*var button = game.add.button(game.width - 200, 20, 'backBtn', this.back);*/
-        //680 x 20
+        this.eKey = game.input.keyboard.addKey(Phaser.Keyboard.E);
 
-        /*energyLabel = game.add.text(game.width - 200, 160, energy,
-            {font: '25px Arial', fill: '#fff'});
-
-        bombLabel = game.add.text(game.width - 200, 230, maxBombs,
-            {font: '25px Arial', fill: '#fff'});*/
+        this.sKey = game.input.keyboard.addKey(Phaser.Keyboard.S);
 
         this.map = game.add.tilemap('mapMine');
 
@@ -66,14 +63,12 @@ var mineRoom = {
 
         bombs = game.add.group();
         bombs.enableBody = true;
-//
+
         coins = game.add.group();
         coins.enableBody = true;
 
         inventory();
 
-
-//
         this.invisible = game.add.group();
         this.invisible.enableBody = true;
         this.invis = this.invisible.create(605, 150, 'invisible');
@@ -95,12 +90,6 @@ var mineRoom = {
         this.enemy4 = new Enemy(game, 32, 576, 'characterEnemy', 'switch', 120, 544, +1, 'x', '');
         game.add.existing(this.enemy4);
 
-       /* this.enemy5 = new Enemy(game, 224, 128, 'characterEnemy', 'switch', 120, 288, +1, 'y', '');
-        game.add.existing(this.enemy5);
-
-        this.enemy6 = new Enemy(game, 384, 480, 'characterEnemy', 'switch', 120, 352, -1, 'x', '');
-        game.add.existing(this.enemy6);*/
-
         game.physics.enable(player, Phaser.Physics.ARCADE);
         game.camera.follow(player);
 
@@ -111,12 +100,17 @@ var mineRoom = {
     },
 
     update: function () {
+
+        this.eKey.onDown.addOnce(takeEnergy, this);
+        this.sKey.onDown.addOnce(takeSpeed, this);
+
         coinsText.setText(playerCoins);
         energyPotionLabel.setText(energyPotion);
         bombLabel.setText(maxBombs);
         scrollsLabel.setText(collectedScrolls);
-        speedLabel.setText(speedPotions);
+        speedPotionLabel.setText(speedPotions);
         energyLabel.setText(energy);
+        speedLabel.setText('Speed: ' + speed + '/260');
 
         game.physics.arcade.collide(player, this.mapWallsLayer);
 
@@ -304,13 +298,16 @@ function inventory() {
     bombLabel = game.add.text(1165, 100, maxBombs,
         {font: '25px Arial', fill: '#000'});
 
-    speedLabel = game.add.text(1250, 100, speedPotions,
+    speedPotionLabel = game.add.text(1250, 100, speedPotions,
         {font: '25px Arial', fill: '#000'});
 
     scrollsLabel = game.add.text(1165, 145, collectedScrolls,
         {font: '25px Arial', fill: '#000'});
 
     energyLabel = game.add.text(1250, 145, energy,
+        {font: '25px Arial', fill: '#000'});
+
+    speedLabel = game.add.text(1122, 185, 'Speed: ' + speed + '/260',
         {font: '25px Arial', fill: '#000'});
 
     var singleCoin = coins.create(1125, 40, 'coin');
@@ -330,7 +327,8 @@ function inventory() {
     coinsText.fixedToCamera = true;
     energyLabel.fixedToCamera = true;
     bombLabel.fixedToCamera = true;
-    speedLabel.fixedToCamera = true;
+    speedPotionLabel.fixedToCamera = true;
     scrollsLabel.fixedToCamera = true;
     energyPotionLabel.fixedToCamera = true;
+    speedLabel.fixedToCamera = true;
 }

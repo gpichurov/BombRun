@@ -12,12 +12,10 @@ var winState = {
 
         var wKey = game.input.keyboard.addKey(Phaser.Keyboard.W);
 
-
-
         wKey.onDown.addOnce(this.restart, this);
     },
 
     restart: function () {
-        game.state.start('firstWorld');
+        game.state.start('boot');
     }
 };

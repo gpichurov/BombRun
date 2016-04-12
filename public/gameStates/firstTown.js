@@ -3,35 +3,14 @@
  */
 
 
-/*
-var reg = {};*/
-
-
-/*
-
-function showModal() {
-    reg.modal.showModal("invModal");
-}
-*/
-
 var firstTown = {
-    //player: '',
-   // map: '',
-   /* mapBottomLayer: '',*/
     mapStairsLayer: '',
     mapBuildingsLayer: '',
     mapTopLayer: '',
     mapGroundDecorations: '',
     mapTopDecorations: '',
-    //artefacts: [],
-
-    //fireButton: '',
     keys: '',
     scrolls: '',
-    //speedBoosts: '',
-
-    //speeder1:'',
-
     invisible: '',
     invBox: '',
     keyMineCollected: false,
@@ -39,10 +18,8 @@ var firstTown = {
 
     items: '',
     emptySprite: '',
-
-    //speedBoosted: false,
-
-    //playerPos: { x: 300, y: 200 },
+    eKey: '',
+    sKey: '',
     pauseButton:'',
 
     coinsCollected: [],
@@ -52,6 +29,10 @@ var firstTown = {
     },
 
     create: function () {
+
+        this.eKey = game.input.keyboard.addKey(Phaser.Keyboard.E);
+
+        this.sKey = game.input.keyboard.addKey(Phaser.Keyboard.S);
 
         game.physics.startSystem(Phaser.Physics.ARCADE);
 
@@ -78,7 +59,6 @@ var firstTown = {
         if (currentState == 'mineRoom') {
             player.defPosX = 1185;
             player.defPosY = 1030;
-
         } else if (currentState == 'greenUnderworld') {
             player.defPosX = 480;
             player.defPosY = 490;
@@ -88,18 +68,6 @@ var firstTown = {
         }
 
         player = game.add.sprite(player.defPosX, player.defPosY, 'characterRooms');
-
-        /*this.emptySprite = game.add.sprite(1, 1, '');
-        this.emptySprite.fixedToCamera = true;
-        this.emptySprite.addChild(bmd);*/
-       /* player.visible = true;*/
-
-        //300 x 200
-        //230 x 600 za kliuch
-        //600 x 250 do glavna vrata na glavnata sgrada
-        //480 x 490 za vtora sgrada - tazi po sredata
-        //1000 x 1000 za nai dolnata kushta i mineRoom
-        //za coins: 235 x 550
 
         player.animations.add('left', [3, 4, 5], 10, true);
         player.animations.add('right', [6, 7, 8], 10, true);
@@ -121,18 +89,6 @@ var firstTown = {
 
         game.camera.follow(player);
 
-
-
-       /* bmd = this.game.make.bitmapData(120, 120);
-        bmd.addToWorld();
-        bmd.fill(62, 62, 62);
-        bmd.rect(1, 1, 62, 62);
-
-        bmd.fixedToCamera = true;*/
-
-       /* tooltip.fill(0, 0, 0);
-        tooltip.rect(1, 1, 62, 62, color.rgba)*/
-
         invBox = game.add.sprite(1120, 30, 'brownWindow');
         invBox.fixedToCamera = true;
         invBox.alpha = 0.5;
@@ -149,13 +105,16 @@ var firstTown = {
         bombLabel = game.add.text(1165, 100, maxBombs,
             {font: '25px Arial', fill: '#000'});
 
-        speedLabel = game.add.text(1250, 100, speedPotions,
+        speedPotionLabel = game.add.text(1250, 100, speedPotions,
             {font: '25px Arial', fill: '#000'});
 
         scrollsLabel = game.add.text(1165, 145, collectedScrolls,
             {font: '25px Arial', fill: '#000'});
 
         energyLabel = game.add.text(1250, 145, energy,
+            {font: '25px Arial', fill: '#000'});
+
+        speedLabel = game.add.text(1122, 185, 'Speed: ' + speed + '/260',
             {font: '25px Arial', fill: '#000'});
 
 
@@ -170,13 +129,13 @@ var firstTown = {
         var energyItem = items.create(1210, 145, 'energy');
         energyItem.fixedToCamera = true;
 
-
         coinsText.fixedToCamera = true;
         energyLabel.fixedToCamera = true;
         bombLabel.fixedToCamera = true;
-        speedLabel.fixedToCamera = true;
+        speedPotionLabel.fixedToCamera = true;
         scrollsLabel.fixedToCamera = true;
         energyPotionLabel.fixedToCamera = true;
+        speedLabel.fixedToCamera = true;
 
         cursors = game.input.keyboard.createCursorKeys();
 
@@ -218,12 +177,6 @@ var firstTown = {
         var singleCoin = coins.create(1125, 40, 'coin');
         singleCoin.fixedToCamera = true;
 
-        /*this.invBox = game.add.image(game.camera.x, game.camera.y, 'brownWindow');
-        this.invBox.fixedToCamera = true;
-        this.invBox.visible = false;*/
-
-       /* var invBtn = this.game.add.button(1160, 80, 'invBtn', showInv);*/
-
         var coin1 = coins.create(240, 600, 'coin');
         var coin2 = coins.create(240, 640, 'coin');
 
@@ -246,7 +199,7 @@ var firstTown = {
         var coin14 = coins.create(460, 300, 'coin');
         var coin15 = coins.create(520, 300, 'coin');
 
-        this.coinsCollected.push(coin1, coin2, coin3, coin4, coin5, coin6, coin7, coin8, coin9, coin10, coin11, coin12, coin13, coin14, coin15);
+        //this.coinsCollected.push(coin1, coin2, coin3, coin4, coin5, coin6, coin7, coin8, coin9, coin10, coin11, coin12, coin13, coin14, coin15);
 
         coins.callAll('animations.add', 'animations', 'spin', [0, 1, 2, 3, 4, 5], 10, true);
         coins.callAll('animations.play', 'animations', 'spin');
@@ -255,12 +208,16 @@ var firstTown = {
 
     update: function () {
 
+        this.eKey.onDown.addOnce(takeEnergy, this);
+        this.sKey.onDown.addOnce(takeSpeed, this);
+
         coinsText.setText(playerCoins);
         energyPotionLabel.setText(energyPotion);
         bombLabel.setText(maxBombs);
         scrollsLabel.setText(collectedScrolls);
-        speedLabel.setText(speedPotions);
+        speedPotionLabel.setText(speedPotions);
         energyLabel.setText(energy);
+        speedLabel.setText('Speed: ' + speed + '/260');
 
         game.physics.arcade.collide(player, this.mapBuildingsLayer);
         game.physics.arcade.collide(player, this.mapTopLayer);
@@ -273,8 +230,6 @@ var firstTown = {
         game.physics.arcade.overlap(player, this.invisible.getChildAt(0), this.enterUnderwDoor, null, this);
         game.physics.arcade.overlap(player, this.invisible.getChildAt(1), this.enterMineDoor, null, this);
         game.physics.arcade.overlap(player, this.invisible.getChildAt(2), this.enterGreenUnderwDoor, null, this);
-
-        //game.physics.arcade.overlap(player, this.speedBoosts, this.tookSpeedBoost, null, this);
 
         game.physics.arcade.overlap(player, coins, takeCoin, null, this);
 
@@ -314,7 +269,6 @@ var firstTown = {
                 player.animations.stop();
             }
         }
-
     },
 
     collectKeys: function(player, key) {
@@ -367,6 +321,26 @@ function takeCoin(player, coin) {
     coinsText.setText(playerCoins);
 }
 
-/*function showInv() {
-    this.invBox.visible = false;
-}*/
+function takeEnergy() {
+    if (energyPotion > 0) {
+        energyPotion--;
+        energy += 10;
+    }
+
+    energyPotionLabel.setText(energyPotion);
+    energyLabel.setText(energy);
+}
+
+function takeSpeed() {
+    if (speed == 240) {
+        speed = 260;
+        speedPotions--;
+    } else if (speed > 240) {
+        speed = 260;
+    } else if (speed < 240) {
+        speed += 20;
+        speedPotions--;
+    }
+    speedPotionLabel.setText(speedPotions);
+    speedLabel.setText('Speed: ' + speed + '/260');
+}

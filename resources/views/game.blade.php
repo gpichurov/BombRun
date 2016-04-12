@@ -8,8 +8,6 @@
     <script type="text/javascript" src="bower_components/phaser/build/phaser.min.js"></script>
 
     <script type="text/javascript" src="gameStates/Enemy.js"></script>
-    <script type="text/javascript" src="gameStates/modal.js"></script>
-
     <script type="text/javascript" src="gameStates/boot.js"></script>
     <script type="text/javascript" src="gameStates/load.js"></script>
     <script type="text/javascript" src="gameStates/objects.js"></script>
