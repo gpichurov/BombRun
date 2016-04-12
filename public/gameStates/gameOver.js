@@ -18,6 +18,6 @@ var gameOver = {
     },
 
     restart: function () {
-        game.state.start('load');
+        game.state.start('boot');
     }
 };

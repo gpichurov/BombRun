@@ -31,6 +31,10 @@ var greenUnderworld = {
 
    /* scroll:'',*/
 
+    preload: function () {
+        game.stage.backgroundColor = 'rgb(120, 169, 5)';
+    },
+
     create: function () {
         var button = game.add.button(game.width - 200, 20, 'backBtn', this.back);
         //680 x 20

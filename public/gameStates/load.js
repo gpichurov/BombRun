@@ -46,12 +46,18 @@ var loadState = {
     /*    game.load.spritesheet('coin', 'assets/coin.png', 32, 32);*/
 
         game.load.image('singleCoin', 'assets/singleCoin.png');
-
+//
         game.load.image('invBtn', 'assets/invBtn.png');
 
         game.load.image('brownWindow', 'assets/brownWindow.jpeg');
+//
+        game.load.image('bombCool', 'assets/bombCool.png');
 
+        game.load.image('potion', 'assets/potion.png');
 
+        game.load.image('energy', 'assets/energy.png');
+
+        game.load.image('potion2', 'assets/potion2.png');
         // from mineRoom
 
         game.stage.backgroundColor = '#000';

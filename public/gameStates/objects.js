@@ -19,11 +19,19 @@ var cursors;
 var maxSpeed = 260;
 
 var userId = phpData.id;
-var speed = 120;
+
 var speedPotions = phpData.speed;
+var speed = 120 + (speedPotions * 20);
+if (speed >= 260) {
+    speed = 260;
+}
 var playerCoins = 0;
 var maxBombs = phpData.bombs;
-var energy = phpData.energy;
+var energyPotion = phpData.energy;
+var energy = energyPotion * 10;
+
+var invBox;
+var items;
 
 var distancePassed = 0;
 
@@ -43,6 +51,16 @@ var enemy2;*/
 
 //var bombLabel;
 //var energyLabel;
+
+var energyPotionLabel;
+var bombLabel;
+var coinsText;
+var scrollsLabel;
+var speedLabel;
+var energyLabel;
+
+var coins;
+
 
 var currentState = 'firstTown';
 
@@ -66,6 +84,8 @@ var collectedScrolls = 0;
 
 var roomsEntered = 0;
 var data;
+
+var bmd;
 
 function updateData() {
     //alert('Sent');

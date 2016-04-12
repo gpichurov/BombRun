@@ -1,16 +1,18 @@
 /**
  * Created by maya on 03-Apr-16.
  */
-var coins;
-var coinsText;
-
-var reg = {};
 
 
+/*
+var reg = {};*/
+
+
+/*
 
 function showModal() {
     reg.modal.showModal("invModal");
 }
+*/
 
 var firstTown = {
     //player: '',
@@ -31,9 +33,12 @@ var firstTown = {
     //speeder1:'',
 
     invisible: '',
-
+    invBox: '',
     keyMineCollected: false,
     scrollCollected: false,
+
+    items: '',
+    emptySprite: '',
 
     //speedBoosted: false,
 
@@ -49,9 +54,6 @@ var firstTown = {
     create: function () {
 
         game.physics.startSystem(Phaser.Physics.ARCADE);
-
-
-
 
         this.map = game.add.tilemap('mapFirstTown');
         this.map.addTilesetImage('Town', 'tilesetImg');
@@ -86,6 +88,10 @@ var firstTown = {
         }
 
         player = game.add.sprite(player.defPosX, player.defPosY, 'characterRooms');
+
+        /*this.emptySprite = game.add.sprite(1, 1, '');
+        this.emptySprite.fixedToCamera = true;
+        this.emptySprite.addChild(bmd);*/
        /* player.visible = true;*/
 
         //300 x 200
@@ -111,13 +117,66 @@ var firstTown = {
             }
         },this);
 
-
         game.physics.enable(player, Phaser.Physics.ARCADE);
 
         game.camera.follow(player);
 
-        coinsText = game.add.text(1200, 45, playerCoins,
+
+
+       /* bmd = this.game.make.bitmapData(120, 120);
+        bmd.addToWorld();
+        bmd.fill(62, 62, 62);
+        bmd.rect(1, 1, 62, 62);
+
+        bmd.fixedToCamera = true;*/
+
+       /* tooltip.fill(0, 0, 0);
+        tooltip.rect(1, 1, 62, 62, color.rgba)*/
+
+        invBox = game.add.sprite(1120, 30, 'brownWindow');
+        invBox.fixedToCamera = true;
+        invBox.alpha = 0.5;
+
+        items = game.add.group();
+        items.enableBody = true;
+
+        coinsText = game.add.text(1165, 45, playerCoins,
             {font: '25px Arial', fill: '#000'});
+
+        energyPotionLabel = game.add.text(1250, 45, energyPotion,
+            {font: '25px Arial', fill: '#000'});
+
+        bombLabel = game.add.text(1165, 100, maxBombs,
+            {font: '25px Arial', fill: '#000'});
+
+        speedLabel = game.add.text(1250, 100, speedPotions,
+            {font: '25px Arial', fill: '#000'});
+
+        scrollsLabel = game.add.text(1165, 145, collectedScrolls,
+            {font: '25px Arial', fill: '#000'});
+
+        energyLabel = game.add.text(1250, 145, energy,
+            {font: '25px Arial', fill: '#000'});
+
+
+        var energyPotionItem = items.create(1210, 35, 'potion');
+        energyPotionItem.fixedToCamera = true;
+        var bombItem = items.create(1125, 95, 'bombCool');
+        bombItem.fixedToCamera = true;
+        var speedItem = items.create(1210, 95, 'potion2');
+        speedItem.fixedToCamera = true;
+        var scrollItem = items.create(1125, 145, 'scroll');
+        scrollItem.fixedToCamera = true;
+        var energyItem = items.create(1210, 145, 'energy');
+        energyItem.fixedToCamera = true;
+
+
+        coinsText.fixedToCamera = true;
+        energyLabel.fixedToCamera = true;
+        bombLabel.fixedToCamera = true;
+        speedLabel.fixedToCamera = true;
+        scrollsLabel.fixedToCamera = true;
+        energyPotionLabel.fixedToCamera = true;
 
         cursors = game.input.keyboard.createCursorKeys();
 
@@ -153,18 +212,17 @@ var firstTown = {
         var invis3 = this.invisible.create(480, 440, 'invisible');
         //invis3.visible = false;
 
-        this.speedBoosts = game.add.group();
-        this.speedBoosts.enableBody = true;
-        var speedBoost1 = this.speedBoosts.create(200, 300, 'speedBoost');
-       /* var speedBoost3 = this.speedBoosts.create(600, 290, 'speedBoost');*/
-        var speedBoost2 = this.speedBoosts.create(1150, 320, 'speedBoost');
-
         coins = game.add.group();
         coins.enableBody = true;
 
-        var singleCoin = coins.create(1160, 40, 'coin');
+        var singleCoin = coins.create(1125, 40, 'coin');
+        singleCoin.fixedToCamera = true;
 
-        var invBtn = this.game.add.button(1160, 80, 'invBtn', showModal);
+        /*this.invBox = game.add.image(game.camera.x, game.camera.y, 'brownWindow');
+        this.invBox.fixedToCamera = true;
+        this.invBox.visible = false;*/
+
+       /* var invBtn = this.game.add.button(1160, 80, 'invBtn', showInv);*/
 
         var coin1 = coins.create(240, 600, 'coin');
         var coin2 = coins.create(240, 640, 'coin');
@@ -198,6 +256,11 @@ var firstTown = {
     update: function () {
 
         coinsText.setText(playerCoins);
+        energyPotionLabel.setText(energyPotion);
+        bombLabel.setText(maxBombs);
+        scrollsLabel.setText(collectedScrolls);
+        speedLabel.setText(speed);
+        energyLabel.setText(energy);
 
         game.physics.arcade.collide(player, this.mapBuildingsLayer);
         game.physics.arcade.collide(player, this.mapTopLayer);
@@ -221,15 +284,19 @@ var firstTown = {
         if (cursors.up.isDown) {
             player.body.velocity.y = -speed;
             player.animations.play('up');
+            distancePassed++;
         } else if (cursors.down.isDown) {
             player.body.velocity.y = speed;
             player.animations.play('down');
+            distancePassed++;
         } else if (cursors.left.isDown) {
             player.body.velocity.x = -speed;
             player.animations.play('left');
+            distancePassed++;
         } else if (cursors.right.isDown){
             player.body.velocity.x = speed;
             player.animations.play('right');
+            distancePassed++;
         } else {
             player.animations.stop();
         }
@@ -237,6 +304,15 @@ var firstTown = {
         if (roomsEntered == 3) {
             updateData();
             game.state.start('win');
+        }
+
+        if (distancePassed > 100){
+            distancePassed = 0;
+            if (energy > 0) {
+                energyLabel.setText(--energy);
+            } else {
+                player.animations.stop();
+            }
         }
 
     },
@@ -279,17 +355,6 @@ var firstTown = {
         }
     },
 
-    /*tookSpeedBoost: function (player, speedBoost) {
-        console.log(speedBoost.body.x);
-        this.speeder1 = speedBoost.body.x;
-        speedBoost.kill();
-
-        if (speed <= maxSpeed - 20) {
-            speed += 30;
-        }
-        this.speedBoosted++;
-    },*/
-
     processHandler: function (player, veg) {
         return true;
     }
@@ -301,3 +366,6 @@ function takeCoin(player, coin) {
     playerCoins += 10;
 }
 
+function showInv() {
+    this.invBox.visible = false;
+}

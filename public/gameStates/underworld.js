@@ -27,6 +27,10 @@ var underworld = {
 
     counterEnemy: 0,
 
+    preload: function () {
+        game.stage.backgroundColor = 'rgb(236, 210, 116)';
+    },
+
     create: function () {
         var button = game.add.button(game.width - 200, 20, 'backBtn', this.back);
         //680 x 20
