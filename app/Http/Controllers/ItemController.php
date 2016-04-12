@@ -33,9 +33,7 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $items = Item::all();
-        //$items = DB::table('items')->orderBy('category')->get();
-        //dd($items);
+        $items = Item::orderBy('category')->get();
 
         if (Auth::user()){
             if (Auth::user()->admin){

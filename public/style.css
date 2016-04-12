@@ -6,21 +6,10 @@ body {
     background-image: url("images/background.png");
 
 }
-.page-header {
+.dropdown-toggle, #category, .navbar, .panel-heading, .page-heade {
     background-image: url("images/background2.png");
 }
-.panel-heading {
-    background-image: url("images/background2.png");
-}
-.navbar{
-    background-image: url("images/background2.png");
-}
-#category {
-    background-image: url("images/background2.png");
-}
-.dropdown-toggle {
-    background-image: url("images/background2.png");
-}
+
 .panel{
     background-color: transparent;
     border: 1px #222;

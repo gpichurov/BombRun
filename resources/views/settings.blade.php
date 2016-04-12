@@ -3,9 +3,9 @@
 @section('content')
     <link href="/style.css" rel="stylesheet">
     <main class="container-fluid panel">
-        <div class="page-header text-center">
-            <h3>Welcome {{ Auth::user()->name }}</h3>
-        </div>
+        {{--<div class="page-header text-center">--}}
+            {{--<h3>Welcome {{ Auth::user()->name }}</h3>--}}
+        {{--</div>--}}
         <div class="flash-message">
             @foreach (['danger', 'warning', 'success', 'info'] as $msg)
                 @if(Session::has('alert-' . $msg))

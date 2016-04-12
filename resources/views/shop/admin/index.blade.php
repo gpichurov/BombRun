@@ -4,7 +4,7 @@
     <link href="/style.css" rel="stylesheet">
 <div class="panel panel-default todo-panel">
     <div class="panel-heading clearfix">
-        <h3 class="pull-left">SHOP</h3>
+        <h3 class="text-center">SHOP</h3>
         <a href="{{ route('shop.admin.create') }}" class="btn btn-success pull-right">Add New Item</a>
     </div>
     <div class="panel-body ">

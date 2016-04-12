@@ -25,8 +25,8 @@ class ItemsTableSeeder extends Seeder
         DB::table('items')
             ->insert([
                 'name' => '10 Bombs',
-                'description' => 'Buy 10 Bombs for only 10 coins. Do not miss the best deal !!',
-                'price' => 10,
+                'description' => 'Buy 10 Bombs for only 8 coins. Do not miss the best deal !!',
+                'price' => 8,
                 'number' => 10,
                 'available' => 99999,
                 'category' => 'bombs',
@@ -36,8 +36,8 @@ class ItemsTableSeeder extends Seeder
         DB::table('items')
             ->insert([
                 'name' => '20 Bombs',
-                'description' => 'Buy 20 Bombs for only 20 coins. Do not miss the best deal !!',
-                'price' => 20,
+                'description' => 'Buy 20 Bombs for only 15 coins. Do not miss the best deal !!',
+                'price' => 15,
                 'number' => 20,
                 'available' => 99999,
                 'category' => 'bombs',
@@ -47,8 +47,8 @@ class ItemsTableSeeder extends Seeder
         DB::table('items')
             ->insert([
                 'name' => '5 Energy Potions',
-                'description' => 'Buy 5 Energy Potions for only 20 coins. Do not miss the best deal !!',
-                'price' => 5,
+                'description' => 'Buy 5 Energy Potions for only 50 coins. Do not miss the best deal !!',
+                'price' => 50,
                 'number' => 5,
                 'available' => 99999,
                 'category' => 'energy',
@@ -58,8 +58,8 @@ class ItemsTableSeeder extends Seeder
         DB::table('items')
             ->insert([
                 'name' => '10 Energy Potions',
-                'description' => 'Buy 10 Energy Potions for only 10 coins. Do not miss the best deal !!',
-                'price' => 10,
+                'description' => 'Buy 10 Energy Potions for only 100 coins. Do not miss the best deal !!',
+                'price' => 80,
                 'number' => 10,
                 'available' => 99999,
                 'category' => 'energy',
@@ -69,8 +69,8 @@ class ItemsTableSeeder extends Seeder
         DB::table('items')
             ->insert([
                 'name' => '20 Energy Potions',
-                'description' => 'Buy 20 Energy Potions for only 20 coins. Do not miss the best deal !!',
-                'price' => 20,
+                'description' => 'Buy 20 Energy Potions for only 150 coins. Do not miss the best deal !!',
+                'price' => 150,
                 'number' => 20,
                 'available' => 99999,
                 'category' => 'energy',
@@ -80,8 +80,8 @@ class ItemsTableSeeder extends Seeder
         DB::table('items')
             ->insert([
                 'name' => '5 Speed Potions',
-                'description' => 'Buy 5 Energy Potions for only 5 coins. Do not miss the best deal !!',
-                'price' => 5,
+                'description' => 'Buy 5 Energy Potions for only 50 coins. Do not miss the best deal !!',
+                'price' => 50,
                 'number' => 5,
                 'available' => 99999,
                 'category' => 'speed',
@@ -91,8 +91,8 @@ class ItemsTableSeeder extends Seeder
         DB::table('items')
             ->insert([
                 'name' => '10 Speed Potions',
-                'description' => 'Buy 10 Energy Potions for only 10 coins. Do not miss the best deal !!',
-                'price' => 10,
+                'description' => 'Buy 10 Energy Potions for only 80 coins. Do not miss the best deal !!',
+                'price' => 80,
                 'number' => 10,
                 'available' => 99999,
                 'category' => 'speed',
@@ -102,8 +102,8 @@ class ItemsTableSeeder extends Seeder
         DB::table('items')
             ->insert([
                 'name' => '20 Speed Potions',
-                'description' => 'Buy 20 Energy Potions for only 20 coins. Do not miss the best deal !!',
-                'price' => 20,
+                'description' => 'Buy 20 Energy Potions for only 150 coins. Do not miss the best deal !!',
+                'price' => 150,
                 'number' => 20,
                 'available' => 99999,
                 'category' => 'speed',

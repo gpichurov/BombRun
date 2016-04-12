@@ -5,7 +5,7 @@
 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 " >
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h2>{{ $user->name }}</h2>
+            <h2 class="text-center">{{ $user->name }}</h2>
         </div>
         <div class="panel-body">
             <div class="row">
@@ -15,7 +15,7 @@
                 <div class="col-md-9 col-lg-9">
                     <div class=" panel panel-default" style="">
                         <div class="panel-heading">
-                            <h2>Stats</h2>
+                            <h2 class="text-center">Stats</h2>
                         </div>
                         <table class="table  panel-body">
                             <table class="table table-user-information">
@@ -54,7 +54,7 @@
         @if($user->id == Auth::user()->id)
         <div class="panel panel-default" style="margin:2em ">
             <div class="panel-heading">
-                <h2>Inventory</h2>
+                <h2 class="text-center">Inventory</h2>
             </div>
             <table class="table  panel-body">
                 <tbody>
