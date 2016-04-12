@@ -20,7 +20,6 @@ var firstTown = {
     emptySprite: '',
     eKey: '',
     sKey: '',
-    pauseButton:'',
 
     coinsCollected: [],
 
@@ -74,9 +73,10 @@ var firstTown = {
         player.animations.add('up', [9, 10, 11], 10, true);
         player.animations.add('down', [0, 1, 2], 10, true);
 
-        this.pauseButton = this.game.add.sprite(0, 0, 'pauseBtn');
-        this.pauseButton.inputEnabled = true;
-        this.pauseButton.events.onInputUp.add(function () {
+        pauseButton = this.game.add.sprite(0, 0, 'pauseBtn');
+        pauseButton.fixedToCamera = true;
+        pauseButton.inputEnabled = true;
+        pauseButton.events.onInputUp.add(function () {
             this.game.paused = true;
         },this);
         this.game.input.onDown.add(function () {

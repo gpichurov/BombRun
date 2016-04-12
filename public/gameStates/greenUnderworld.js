@@ -53,6 +53,18 @@ var greenUnderworld = {
         this.mapBottomLayer.resizeWorld();
         this.mapWallsLayer.resizeWorld();
 
+        pauseButton = this.game.add.sprite(0, 0, 'pauseBtn');
+        pauseButton.fixedToCamera = true;
+        pauseButton.inputEnabled = true;
+        pauseButton.events.onInputUp.add(function () {
+            this.game.paused = true;
+        },this);
+        this.game.input.onDown.add(function () {
+            if(this.game.paused) {
+                this.game.paused = false;
+            }
+        },this);
+
         player = game.add.sprite(32, 32, 'characterRooms');
 
         player.animations.add('left', [3, 4, 5], 10, true);

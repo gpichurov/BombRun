@@ -9,25 +9,18 @@ var startScreen = {
     },
 
     create: function () {
-       // background = this.add.tileSprite(0,0, window.innerWidth * window.devicePixelRatio, window.innerHeight * window.devicePixelRatio, 'background');
-        /*var nameLabel = game.add.text(490, 180, 'Awesome game',
-            {font: '50px Arial', fill: '#fff'});*/
-        logo = this.add.image(400, 180, 'logo');
+        logo = this.add.image(350, 180, 'logo');
 
-        var btn = this.game.add.button(560, 340, 'buttonPlay', this.start);
-
-    /*    player = game.add.sprite(player.posX, player.posY, 'characterRooms');
-
-        player.visible = false;*/
-
-        //island = game.add.sprite(850, 270, 'island');
-        //castle = game.add.sprite(0, 60, 'castle');
+        var btn = this.game.add.button(540, 340, 'buttonPlay', this.start);
+        var btnCtr = this.game.add.button(540, 410, 'buttonControls', this.controls);
     },
 
     start: function () {
-        //game.state.start('menu');
         game.state.start('firstTown');
-       // game.state.start('greenUnderworld');
+    },
+
+    controls: function () {
+        control.log('control');
     }
 
 };

@@ -66,6 +66,7 @@ var currentState = 'firstTown';
 
 var room;
 var countAllEnemies = 0;
+var pauseButton;
 
 var setKey = true;
 var setScroll = true;
