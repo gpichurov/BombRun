@@ -6,10 +6,19 @@ body {
     background-image: url("images/background.png");
 
 }
+.page-header {
+    background-image: url("images/background2.png");
+}
 .panel-heading {
     background-image: url("images/background2.png");
 }
-.navbar {
+.navbar{
+    background-image: url("images/background2.png");
+}
+#category {
+    background-image: url("images/background2.png");
+}
+.dropdown-toggle {
     background-image: url("images/background2.png");
 }
 .panel{

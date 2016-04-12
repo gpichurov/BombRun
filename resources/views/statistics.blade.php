@@ -1,9 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
+    <link href="/style.css" rel="stylesheet">
     <div class="container">
         <div>
-            <h2 class="">Statistics</h2>
+            <h2 class="page-header text-center">Statistics</h2>
             <div class="pull-right col-sm-3">
                 <form>
                     <div class="input-group">

@@ -1,3 +1,12 @@
 *
+!*/
 !public/
 !.gitignore
+!avatarImages/big/B_default.png
+!avatarImages/small/S_default.png
+!itemImages/big/B_def_bomb.png
+!itemImages/big/B_def_energy.png
+!itemImages/big/B_def_speed.png
+!itemImages/small/S_def_bomb.png
+!itemImages/small/S_def_energy.png
+!itemImages/small/S_def_speed.png

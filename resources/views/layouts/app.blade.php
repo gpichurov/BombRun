@@ -10,7 +10,7 @@
     <!-- Fonts -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
-    <script src="js/jquery-2.2.3.js"></script>
+    {{--<script src="js/jquery-2.2.3.js"></script>--}}
     <!-- Styles -->
     <link href="/style.css" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
@@ -22,7 +22,7 @@
 </head>
 <body id="app-layout">
 
-    <nav class="navbar navbar-default navbar-static-top">
+    <nav class="navbar navbar-default navbar-static-top" >
         <div class="container">
             <div class="navbar-header">
 
@@ -44,7 +44,7 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     @if (!Auth::user())
-                        <li><a href="{{ url('/')}}">Home</a></li>
+                        <li><a href="{{ url('/')}} ">Home</a></li>
                     @else
                         <li><a href="{{ url('/profile',Auth::user()->id) }}">Home</a></li>
                     @endif

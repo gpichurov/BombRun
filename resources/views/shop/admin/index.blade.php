@@ -8,9 +8,9 @@
         <a href="{{ route('shop.admin.create') }}" class="btn btn-success pull-right">Add New Item</a>
     </div>
     <div class="panel-body ">
-        <div class="col-sm-2">
+        <div class="col-sm-2" id="category">
             <div>
-                <div class="page-header">Category:</div>
+                <h4>Category:</h4>
             </div>
             <div class="list-group">
                 <input type="checkbox" value="bombs" id="bombs">
@@ -22,7 +22,6 @@
                 <input type="checkbox" value="speed" id="speed">
                 <label for="speed">Speed potions</label>
             </div>
-
         </div>
         <div class="row category-credit col-sm-offset-2" >
             @if ($items->isEmpty())

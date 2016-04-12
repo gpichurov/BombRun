@@ -7,9 +7,9 @@
         </div>
 
         <div class="panel-body">
-            <div class="col-sm-2">
+            <div class="col-sm-2" id="category">
                 <div>
-                    <div class="page-header">Category:</div>
+                    <h4>Category:</h4>
                 </div>
                 <div class="list-group">
                     <input type="checkbox" value="bombs" id="bombs">

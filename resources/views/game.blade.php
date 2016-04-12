@@ -2,7 +2,7 @@
 
 @section('content')
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-
+    <link href="/style.css" rel="stylesheet">
     <script>jsondata = '{!! $data !!}';</script>
 
     <script type="text/javascript" src="bower_components/phaser/build/phaser.min.js"></script>

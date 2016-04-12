@@ -286,7 +286,7 @@ var firstTown = {
 
     enterMineDoor: function() {
         if (currentState != 'mineRoom') {
-            countAllEnemies = 0;
+            //countAllEnemies = 0;
 
             currentState = 'mineRoom';
             game.state.start('mineRoom');
@@ -295,7 +295,7 @@ var firstTown = {
 
     enterGreenUnderwDoor: function() {
         if (currentState != 'greenUnderworld') {
-            countAllEnemies = 0;
+            //countAllEnemies = 0;
             currentState = 'greenUnderworld';
             game.state.start('greenUnderworld');
         }
@@ -303,7 +303,7 @@ var firstTown = {
 
     enterUnderwDoor: function() {
         if (this.keyMineCollected && currentState != 'underworld') {
-            countAllEnemies = 0;
+            //countAllEnemies = 0;
             currentState = 'underworld';
             game.state.start('underworld');
         }

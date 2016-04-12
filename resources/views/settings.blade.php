@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    <link href="/style.css" rel="stylesheet">
     <main class="container-fluid panel">
         <div class="page-header text-center">
             <h3>Welcome {{ Auth::user()->name }}</h3>

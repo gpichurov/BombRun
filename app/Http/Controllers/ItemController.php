@@ -13,6 +13,7 @@ use File;
 use Illuminate\Http\Response;
 use Image;
 use Storage;
+use DB;
 
 class ItemController extends Controller
 {
@@ -33,6 +34,9 @@ class ItemController extends Controller
     public function index()
     {
         $items = Item::all();
+        //$items = DB::table('items')->orderBy('category')->get();
+        //dd($items);
+
         if (Auth::user()){
             if (Auth::user()->admin){
                 return view('shop.admin.index', compact('items'));
@@ -87,10 +91,10 @@ class ItemController extends Controller
         $nameSmall = 'S_' . time() . '_' . $request->file('image')->getClientOriginalName();
         $pathSmall = storage_path('app/itemImages/small/' . $nameSmall);
 
-        if (isset($item->big_image) || isset($item->small_image)) {
-            File::delete([base_path('storage/app/itemImages/big/' . $item->big_image),
-                            base_path('storage/app/itemImages/small/' . $item->small_image)]);
-        }
+//        if (isset($item->big_image) || isset($item->small_image)) {
+//            File::delete([base_path('storage/app/itemImages/big/' . $item->big_image),
+//                            base_path('storage/app/itemImages/small/' . $item->small_image)]);
+//        }
 
         Image::make( $request->file('image')->getRealPath() )->resize(150, 150)->save($pathBig);
         Image::make( $request->file('image')->getRealPath() )->resize(50, 50)->save($pathSmall);

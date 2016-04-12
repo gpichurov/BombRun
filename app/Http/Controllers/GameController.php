@@ -49,13 +49,15 @@ class GameController extends Controller
         $inventory = Inventory::where('user_id', '=', $request->id)->first();
         $statistic = Statistic::where('user_id', '=', $request->id)->first();
 
-        $inventory->energy = $request->energy;
+        $inventory->energy = $request->energyPotions;
         $inventory->bombs = $request->bombs;
-        $inventory->speed = $request->speed;
+        $inventory->speed = $request->speedPotions;
         $inventory->money += $request->coins;
         $statistic->coins += $request->coins;
         $statistic->scrolls += $request->scrolls;
+        $statistic->kills += $request->killedEnemies;
         $statistic->games += 1;
+        $statistic->best_score += $request->coins + $request->scrolls * 10 + $request->killedEnemies * 10;
 
         $statistic->save();
         $inventory->save();
