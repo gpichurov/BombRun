@@ -11,7 +11,7 @@
             @endif
         @endforeach
     </div>
-    <div class="panel panel-default text-center" style="padding: 1em">
+    <div class="panel panel-default text-center " style="padding: 1em">
         <div class="panel-heading">{{ $item->name }}</div>
         <div class="panel-body">
             <div class="col-xs-6">

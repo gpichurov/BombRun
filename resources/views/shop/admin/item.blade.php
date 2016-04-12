@@ -38,23 +38,25 @@
                             {{ $item->price }}
                         </td>
                     </tr>
-                    <tr>
-                        <td>
-                            {!! Form::open(['url' => url('shop/admin/buy', ['id' => $item->id]), 'method' => 'POST']) !!}
-                            <button type="submit" class="btn btn-success pull " onclick="return confirm('Are you sure');">Buy</button>
-                            {!! Form::close() !!}
-                        </td>
-                        <td>
-                            <a href="{{ route('shop.admin.edit', ['id' => $item->id]) }}" class="btn btn-info pull-left">Edit</a>
-                        </td>
-                        <td>
-                            {!! Form::open(['url' => route('shop.admin.destroy', ['id' => $item->id]), 'method' => 'DELETE', 'class' => 'pull-right']) !!}
-                            <button type="submit" class="btn btn-danger pull-right" onclick="return confirm('Are you sure');">Delete</button>
-                            {!! Form::close() !!}
-                        </td>
-                    </tr>
+
                     </tbody>
+
                 </table>
+                <div class="row">
+                    <div class="col-xs-4">
+                        <a href="{{ route('shop.admin.edit', ['id' => $item->id]) }}" class="btn btn-info ">Edit</a>
+                    </div>
+                    <div class="col-xs-4">
+                        {!! Form::open(['url' => url('shop/admin/buy', ['id' => $item->id]), 'method' => 'POST']) !!}
+                        <button type="submit" class="btn btn-success  " onclick="return confirm('Are you sure');">Buy</button>
+                        {!! Form::close() !!}
+                    </div>
+                    <div class="col-xs-4">
+                        {!! Form::open(['url' => route('shop.admin.destroy', ['id' => $item->id]), 'method' => 'DELETE', 'class' => '']) !!}
+                        <button type="submit" class="btn btn-danger " onclick="return confirm('Are you sure');">Delete</button>
+                        {!! Form::close() !!}
+                    </div>
+                </div>
             </div>
         </div>
     </div>

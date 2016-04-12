@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('content')
     <link href="/style.css" rel="stylesheet">
-
     <div class="panel panel-default todo-panel">
         <div class="panel-heading clearfix">
             <h3 class="pull-left">SHOP</h3>
