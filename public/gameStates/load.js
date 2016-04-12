@@ -47,7 +47,9 @@ var loadState = {
 
         game.load.image('singleCoin', 'assets/singleCoin.png');
 
+        game.load.image('invBtn', 'assets/invBtn.png');
 
+        game.load.image('brownWindow', 'assets/brownWindow.jpeg');
 
 
         // from mineRoom

@@ -4,6 +4,14 @@
 var coins;
 var coinsText;
 
+var reg = {};
+
+
+
+function showModal() {
+    reg.modal.showModal("invModal");
+}
+
 var firstTown = {
     //player: '',
    // map: '',
@@ -18,16 +26,16 @@ var firstTown = {
     //fireButton: '',
     keys: '',
     scrolls: '',
-    speedBoosts: '',
+    //speedBoosts: '',
 
-    speeder1:'',
+    //speeder1:'',
 
     invisible: '',
 
     keyMineCollected: false,
     scrollCollected: false,
 
-    speedBoosted: false,
+    //speedBoosted: false,
 
     //playerPos: { x: 300, y: 200 },
     pauseButton:'',
@@ -156,6 +164,8 @@ var firstTown = {
 
         var singleCoin = coins.create(1160, 40, 'coin');
 
+        var invBtn = this.game.add.button(1160, 80, 'invBtn', showModal);
+
         var coin1 = coins.create(240, 600, 'coin');
         var coin2 = coins.create(240, 640, 'coin');
 
@@ -201,10 +211,9 @@ var firstTown = {
         game.physics.arcade.overlap(player, this.invisible.getChildAt(1), this.enterMineDoor, null, this);
         game.physics.arcade.overlap(player, this.invisible.getChildAt(2), this.enterGreenUnderwDoor, null, this);
 
-        game.physics.arcade.overlap(player, this.speedBoosts, this.tookSpeedBoost, null, this);
+        //game.physics.arcade.overlap(player, this.speedBoosts, this.tookSpeedBoost, null, this);
 
         game.physics.arcade.overlap(player, coins, takeCoin, null, this);
-
 
         player.body.velocity.x = 0;
         player.body.velocity.y = 0;
@@ -225,37 +234,17 @@ var firstTown = {
             player.animations.stop();
         }
 
-
         if (roomsEntered == 3) {
             updateData();
             game.state.start('win');
         }
 
-
     },
-
-    /*shutdown: function() {
-
-    // save the frog's current position to use
-    // next time create is called.
-
-       /!* fPos.x = frog.position.x;
-        fPos.y = frog.position.y;*!/
-
-        player.defPosX = player.posX;
-        player.defPosY = player.posY;
-
-        /!*this.playerPos.x = player.body.x;
-        this.playerPos.y = player.body.y;*!/
-
-
-    },*/
 
     collectKeys: function(player, key) {
         setKey = false;
         key.kill();
         this.keyMineCollected = true;
-
     },
 
     collectScrolls: function(player, scroll) {
@@ -271,13 +260,7 @@ var firstTown = {
 
             currentState = 'mineRoom';
             game.state.start('mineRoom');
-        } else {
-            invis2.visible = false;
         }
-
-
-        //game.switchState('mineRoom');
-
     },
 
     enterGreenUnderwDoor: function() {
@@ -285,81 +268,36 @@ var firstTown = {
             countAllEnemies = 0;
             currentState = 'greenUnderworld';
             game.state.start('greenUnderworld');
-        } else {
-            invis3.visible = false;
         }
-
-        //game.switchState('greenUnderworld');
-
     },
 
     enterUnderwDoor: function() {
         if (this.keyMineCollected && currentState != 'underworld') {
-            /*if(localStorage.getItem('speed') == '120'){
-
-             localStorage.setItem('speed', speed);
-
-             }
-
-             else if(speed > localStorage.getItem('speed')){
-
-             localStorage.setItem('speed',speed);
-
-             }*/
-
-            //game.switchState('underworld');
-
             countAllEnemies = 0;
             currentState = 'underworld';
-
             game.state.start('underworld');
-
-        } else {
-            invis.visible = false;
         }
     },
 
-    tookSpeedBoost: function (player, speedBoost) {
+    /*tookSpeedBoost: function (player, speedBoost) {
         console.log(speedBoost.body.x);
         this.speeder1 = speedBoost.body.x;
-
-        /*if(localStorage.getItem('speedBoost') == '120'){
-
-            localStorage.setItem('speed', speed);
-
-        }
-
-        else if(speed > localStorage.getItem('speed')){
-
-            localStorage.setItem('speed',speed);
-
-        }*/
-
         speedBoost.kill();
+
         if (speed <= maxSpeed - 20) {
             speed += 30;
         }
         this.speedBoosted++;
-
-    },
+    },*/
 
     processHandler: function (player, veg) {
         return true;
-    },
-
-    collisionHandler: function(player, veg) {
-        return true;
     }
-
 };
 
 function takeCoin(player, coin) {
-    /*coins.*/
     coin.body = null;
-
     coin.destroy();
-   // coin.kill();
     playerCoins += 10;
-    /*localStorage.setItem('playerCoins', playerCoins);*/
 }
 

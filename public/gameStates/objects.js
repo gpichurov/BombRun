@@ -19,10 +19,11 @@ var cursors;
 var maxSpeed = 260;
 
 var userId = phpData.id;
-var speed = 230 + phpData.speed;
+var speed = 120;
+var speedPotions = phpData.speed;
 var playerCoins = 0;
-var maxBombs = 300 + phpData.bombs;
-var energy = 300 + phpData.energy;
+var maxBombs = phpData.bombs;
+var energy = phpData.energy;
 
 var distancePassed = 0;
 
@@ -65,8 +66,9 @@ var collectedScrolls = 0;
 
 var roomsEntered = 0;
 var data;
+
 function updateData() {
-    alert('Sent');
+    //alert('Sent');
     data = {
         id: userId,
         coins: playerCoins,
@@ -74,12 +76,6 @@ function updateData() {
         speed: speed,
         scrolls: collectedScrolls,
         energy: energy
-        /*id: 1,
-        coins: 2,
-        bombs: 3,
-        speed: 4,
-        scrolls: 5,
-        energy: 6*/
     };
 
     //console.log(p);
@@ -93,11 +89,11 @@ function updateData() {
             alert("error!!!!");
         }
     }).then(function( msg ) {
-        console.log(arguments);
+        //console.log(arguments);
         //alert(msg);
 
     }, function( msg ) {
-        console.log(arguments);
+        //console.log(arguments);
         //alert(msg);
 
     });
