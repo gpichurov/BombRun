@@ -27,9 +27,9 @@
                 <th><a href="{{route('statistics.index', ['sort' => 'scrolls', 'dir' => $dir, 'lastSort' => $sort])}}">
                         Scrolls <span class="glyphicon glyphicon-sort"></span></a></th>
                 <th><a href="{{route('statistics.index', ['sort' => 'games', 'dir' => $dir, 'lastSort' => $sort])}}">
-                        Games <span class="glyphicon glyphicon-menu-down"></span></a></th>
+                        Games <span class="glyphicon glyphicon-sort"></span></a></th>
                 <th><a href="{{route('statistics.index', ['sort' => 'best_score', 'dir' => $dir, 'lastSort' => $sort])}}">
-                        Best Score <span class="glyphicon glyphicon-menu-down"></span></a></th>
+                        Score <span class="glyphicon glyphicon-sort"></span></a></th>
             </tr>
             </thead>
             <tbody>

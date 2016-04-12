@@ -15,11 +15,6 @@ class StatisticsTableSeeder extends Seeder
         DB::table('statistics')
             ->insert([
                 'user_id' => 1,
-                'coins' => 413,
-                'kills' => 224,
-                'scrolls' => 214,
-                'games' => 143,
-                'best_score' => 1,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ]);

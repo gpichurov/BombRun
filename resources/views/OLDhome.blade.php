@@ -30,7 +30,7 @@
                                 <td><h4>{{Auth::user()->statistic->kills}}</h4></td>
                             </tr>
                             <tr>
-                                <td><img src="images/coins.png" alt=""></td>
+                                <td><img src="images/coin.png" alt=""></td>
                                 <td><h4>Coins collected:</h4></td>
                                 <td><h4>{{Auth::user()->statistic->coins}}</h4></td>
                             </tr>
@@ -40,7 +40,7 @@
                                 <td><h4>{{Auth::user()->statistic->scrolls}}</h4></td>
                             </tr>
                             <tr>
-                                <td><img src="images/games.png" alt=""></td>
+                                <td><img src="images/game.png" alt=""></td>
                                 <td><h4>Total games played:</h4></td>
                                 <td><h4>{{Auth::user()->statistic->games}}</h4></td>
                             </tr>
@@ -57,22 +57,22 @@
             <table class="table  panel-body">
                 <tbody>
                 <tr>
-                    <td><img src="images/coins.png" alt=""></td>
+                    <td><img src="images/coin.png" alt=""></td>
                     <td><h4>Money:</h4></td>
                     <td><h4>{{Auth::user()->inventory->money}}</h4></td>
                 </tr>
                 <tr>
-                    <td><img src="images/bombs.png" alt=""></td>
+                    <td><img src="images/bomb.png" alt=""></td>
                     <td><h4>Bombs:</h4></td>
                     <td><h4>{{Auth::user()->inventory->bombs}}</h4></td>
                 </tr>
                 <tr>
-                    <td><img src="images/energy.png" alt=""></td>
+                    <td><img src="images/energy_potion.png" alt=""></td>
                     <td><h4>Energy potions:</h4></td>
                     <td><h4>{{Auth::user()->inventory->energy}}</h4></td>
                 </tr>
                 <tr>
-                    <td><img src="images/speed.png" alt=""></td>
+                    <td><img src="images/speed_potion.png" alt=""></td>
                     <td><h4>Speed potions:</h4></td>
                     <td><h4>{{Auth::user()->inventory->speed}}</h4></td>
                 </tr>

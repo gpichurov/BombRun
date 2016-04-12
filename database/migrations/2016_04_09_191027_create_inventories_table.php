@@ -16,9 +16,9 @@ class CreateInventoriesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id')->unique();
             $table->unsignedInteger('energy')->default(5);
-            $table->unsignedInteger('bombs')->default(5);
+            $table->unsignedInteger('bombs')->default(50);
             $table->unsignedInteger('speed')->default(5);
-            $table->unsignedInteger('money')->default(100);
+            $table->unsignedInteger('money')->default(50);
             $table->timestamps();
 
             $table
