@@ -78,9 +78,9 @@ Enemy.prototype.killEnemy = function (currentEnemy, explodingBomb) {
         if (currentEnemyX - bombX <= 50 && currentEnemyY - bombY <= 50 && currentEnemyX - bombX >= 0 && currentEnemyY - bombY >= 0 ){
             currentEnemy.kill();
             countAllEnemies++;
-            underworld.counterEnemy = countAllEnemies;
+        /*    underworld.counterEnemy = countAllEnemies;
             greenUnderworld.counterEnemy = countAllEnemies;
-            mineRoom.counterEnemy = countAllEnemies;
+            mineRoom.counterEnemy = countAllEnemies;*/
 
            // identificator++;
             this.releasedObjects();

@@ -111,6 +111,13 @@ var mineRoom = {
     },
 
     update: function () {
+        coinsText.setText(playerCoins);
+        energyPotionLabel.setText(energyPotion);
+        bombLabel.setText(maxBombs);
+        scrollsLabel.setText(collectedScrolls);
+        speedLabel.setText(speedPotions);
+        energyLabel.setText(energy);
+
         game.physics.arcade.collide(player, this.mapWallsLayer);
 
         game.physics.arcade.overlap(player, this.scrolls, this.collectScroll, null, this);

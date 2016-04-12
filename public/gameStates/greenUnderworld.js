@@ -36,7 +36,7 @@ var greenUnderworld = {
     },
 
     create: function () {
-        var button = game.add.button(game.width - 200, 20, 'backBtn', this.back);
+       /* var button = game.add.button(game.width - 200, 20, 'backBtn', this.back);
         //680 x 20
 
         this.energyLabel = game.add.text(game.width - 200, 160, 'Energy: ' + energy,
@@ -46,7 +46,7 @@ var greenUnderworld = {
             {font: '25px Arial', fill: '#fff'});
 
         coinsText = game.add.text(game.width - 200, 300, 'Coins: ' + playerCoins,
-            {font: '25px Arial', fill: '#fff'});
+            {font: '25px Arial', fill: '#fff'});*/
 
         this.map = game.add.tilemap('mapGreenUnderw');
 
@@ -96,6 +96,8 @@ var greenUnderworld = {
         coins = game.add.group();
         coins.enableBody = true;
 
+        inventory();
+
        /* coins.callAll('animations.add', 'animations', 'spin', [0, 1, 2, 3, 4, 5], 10, true);*/
 
         game.physics.enable(player, Phaser.Physics.ARCADE);
@@ -109,6 +111,13 @@ var greenUnderworld = {
     },
 
     update: function () {
+        coinsText.setText(playerCoins);
+        energyPotionLabel.setText(energyPotion);
+        bombLabel.setText(maxBombs);
+        scrollsLabel.setText(collectedScrolls);
+        speedLabel.setText(speedPotions);
+        energyLabel.setText(energy);
+
         game.physics.arcade.collide(player, this.mapWallsLayer);
 
         game.physics.arcade.overlap(player, this.scrolls, this.collectScroll, null, this);
@@ -117,7 +126,7 @@ var greenUnderworld = {
 
         game.physics.arcade.overlap(player, coins, takeCoin, null, this);
 
-        coinsText.setText('Coins: ' + playerCoins);
+        coinsText.setText(playerCoins);
 
         player.body.velocity.x = 0;
         player.body.velocity.y = 0;
@@ -154,7 +163,7 @@ var greenUnderworld = {
         if (distancePassed > 100){
             distancePassed = 0;
             if (energy > 0) {
-                this.energyLabel.setText("Energy: "+ (--energy));
+                energyLabel.setText(--energy);
             } else {
                 player.animations.stop();
             }
@@ -168,7 +177,7 @@ var greenUnderworld = {
                 var anim = this.bomb1.animations.add('explode', [0, 1, 2, 3, 4, 5, 6, 7, 8], 30, true);
 
                 maxBombs -= 1;
-                this.bombLabel.setText('Bombs: ' + maxBombs);
+                bombLabel.setText(maxBombs);
 
                 anim.onStart.add(this.animationStarted, this);
                 anim.onLoop.add(this.animationLooped, this);
@@ -236,6 +245,7 @@ var greenUnderworld = {
 
     collectScroll: function (player, scroll) {
         collectedScrolls++;
+
         scroll.kill();
     }
 

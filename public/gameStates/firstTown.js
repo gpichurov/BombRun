@@ -259,7 +259,7 @@ var firstTown = {
         energyPotionLabel.setText(energyPotion);
         bombLabel.setText(maxBombs);
         scrollsLabel.setText(collectedScrolls);
-        speedLabel.setText(speed);
+        speedLabel.setText(speedPotions);
         energyLabel.setText(energy);
 
         game.physics.arcade.collide(player, this.mapBuildingsLayer);
@@ -364,8 +364,9 @@ function takeCoin(player, coin) {
     coin.body = null;
     coin.destroy();
     playerCoins += 10;
+    coinsText.setText(playerCoins);
 }
 
-function showInv() {
+/*function showInv() {
     this.invBox.visible = false;
-}
+}*/

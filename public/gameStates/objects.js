@@ -16,19 +16,31 @@ var cursors;
 
 //var speedBoostLeft;
 
+/*var allKilledEnemies;*/
+
 var maxSpeed = 260;
 
-var userId = phpData.id;
+var userId = '';
+userId = phpData.id;
+
 
 var speedPotions = phpData.speed;
-var speed = 120 + (speedPotions * 20);
+console.log(speedPotions);
+
+var speed = 0;
+speed = 120 + (speedPotions * 20);
+console.log(speed);
 if (speed >= 260) {
     speed = 260;
 }
+
 var playerCoins = 0;
-var maxBombs = phpData.bombs;
-var energyPotion = phpData.energy;
-var energy = energyPotion * 10;
+var maxBombs = 0;
+maxBombs = phpData.bombs;
+var energyPotion = 0;
+energyPotion = phpData.energy;
+var energy = 0;
+energy = energyPotion * 10;
 
 var invBox;
 var items;
@@ -95,7 +107,8 @@ function updateData() {
         bombs: maxBombs,
         speed: speed,
         scrolls: collectedScrolls,
-        energy: energy
+        energy: energy,
+        killedEnemies: countAllEnemies
     };
 
     //console.log(p);
