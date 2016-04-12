@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    <link href="/style.css" rel="stylesheet">
 <div class="container col-sm-offset-4 col-sm-4">
     <div class="flash-message">
         @foreach (['danger', 'warning', 'success', 'info'] as $msg)

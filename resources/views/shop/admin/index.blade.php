@@ -1,37 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+    <link href="/style.css" rel="stylesheet">
 <div class="panel panel-default todo-panel">
     <div class="panel-heading clearfix">
         <h3 class="pull-left">SHOP</h3>
         <a href="{{ route('shop.admin.create') }}" class="btn btn-success pull-right">Add New</a>
     </div>
-    {{--<div class="panel-body">--}}
-        {{--<ul class="list-group ">--}}
-            {{--@if ($items->isEmpty())--}}
-                {{--<li class="list-group-item">--}}
-                    {{--Sorry, no items found--}}
-                {{--</li>--}}
-            {{--@else--}}
-                {{--@foreach($items as $item)--}}
-                    {{--<li class="list-group-item clearfix">--}}
-                        {{--<a href="{{ route('shop.admin.show', ['id' => $item->id]) }}">--}}
-                            {{--<span class="pull-left">--}}
-                                {{--<img src="images/small/{{$item->small_image}}" alt="">--}}
-                            {{--</span>--}}
-                            {{--<span class="pull-left">--}}
-                                {{--{{ $item->name }}--}}
-                            {{--</span>--}}
-                        {{--</a>--}}
-                        {{--{!! Form::open(['url' => route('shop.admin.destroy', ['id' => $item->id]), 'method' => 'DELETE']) !!}--}}
-                        {{--<button type="submit" class="btn btn-danger pull-right" onclick="return confirm('Are you sure');">Delete</button>--}}
-                        {{--{!! Form::close() !!}--}}
-                        {{--<a href="{{ route('shop.admin.edit', ['id' => $item->id]) }}" class="btn btn-info pull-right">Edit</a>--}}
-                    {{--</li>--}}
-                {{--@endforeach--}}
-            {{--@endif--}}
-        {{--</ul>--}}
-    {{--</div>--}}
     <div class="panel-body ">
         <div class="col-sm-2">
             <div>
@@ -63,7 +38,6 @@
                                 <div class="wrapper">
                                     <div class="caption post-content">
                                         <h4>{{ $item->name }}</h4>
-                                        <span>{{ $item->category }}</span>
                                     </div>
                                 </div>
                             </a>

@@ -39,30 +39,23 @@ class GameController extends Controller
 
         $data = json_encode($data);
 
-        //return $data;
         return view('game', compact('data'));
     }
 
     public function receive(Request $request)
     {
-        $data = Input::json();
+        //$user = User::where('id', '=', $id)->first();
 
+        $inventory = Inventory::where('user_id', '=', $request->id)->first();
+        $statistic = Statistic::where('user_id', '=', $request->id)->first();
 
-        dd($data);
-        $id = $data->get('id');
-        $user = User::where('id', '=', $id)->first();
-
-
-        $inventory = Inventory::where('user_id', '=', $id)->first();
-        $statistic = Statistic::where('user_id', '=', $id)->first();
-        $inv = $data->get('bombs');
-
-        $inventory->energy = $data->get('energy');
-        $inventory->speed = $data->get('speed');
-        $inventory->money = $data->get('coins');
-        $statistic->coins = $data->get('coins');
-        $statistic->scrolls = $data->get('scrolls');
-        $statistic->games = 1;
+        $inventory->energy = $request->energy;
+        $inventory->bombs = $request->bombs;
+        $inventory->speed = $request->speed;
+        $inventory->money += $request->coins;
+        $statistic->coins += $request->coins;
+        $statistic->scrolls += $request->scrolls;
+        $statistic->games += 1;
 
         $statistic->save();
         $inventory->save();

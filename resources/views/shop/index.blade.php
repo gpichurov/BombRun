@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+    <link href="/style.css" rel="stylesheet">
 
     <div class="panel panel-default todo-panel">
         <div class="panel-heading clearfix">
@@ -37,7 +38,6 @@
                                     <div class="wrapper">
                                         <div class="caption post-content">
                                             <h4>{{ $item->name }}</h4>
-                                            <span>{{ $item->category }}</span>
                                         </div>
                                     </div>
                                 </a>

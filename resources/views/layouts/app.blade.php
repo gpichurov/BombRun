@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>Bomber Run</title>
 
     <!-- Fonts -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
@@ -17,18 +17,7 @@
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <style>
-        body {
-            font-family: 'Lato';
-            background-image: url("images/wall.png");
 
-        }
-         .panel{
-             background-color: transparent;
-             border: 1px #222;
-         }
-        .fa-btn {
-            margin-right: 6px;
-        }
     </style>
 </head>
 <body id="app-layout">
@@ -47,7 +36,7 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    Bomb Run
+                    <img src="/images/bomb-run.png" alt="" class="img-responsive" style="max-width: 150px">
                 </a>
             </div>
 

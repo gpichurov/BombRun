@@ -81,6 +81,7 @@ function updateData() {
     //console.log(p);
     $.ajax({
         method: "POST",
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         url: "/game",
         data: data,
         success: function (p) {

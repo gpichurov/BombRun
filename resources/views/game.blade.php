@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+
     <script>jsondata = '{!! $data !!}';</script>
 
     <script type="text/javascript" src="bower_components/phaser/build/phaser.min.js"></script>
