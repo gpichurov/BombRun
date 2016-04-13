@@ -33,7 +33,7 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $items = Item::orderBy('category')->get();
+        $items = Item::orderBy('category')->orderBy('number')->get();
 
         if (Auth::user()){
             if (Auth::user()->admin){

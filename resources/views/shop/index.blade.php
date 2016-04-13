@@ -30,6 +30,7 @@
                     </div>
                 @else
                     @foreach($items as $item)
+                        @if ($item->available)
                         <div class=" col-sm-3 thumbnail {{ $item->category }} " style="margin: 3em">
                             <div class="thumbnail">
                                 <a class="" href="{{ route('shop.show', ['id' => $item->id]) }}">
@@ -49,6 +50,7 @@
                                 </div>
                             </div>
                         </div>
+                        @endif
                     @endforeach
                 @endif
             </div>
