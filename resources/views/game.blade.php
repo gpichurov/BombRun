@@ -7,10 +7,10 @@
 
     <script type="text/javascript" src="bower_components/phaser/build/phaser.min.js"></script>
 
-    <script type="text/javascript" src="gameStates/Enemy.js"></script>
+    <script type="text/javascript" src="js files/Enemy.js"></script>
     <script type="text/javascript" src="gameStates/boot.js"></script>
     <script type="text/javascript" src="gameStates/load.js"></script>
-    <script type="text/javascript" src="gameStates/objects.js"></script>
+    <script type="text/javascript" src="js files/objects.js"></script>
     <script type="text/javascript" src="gameStates/firstTown.js"></script>
     <script type="text/javascript" src="gameStates/mineRoom.js"></script>
     <script type="text/javascript" src="gameStates/underworld.js"></script>

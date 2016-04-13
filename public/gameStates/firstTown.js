@@ -229,19 +229,19 @@ var firstTown = {
         player.body.velocity.x = 0;
         player.body.velocity.y = 0;
 
-        if (cursors.up.isDown) {
+        if (cursors.up.isDown && energy > 0) {
             player.body.velocity.y = -speed;
             player.animations.play('up');
             distancePassed++;
-        } else if (cursors.down.isDown) {
+        } else if (cursors.down.isDown && energy > 0) {
             player.body.velocity.y = speed;
             player.animations.play('down');
             distancePassed++;
-        } else if (cursors.left.isDown) {
+        } else if (cursors.left.isDown && energy > 0) {
             player.body.velocity.x = -speed;
             player.animations.play('left');
             distancePassed++;
-        } else if (cursors.right.isDown){
+        } else if (cursors.right.isDown && energy > 0){
             player.body.velocity.x = speed;
             player.animations.play('right');
             distancePassed++;
