@@ -1,6 +1,0 @@
- //player = game.add.sprite(600, 250, 'character');
-
- /*player.animations.add('left', [8, 9, 10], 10, true);
-         player.animations.add('right', [16, 17, 18], 10, true);
-         player.animations.add('up', [24, 25, 26], 10, true);
-         player.animations.add('down', [0, 1, 2], 10, true);*/

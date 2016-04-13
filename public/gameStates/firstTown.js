@@ -332,12 +332,12 @@ function takeEnergy() {
 }
 
 function takeSpeed() {
-    if (speed == 240) {
+    if (speed == 240 && speedPotions > 0) {
         speed = 260;
         speedPotions--;
     } else if (speed > 240) {
         speed = 260;
-    } else if (speed < 240) {
+    } else if (speed < 240 && speedPotions > 0) {
         speed += 20;
         speedPotions--;
     }

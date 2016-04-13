@@ -37,9 +37,7 @@ var greenUnderworld = {
     },
 
     create: function () {
-
         this.eKey = game.input.keyboard.addKey(Phaser.Keyboard.E);
-
         this.sKey = game.input.keyboard.addKey(Phaser.Keyboard.S);
 
         this.map = game.add.tilemap('mapGreenUnderw');
@@ -148,22 +146,22 @@ var greenUnderworld = {
 
         if (cursors.up.isDown && energy > 0) {
             distancePassed++;
-            player.body.velocity.y = -200;
+            player.body.velocity.y = -speed;
             player.animations.play('up');
 
         } else if (cursors.down.isDown && energy > 0) {
             distancePassed++;
-            player.body.velocity.y = 200;
+            player.body.velocity.y = speed;
             player.animations.play('down');
 
         } else if (cursors.left.isDown && energy > 0) {
             distancePassed++;
-            player.body.velocity.x = -200;
+            player.body.velocity.x = -speed;
             player.animations.play('left');
 
         } else if (cursors.right.isDown && energy > 0){
             distancePassed++;
-            player.body.velocity.x = 200;
+            player.body.velocity.x = speed;
             player.animations.play('right');
         } else {
             player.animations.stop();

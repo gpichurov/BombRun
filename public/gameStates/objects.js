@@ -17,11 +17,9 @@ var maxSpeed = 260;
 var userId = '';
 userId = phpData.id;
 
-
 var speedPotions = phpData.speed;
 
-var speed = 0;
-speed = 120;
+var speed = 120;
 
 var playerCoins = 0;
 var maxBombs = 0;
@@ -35,22 +33,7 @@ var items;
 
 var distancePassed = 0;
 
-//var mapBottomLayer;
-//var mapWallsLayer;
-
 var bombs;
-//var bomb1;
-
-/*var smallMaps;*/
-
-/*var droppingBomb;*/
-//var bombButton;
-/*
-var enemy1;
-var enemy2;*/
-
-//var bombLabel;
-//var energyLabel;
 
 var energyPotionLabel;
 var bombLabel;

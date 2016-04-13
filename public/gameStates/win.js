@@ -4,18 +4,20 @@
 
 var winState = {
     create: function () {
-        var winLabel = game.add.text(80, 80, 'You won!!!',
+        var winLabel = game.add.text(game.world.width - 100, game.world.height - 600, 'You win !',
             {font: '50px Arial', fill: '#fff'});
 
-        var startLabel = game.add.text(80,game.world.height - 80, 'press w to start',
+        var startLabel = game.add.text(game.world.width - 100, game.world.height - 150, 'Press R to restart',
             {font: '25px Arial', fill: '#fff'});
 
-        var wKey = game.input.keyboard.addKey(Phaser.Keyboard.W);
+        var rKey = game.input.keyboard.addKey(Phaser.Keyboard.R);
+        rKey.onDown.addOnce(this.restart, this);
 
-        wKey.onDown.addOnce(this.restart, this);
+        game.add.sprite(game.world.width - 100,game.world.height - 500,'win');
     },
 
     restart: function () {
-        game.state.start('boot');
+        //game.state.start('boot');
+        window.location.href = '/game';
     }
 };
