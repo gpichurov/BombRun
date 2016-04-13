@@ -83,7 +83,6 @@ Enemy.prototype.collisionPlayerEnemy = function(player, enemy) {
     enemy.body.immovable = true;
     player.kill();
     updateData();
-    console.log(countAllEnemies);
     game.state.start('gameOver');
 };
 

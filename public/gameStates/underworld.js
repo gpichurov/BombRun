@@ -186,6 +186,10 @@ var underworld = {
         }
     },
 
+    animationStarted: function () {
+         return true;
+    },
+
     animationLooped: function(sprite, animation) {
         animation.loop = false;
         if (animation.loopCount === 2)
@@ -200,11 +204,6 @@ var underworld = {
 
     animationStopped: function(sprite, animation) {
         sprite.kill();
-    },
-
-    back: function() {
-        game.state.start('firstTown');
-        console.log('got back');
     },
 
     processHandler: function (player, veg) {

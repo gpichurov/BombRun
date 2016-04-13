@@ -51,7 +51,7 @@ var loadState = {
 
         game.load.image('singleCoin', 'assets/singleCoin.png');
 
-        game.load.image('invBtn', 'assets/invBtn.png');
+       // game.load.image('invBtn', 'assets/invBtn.png');
 
         game.load.image('brownWindow', 'assets/brownWindow.jpeg');
 
@@ -74,7 +74,7 @@ var loadState = {
 
         game.load.spritesheet('characterRooms', 'assets/organi11.png', 32, 32, 12);
 
-        game.load.image('backBtn', 'assets/go-back-button.png');
+//        game.load.image('backBtn', 'assets/go-back-button.png');
 
         game.load.spritesheet('bomb', 'assets/BombExploding.png', 32, 64, 13);
 

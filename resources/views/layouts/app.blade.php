@@ -51,7 +51,7 @@
                     <li><a href="{{ url('/game') }}">Game</a></li>
                     <li><a href="{{ url('/shop') }}">Shop</a></li>
                     <li><a href="{{ url('/statistics') }}">Statistics</a></li>
-                    <li>
+                    <li style="padding-top: 4%">
                         @if (Auth::user())
                             <div>
                                 <img src="../images/coins.png" alt="" style="width: 20px">

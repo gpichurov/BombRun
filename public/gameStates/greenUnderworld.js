@@ -178,6 +178,10 @@ var greenUnderworld = {
         }
     },
 
+    animationStarted: function () {
+        return true;
+    },
+
     animationLooped: function (sprite, animation) {
 
         animation.loop = false;
@@ -194,11 +198,6 @@ var greenUnderworld = {
         sprite.kill();
     },
 
-    back: function () {
-        game.state.start('firstTown');
-        console.log('got back');
-    },
-
     processHandler: function (player, veg) {
         return true;
     },
@@ -208,4 +207,4 @@ var greenUnderworld = {
 
         scroll.kill();
     }
-}
+};

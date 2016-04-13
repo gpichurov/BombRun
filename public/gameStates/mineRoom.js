@@ -157,6 +157,7 @@ var mineRoom = {
             maxBombs -= 1;
             bombLabel.setText(maxBombs);
 
+            anim.onStart.add(this.animationStarted, this);
             anim.onLoop.add(this.animationLooped, this);
             anim.onComplete.add(this.animationStopped, this);
 
@@ -169,6 +170,10 @@ var mineRoom = {
         if (!this.bombButton.isDown && this.dropping_bomb) {
             this.dropping_bomb = false;
         }
+    },
+
+    animationStarted: function () {
+        return true;
     },
 
     animationLooped: function(sprite, animation) {
@@ -185,11 +190,6 @@ var mineRoom = {
 
     animationStopped: function(sprite, animation) {
         sprite.kill();
-    },
-
-    back: function() {
-        game.state.start('firstTown');
-        console.log('got back');
     },
 
     processHandler: function (player, veg) {
