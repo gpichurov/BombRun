@@ -2,7 +2,6 @@
  * Created by maya on 03-Apr-16.
  */
 
-
 var firstTown = {
     mapStairsLayer: '',
     mapBuildingsLayer: '',
@@ -66,9 +65,9 @@ var firstTown = {
 
         player = game.add.sprite(player.defPosX, player.defPosY, 'characterRooms');
 
-        player.animations.add('left', [3, 4, 5], 10, true);
-        player.animations.add('right', [6, 7, 8], 10, true);
-        player.animations.add('up', [9, 10, 11], 10, true);
+        player.animations.add('left', [12, 13, 14], 10, true);
+        player.animations.add('right', [24, 25, 26], 10, true);
+        player.animations.add('up', [36, 37, 38], 10, true);
         player.animations.add('down', [0, 1, 2], 10, true);
 
         pauseButton = this.game.add.sprite(0, 0, 'pauseBtn');
