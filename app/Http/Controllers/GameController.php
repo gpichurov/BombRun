@@ -44,7 +44,6 @@ class GameController extends Controller
 
     public function receive(Request $request)
     {
-        //$user = User::where('id', '=', $id)->first();
 
         $inventory = Inventory::where('user_id', '=', $request->id)->first();
         $statistic = Statistic::where('user_id', '=', $request->id)->first();
@@ -61,8 +60,5 @@ class GameController extends Controller
 
         $statistic->save();
         $inventory->save();
-        //$statistic->update(['coins' => $data->get('coins')]);
-        //$inventory->update(['bombs' => $data->get('bombs'), 'energy' => $data->get('energy'), 'speed' => $data->get('speed')]);
-        //dd($user->inventory);
     }
 }

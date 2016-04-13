@@ -75,10 +75,6 @@ class ItemController extends Controller
 
         $this->saveImage($request, $item);
 
-        //dd($item);
-        //$item->update
-
-
         return redirect('/shop');
     }
 
@@ -89,10 +85,6 @@ class ItemController extends Controller
         $nameSmall = 'S_' . time() . '_' . $request->file('image')->getClientOriginalName();
         $pathSmall = storage_path('app/itemImages/small/' . $nameSmall);
 
-//        if (isset($item->big_image) || isset($item->small_image)) {
-//            File::delete([base_path('storage/app/itemImages/big/' . $item->big_image),
-//                            base_path('storage/app/itemImages/small/' . $item->small_image)]);
-//        }
 
         Image::make( $request->file('image')->getRealPath() )->resize(150, 150)->save($pathBig);
         Image::make( $request->file('image')->getRealPath() )->resize(50, 50)->save($pathSmall);

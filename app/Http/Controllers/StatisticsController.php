@@ -33,7 +33,6 @@ class StatisticsController extends Controller
         } else {
             $sort = $request['sort'];
         }
-        //dd($request['search']);
         $users = DB::table('users')
             ->join('statistics', 'users.id', '=', 'statistics.user_id')
             ->select('users.id', 'users.name', 'users.small_avatar', 'statistics.coins','statistics.kills',

@@ -63,11 +63,6 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        //$user = User::where('id', $id)->first();
-
-//        if ($id == Auth::user()->id) {
-//            return redirect('/home');
-//        }
 
         $user = DB::table('users')
             ->join('statistics', 'users.id', '=', 'statistics.user_id')
