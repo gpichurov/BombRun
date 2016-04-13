@@ -54,8 +54,11 @@
                     <li style="padding-top: 4%">
                         @if (Auth::user())
                             <div>
-                                <img src="../images/coins.png" alt="" style="width: 20px">
-                                {{Auth::user()->inventory->money}}
+                                <div id="money"></div>
+                                {{--<img src="../images/coins.png" alt="" style="width: 20px">--}}
+                                <div>
+                                    {{Auth::user()->inventory->money}}
+                                </div>
                             </div>
                         @endif
                     </li>

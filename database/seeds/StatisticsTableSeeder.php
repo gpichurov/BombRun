@@ -25,7 +25,7 @@ class StatisticsTableSeeder extends Seeder
                 'kills' => 2324,
                 'scrolls' => 2314,
                 'games' => 2143,
-                'best_score' => 1000,
+                'best_score' => 10000,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ]);
@@ -36,7 +36,7 @@ class StatisticsTableSeeder extends Seeder
                 'kills' => 4253,
                 'scrolls' => 2164,
                 'games' => 2713,
-                'best_score' => 1100,
+                'best_score' => 11000,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ]);
@@ -47,7 +47,7 @@ class StatisticsTableSeeder extends Seeder
                 'kills' => 4223,
                 'scrolls' => 2134,
                 'games' => 2413,
-                'best_score' => 1200,
+                'best_score' => 12000,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ]);
@@ -58,7 +58,7 @@ class StatisticsTableSeeder extends Seeder
                 'kills' => 4623,
                 'scrolls' => 2714,
                 'games' => 2813,
-                'best_score' => 1300,
+                'best_score' => 13000,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ]);
@@ -69,7 +69,7 @@ class StatisticsTableSeeder extends Seeder
                 'kills' => 4273,
                 'scrolls' => 2104,
                 'games' => 2513,
-                'best_score' => 1400,
+                'best_score' => 14000,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ]);
@@ -80,7 +80,7 @@ class StatisticsTableSeeder extends Seeder
                 'kills' => 2423,
                 'scrolls' => 3214,
                 'games' => 4213,
-                'best_score' => 1500,
+                'best_score' => 15000,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ]);
@@ -91,7 +91,7 @@ class StatisticsTableSeeder extends Seeder
                 'kills' => 6423,
                 'scrolls' => 6214,
                 'games' => 7213,
-                'best_score' => 1600,
+                'best_score' => 16000,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ]);
@@ -102,7 +102,7 @@ class StatisticsTableSeeder extends Seeder
                 'kills' => 9423,
                 'scrolls' => 1214,
                 'games' => 2213,
-                'best_score' => 1700,
+                'best_score' => 17000,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ]);
@@ -113,7 +113,7 @@ class StatisticsTableSeeder extends Seeder
                 'kills' => 4423,
                 'scrolls' => 2144,
                 'games' => 2153,
-                'best_score' => 1800,
+                'best_score' => 18000,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ]);
@@ -124,7 +124,7 @@ class StatisticsTableSeeder extends Seeder
                 'kills' => 4236,
                 'scrolls' => 2147,
                 'games' => 2138,
-                'best_score' => 1900,
+                'best_score' => 19000,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ]);
@@ -135,7 +135,7 @@ class StatisticsTableSeeder extends Seeder
                 'kills' => 4232,
                 'scrolls' => 2143,
                 'games' => 2138,
-                'best_score' => 2000,
+                'best_score' => 20000,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ]);

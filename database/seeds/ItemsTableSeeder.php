@@ -14,8 +14,8 @@ class ItemsTableSeeder extends Seeder
         DB::table('items')
             ->insert([
                 'name' => '5 Bombs',
-                'description' => 'Buy 5 Bombs for only 5 coins. Do not miss the best deal !!',
-                'price' => 5,
+                'description' => 'Buy 5 Bombs for only 25 coins. Do not miss the best deal !!',
+                'price' => 25,
                 'number' => 5,
                 'available' => 99999,
                 'category' => 'bombs',
@@ -25,8 +25,8 @@ class ItemsTableSeeder extends Seeder
         DB::table('items')
             ->insert([
                 'name' => '10 Bombs',
-                'description' => 'Buy 10 Bombs for only 8 coins. Do not miss the best deal !!',
-                'price' => 8,
+                'description' => 'Buy 10 Bombs for only 40 coins. Do not miss the best deal !!',
+                'price' => 40,
                 'number' => 10,
                 'available' => 99999,
                 'category' => 'bombs',
@@ -36,8 +36,8 @@ class ItemsTableSeeder extends Seeder
         DB::table('items')
             ->insert([
                 'name' => '20 Bombs',
-                'description' => 'Buy 20 Bombs for only 15 coins. Do not miss the best deal !!',
-                'price' => 15,
+                'description' => 'Buy 20 Bombs for only 75 coins. Do not miss the best deal !!',
+                'price' => 75,
                 'number' => 20,
                 'available' => 99999,
                 'category' => 'bombs',
