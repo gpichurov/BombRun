@@ -59,8 +59,6 @@ var collectedScrolls = 0;
 var roomsEntered = 0;
 var data;
 
-var bmd;
-
 function updateData() {
     data = {
         id: userId,

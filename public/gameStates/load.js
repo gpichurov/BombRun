@@ -10,6 +10,7 @@ var loadState = {
             {font: '30px Courier', fill: '#ffffff'});
 
         game.load.image('win', 'assets/smile.png');
+
         game.load.image('gameover', 'assets/sad.png');
 
         game.load.image('pauseBtn', 'assets/pauseBtn.png');

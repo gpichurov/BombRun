@@ -5,32 +5,17 @@
 room = 'greenUnderworld';
 
 var greenUnderworld = {
-   /* map: '',*/
-    /*mapBottomLayer: '',
-    mapWallsLayer: '',*/
     identificator: 0,
     droppingBomb: false,
-    /*bomb1: '',
-
-
-    bombButton: '',
-
-    enemy1:'',
-    enemy2:'',*/
     invisible: '',
     killEnemy1: false,
-
-    /*bombLabel: '',
-    energyLabel: '',*/
-    eKey:'',
-    sKey:'',
+    eKey: '',
+    sKey: '',
     smallMaps: '',
     counterEnemy: 0,
     room: 'greenUnderworld',
-    invis:'',
+    invis: '',
     scrolls: '',
-
-   /* scroll:'',*/
 
     preload: function () {
         game.stage.backgroundColor = 'rgb(120, 169, 5)';
@@ -56,12 +41,12 @@ var greenUnderworld = {
         pauseButton.inputEnabled = true;
         pauseButton.events.onInputUp.add(function () {
             this.game.paused = true;
-        },this);
+        }, this);
         this.game.input.onDown.add(function () {
-            if(this.game.paused) {
+            if (this.game.paused) {
                 this.game.paused = false;
             }
-        },this);
+        }, this);
 
         player = game.add.sprite(32, 32, 'characterRooms');
 
@@ -73,7 +58,6 @@ var greenUnderworld = {
         this.invisible = game.add.group();
         this.invisible.enableBody = true;
         this.invis = this.invisible.create(0, 330, 'invisible');
-        //invis.visible = false;
 
         this.scrolls = game.add.group();
         this.scrolls.enableBody = true;
@@ -101,8 +85,6 @@ var greenUnderworld = {
         coins.enableBody = true;
 
         inventory();
-
-       /* coins.callAll('animations.add', 'animations', 'spin', [0, 1, 2, 3, 4, 5], 10, true);*/
 
         game.physics.enable(player, Phaser.Physics.ARCADE);
 
@@ -138,11 +120,6 @@ var greenUnderworld = {
 
         player.body.velocity.x = 0;
         player.body.velocity.y = 0;
-/*
-        if (game.physics.arcade.overlap(player, this.scrolls, this.collectScroll, this))
-        {
-            this.scrolls.kill();
-        }*/
 
         if (cursors.up.isDown && energy > 0) {
             distancePassed++;
@@ -159,7 +136,7 @@ var greenUnderworld = {
             player.body.velocity.x = -speed;
             player.animations.play('left');
 
-        } else if (cursors.right.isDown && energy > 0){
+        } else if (cursors.right.isDown && energy > 0) {
             distancePassed++;
             player.body.velocity.x = speed;
             player.animations.play('right');
@@ -167,8 +144,7 @@ var greenUnderworld = {
             player.animations.stop();
         }
 
-
-        if (distancePassed > 100){
+        if (distancePassed > 100) {
             distancePassed = 0;
             if (energy > 0) {
                 energyLabel.setText(--energy);
@@ -178,10 +154,8 @@ var greenUnderworld = {
         }
 
         if (this.bombButton.isDown && !this.dropping_bomb) {
-            if(maxBombs > 0){
+            if (maxBombs > 0) {
                 this.bomb1 = bombs.create(player.body.x, player.body.y - 32, 'bomb');
-                /*  this.bomb = game.add.sprite(player.body.x, player.body.y-32, 'bomb');*/
-                //this.bomb = game.add.sprite(player.body.x, player.body.y, 'bomb');
                 var anim = this.bomb1.animations.add('explode', [0, 1, 2, 3, 4, 5, 6, 7, 8], 30, true);
 
                 maxBombs -= 1;
@@ -204,110 +178,34 @@ var greenUnderworld = {
         }
     },
 
-    animationStarted: function () {
-        /*anim.play(10, false);*/
-    },
-
-    animationLooped: function(sprite, animation) {
+    animationLooped: function (sprite, animation) {
 
         animation.loop = false;
-        if (animation.loopCount === 2)
-        {
+        if (animation.loopCount === 2) {
             animation.loop = false;
         }
-        else
-        {
+        else {
             animation.loop = false;
         }
 
     },
 
-    animationStopped: function(sprite, animation) {
+    animationStopped: function (sprite, animation) {
         sprite.kill();
     },
 
-    render: function () {
-
-    },
-
-    functionToCall: function () {
-        //bomb.animations.stop();
-    },
-
-    back: function() {
+    back: function () {
         game.state.start('firstTown');
         console.log('got back');
     },
 
     processHandler: function (player, veg) {
-
         return true;
-
     },
-/*
-    collisionHandler: function(player, veg) {
-
-        return true;
-
-    },*/
 
     collectScroll: function (player, scroll) {
         collectedScrolls++;
 
         scroll.kill();
     }
-
-  /*  enterFirstWorld: function () {
-        if (killedEnemiesGreenUnderw) {
-            game.state.start('firstTown');
-        }
-    }*/
-};
-
-/*function collisionPlayerEnemy(player, enemy) {
-    enemy.body.immovable = true;
-    player.kill();
-}*/
-
-/*function killEnemy(currentEnemy, explodingBomb) {
-    var a = explodingBomb.animations.currentFrame.index;
-    if (a == 8) {
-        currentEnemy.scale.setTo(1,1);
-        currentEnemyX = currentEnemy.body.x;
-        currentEnemyY = currentEnemy.body.y;
-        bombX = explodingBomb.body.x;
-        bombY = explodingBomb.body.y;
-        if (currentEnemyX - bombX <= 50 && currentEnemyY - bombY <= 50 && currentEnemyX - bombX >= 0 && currentEnemyY - bombY >= 0 ){
-            currentEnemy.kill();
-            greenUnderworld.counterEnemy++;
-            console.log(greenUnderworld.counterEnemy);
-            if (greenUnderworld.counterEnemy == 4) {
-                killedEnemiesGreenUnderw = true;
-                console.log('4 enemies: ' + greenUnderworld.counterEnemy);
-            }
-            greenUnderworld.identificator++;
-            releasedObjects(greenUnderworld.identificator);
-            /!*var singleScroll2 = underworld.smallMaps.create(currentEnemyX, currentEnemyY, 'smallMap');*!/
-        }//coin.kill();
-
-    } else {
-        // coin.kill();
-        // currentEnemy.kill();
-        //this.killEnemy1 = true;
-
-    }
-}*/
-
-
-
-function releasedObjects(identificator) {
-    /* room = this;*/
-    for (var i = 1; i <= identificator; i++) {
-        /*if (identificator == 1) {
-            var singleScroll2 = greenUnderworld.smallMaps.create(currentEnemyX, currentEnemyY, 'paper');
-        } else if (identificator >= 2) {
-            var coin1 = coins.create(currentEnemyX, currentEnemyY, 'coin');
-        }*/
-    }
 }
-

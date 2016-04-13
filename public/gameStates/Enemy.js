@@ -55,10 +55,6 @@ Enemy.prototype.update = function() {
     new_position = (this.enemy_axis === "x") ? this.x : this.y;
     if (Math.abs(new_position - this.enemy_previous_position) >= this.enemy_walking_distance) {
         this.move(this.action);
-
-
-
-        //this.switch_direction_Square();
     }
 
     game.physics.arcade.overlap(this, bombs, this.killEnemy, null, this);
@@ -78,20 +74,8 @@ Enemy.prototype.killEnemy = function (currentEnemy, explodingBomb) {
         if (currentEnemyX - bombX <= 50 && currentEnemyY - bombY <= 50 && currentEnemyX - bombX >= 0 && currentEnemyY - bombY >= 0 ){
             currentEnemy.kill();
             countAllEnemies++;
-        /*    underworld.counterEnemy = countAllEnemies;
-            greenUnderworld.counterEnemy = countAllEnemies;
-            mineRoom.counterEnemy = countAllEnemies;*/
-
-           // identificator++;
             this.releasedObjects();
-            /*var singleScroll2 = underworld.smallMaps.create(currentEnemyX, currentEnemyY, 'smallMap');*/
         }
-        //coin.kill();
-
-    } else {
-        // coin.kill();
-        // currentEnemy.kill();
-        //this.killEnemy1 = true;
     }
 };
 
@@ -108,40 +92,40 @@ function openDoor() {
     if (countAllEnemies == 4 || countAllEnemies == 8 || countAllEnemies == 12) {
         if (currentState == 'mineRoom') {
             mineRoom.invis.visible = false;
-
             roomsEntered++;
-            game.state.start('firstTown');
+            if (roomsEntered == 3) {
+                updateData();
+                game.state.start('win');
+            } else {
+                game.state.start('firstTown');
+            }
+
         } else if (currentState == 'underworld') {
             underworld.invis.visible = false;
-
             roomsEntered++;
-            /*hideKey(currentState);*/
-            game.state.start('firstTown');
+            if (roomsEntered == 3) {
+                updateData();
+                game.state.start('win');
+            } else {
+                game.state.start('firstTown');
+            }
+
         } else if (currentState == 'greenUnderworld') {
             greenUnderworld.invis.visible = false;
             roomsEntered++;
-            game.state.start('firstTown');
+            if (roomsEntered == 3) {
+                updateData();
+                game.state.start('win');
+            } else {
+                game.state.start('firstTown');
+            }
+
         }
-
     }
-
 }
 
-/*function hideKey(state) {
-    if (state == 'underworld') {
-        firstTown.invisible.getChildAt(0).visible = false;
-    }
-}*/
-
 Enemy.prototype.releasedObjects = function() {
-    /* room = this;*/
-   /* for (var i = 1; i <= identificator; i++) {
-        if (identificator == 1) {
-            var singleScroll2 = underworld.smallMaps.create(currentEnemyX, currentEnemyY, 'smallMap');
-        } else if (identificator == 2) {*/
-            var coin1 = coins.create(currentEnemyX, currentEnemyY, 'coin');
-      /*  }
-    }*/
+    var coin1 = coins.create(currentEnemyX, currentEnemyY, 'coin');
 };
 
 Enemy.prototype.move = function (action) {

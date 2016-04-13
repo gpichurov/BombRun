@@ -53,8 +53,6 @@ var firstTown = {
         this.mapGroundDecorations.resizeWorld();
         this.mapTopDecorations.resizeWorld();
 
-       // speed = 120;
-
         if (currentState == 'mineRoom') {
             player.defPosX = 1185;
             player.defPosY = 1030;
@@ -163,13 +161,10 @@ var firstTown = {
         this.invisible.enableBody = true;
 
         var invis = this.invisible.create(610, 120,'invisible');
-        //invis.visible = false;
 
         var invis2 = this.invisible.create(1185, 980, 'invisible');
-        //invis2.visible = false;
 
         var invis3 = this.invisible.create(480, 440, 'invisible');
-        //invis3.visible = false;
 
         coins = game.add.group();
         coins.enableBody = true;
@@ -198,8 +193,6 @@ var firstTown = {
         var coin13 = coins.create(400, 300, 'coin');
         var coin14 = coins.create(460, 300, 'coin');
         var coin15 = coins.create(520, 300, 'coin');
-
-        //this.coinsCollected.push(coin1, coin2, coin3, coin4, coin5, coin6, coin7, coin8, coin9, coin10, coin11, coin12, coin13, coin14, coin15);
 
         coins.callAll('animations.add', 'animations', 'spin', [0, 1, 2, 3, 4, 5], 10, true);
         coins.callAll('animations.play', 'animations', 'spin');
@@ -286,8 +279,6 @@ var firstTown = {
 
     enterMineDoor: function() {
         if (currentState != 'mineRoom') {
-            //countAllEnemies = 0;
-
             currentState = 'mineRoom';
             game.state.start('mineRoom');
         }
@@ -295,7 +286,6 @@ var firstTown = {
 
     enterGreenUnderwDoor: function() {
         if (currentState != 'greenUnderworld') {
-            //countAllEnemies = 0;
             currentState = 'greenUnderworld';
             game.state.start('greenUnderworld');
         }
@@ -303,7 +293,6 @@ var firstTown = {
 
     enterUnderwDoor: function() {
         if (this.keyMineCollected && currentState != 'underworld') {
-            //countAllEnemies = 0;
             currentState = 'underworld';
             game.state.start('underworld');
         }
@@ -326,7 +315,6 @@ function takeEnergy() {
         energyPotion--;
         energy += 10;
     }
-
     energyPotionLabel.setText(energyPotion);
     energyLabel.setText(energy);
 }

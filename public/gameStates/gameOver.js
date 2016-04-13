@@ -17,7 +17,6 @@ var gameOver = {
     },
 
     restart: function () {
-        //game.state.start('boot');
         window.location.href = '/game';
     }
 };

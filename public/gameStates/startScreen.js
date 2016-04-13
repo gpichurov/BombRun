@@ -26,7 +26,6 @@ var startScreen = {
 
         this.ctrlImg = game.add.image(10, 10, 'controls');
 
-        //  Enables all kind of input actions on this image (click, etc)
         this.ctrlImg.inputEnabled = true;
 
         this.ctrlImg.events.onInputDown.add(listener, this);

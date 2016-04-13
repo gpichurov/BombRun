@@ -1,35 +1,17 @@
 
-
-/*room = 'mineRoom';*/
-
-
 var mineRoom = {
-/*    map: '',*/
-/*    mapBottomLayer: '',
-    mapWallsLayer: '',*/
     identificator: 0,
     mapCubesLayer: '',
     droppingBomb: false,
-    /*bombButton: '',
-
-    bomb1: '',
-
-    enemy1:'',
-    enemy2:'',*/
     invisible:'',
     killEnemy1: false,
     room: 'mineRoom',
-   /* bombLabel: '',
-    energyLabel: '',*/
-
     smallMaps: '',
     counterEnemy: 0,
     invis:'',
     scrolls: '',
     eKey:'',
     sKey:'',
-
-    //scroll2:'',
 
     preload: function () {
         game.stage.backgroundColor = 'rgb(104, 81, 53)';
@@ -84,7 +66,6 @@ var mineRoom = {
         this.invisible = game.add.group();
         this.invisible.enableBody = true;
         this.invis = this.invisible.create(605, 150, 'invisible');
-        //invis.visible = false;
 
         this.scrolls = game.add.group();
         this.scrolls.enableBody = true;
@@ -176,14 +157,12 @@ var mineRoom = {
             maxBombs -= 1;
             bombLabel.setText(maxBombs);
 
-            anim.onStart.add(this.animationStarted, this);
             anim.onLoop.add(this.animationLooped, this);
             anim.onComplete.add(this.animationStopped, this);
 
             anim.play(10, false);
 
             this.dropping_bomb = true;
-
             }
         }
 
@@ -192,12 +171,7 @@ var mineRoom = {
         }
     },
 
-    animationStarted: function () {
-        /*anim.play(10, false);*/
-    },
-
     animationLooped: function(sprite, animation) {
-
         animation.loop = false;
         if (animation.loopCount === 2)
         {
@@ -207,15 +181,10 @@ var mineRoom = {
         {
             animation.loop = false;
         }
-
     },
 
     animationStopped: function(sprite, animation) {
         sprite.kill();
-    },
-
-    render: function () {
-
     },
 
     back: function() {
@@ -227,71 +196,12 @@ var mineRoom = {
         return true;
     },
 
-    /*collisionHandler: function(player, veg) {
-        return true;
-    },*/
-
     collectScroll: function (player, scroll) {
         collectedScrolls++;
         scroll.kill();
-       // gotAScroll = true;
     }
-
-    /*enterFirstWorld: function () {
-     if (killedEnemiesMine) {
-     game.state.start('firstTown');
-     }
-     }*/
 
 };
-
-/*
-function collisionPlayerEnemy(player, enemy) {
-    enemy.body.immovable = true;
-    player.kill();
-}
-*/
-
-
-/*function killEnemy(currentEnemy, explodingBomb) {
-    var a = explodingBomb.animations.currentFrame.index;
-    if (a == 8) {
-        currentEnemy.scale.setTo(1,1);
-        currentEnemyX = currentEnemy.body.x;
-        currentEnemyY = currentEnemy.body.y;
-        bombX = explodingBomb.body.x;
-        bombY = explodingBomb.body.y;
-        if (currentEnemyX - bombX <= 50 && currentEnemyY - bombY <= 50 && currentEnemyX - bombX >= 0 && currentEnemyY - bombY >= 0 ){
-            currentEnemy.kill();
-            mineRoom.counterEnemy++;
-            if (mineRoom.counterEnemy == 6) {
-                killedEnemiesMine = true;
-            }
-            mineRoom.identificator++;
-            releasedObjects(mineRoom.identificator);
-            /!*var singleScroll2 = underworld.smallMaps.create(currentEnemyX, currentEnemyY, 'smallMap');*!/
-        }//coin.kill();
-
-    } else {
-        // coin.kill();
-        // currentEnemy.kill();
-        //this.killEnemy1 = true;
-
-    }
-}*/
-
-
-
-function releasedObjects(identificator) {
-     room = this;
-    for (var i = 1; i <= identificator; i++) {
-        if (identificator == 1) {
-            var coin1 = coins.create(currentEnemyX, currentEnemyY, 'coin');
-        } else if (identificator) {
-            var scroll2 = mineRoom.smallMaps.create(currentEnemyX, currentEnemyY, 'scroll2');
-        }
-    }
-}
 
 function inventory() {
     invBox = game.add.sprite(1120, 30, 'brownWindow');
@@ -334,7 +244,6 @@ function inventory() {
     scrollItem.fixedToCamera = true;
     var energyItem = items.create(1210, 145, 'energy');
     energyItem.fixedToCamera = true;
-
 
     coinsText.fixedToCamera = true;
     energyLabel.fixedToCamera = true;
