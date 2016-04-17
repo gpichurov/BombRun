@@ -36,6 +36,6 @@ Browser game with website and shop.
 <h3>Installation guide:</h3>
 
 - Composer install and Composer update
-- Create database and setup .evn file like .evn.example
+- Create database and create .evn file like .evn.example
 - Run "php artisan migrate --seed" in the project root folder for database migration
-- Run "php artisan server" and open http://localhost:8000/ in the browser
+- Run "php artisan serve" and open http://localhost:8000/ in the browser
